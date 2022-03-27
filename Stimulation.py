@@ -150,12 +150,15 @@ def build(app):
     #combine label with game button containers
     number_Main.add(number_label, number_box) 
 
+    #split container for 2 game groups
     split1 = toga.SplitContainer(direction=toga.SplitContainer.VERTICAL)
     split1.content = [english_Main, focus_Main]
 
+    #split container for 2 game groups
     split2 = toga.SplitContainer(direction=toga.SplitContainer.VERTICAL)
     split2.content = [memory_Main, number_Main]
 
+    #split container for other split containers
     split3 = toga.SplitContainer(direction=toga.SplitContainer.HORIZONTAL)
     split3.content = [split1, split2]
 
