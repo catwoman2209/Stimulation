@@ -76,7 +76,7 @@ def build(app):
     kiddo.style.padding_top = 10 
     kiddo.style.padding_left = 10
     kiddo.style.flex = 0
-//
+
     paint = toga.Button('Paint Picking', on_press=paint_handler)
     paint.style.height = 60
     paint.style.width = 100
