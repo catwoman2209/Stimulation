@@ -12,27 +12,35 @@ def racer_handler(widget):
 
 def book_handler(widget):
     print("Bookworm game initiated.")
+    exec(open("Book.py").read())
 
 def editor_handler(widget):
     print("Editor game initiated.")
+    exec(open("Editor.py").read())
 
 def kiddo_handler(widget):
     print("Find the Kiddo game initiated.")
+    exec(open("Kiddo.py").read())
 
 def paint_handler(widget):
     print("Paint Picking game initiated.")
+    exec(open("Paint.py").read())
 
 def change_handler(widget):
     print("Quick Change game initiated.")
+    exec(open("Change.py").read())
 
 def blind_handler(widget):
     print("Blind Date game initiated.")
+    exec(open("Blind.py").read())
 
 def space_handler(widget):
     print("Space Oddity game initiated.")
+    exec(open("Space.py").read())
 
 def maze_handler(widget):
     print("Maze Runner game initiated.")
+    exec(open("Maze.py").read())
 
 def build(app):
 
