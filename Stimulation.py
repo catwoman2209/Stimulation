@@ -4,8 +4,11 @@ import toga
 from toga.style import Pack
 from toga.style.pack import COLUMN
 
+import Racer.py
+
 # main game button actions
 def racer_handler(widget):
+    
     print("Type Racer game initiated.")
 
 def book_handler(widget):
