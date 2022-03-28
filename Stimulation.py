@@ -1,15 +1,14 @@
-# Stimulation.py
+#Stimulation.py
 
 import toga
 from toga.style import Pack
 from toga.style.pack import COLUMN
 
-import Racer.py
 
 # main game button actions
 def racer_handler(widget):
-    
     print("Type Racer game initiated.")
+    exec(open("Racer.py").read())
 
 def book_handler(widget):
     print("Bookworm game initiated.")
@@ -28,6 +27,12 @@ def change_handler(widget):
 
 def blind_handler(widget):
     print("Blind Date game initiated.")
+
+def space_handler(widget):
+    print("Space Oddity game initiated.")
+
+def maze_handler(widget):
+    print("Maze Runner game initiated.")
 
 def build(app):
 
@@ -157,9 +162,46 @@ def build(app):
     #combine label with game button containers
     number_Main.add(number_label, number_box)
 
+    #container for the game section "Problem Solving"
+    problem_box = toga.Box()
+    problem_box2 = toga.Box()
+    problem_Main = toga.Box(style=Pack(direction=COLUMN))
+    problem_Main.style.padding_top=10 
+    problem_Main.style.padding_bottom=10 
+    
+    problem_label = toga.Label("Problem Solving Games")
+
+    #buttons for games
+    book2 = toga.Button('Bookworm', on_press=book_handler)
+    book2.style.height = 60
+    book2.style.width = 100
+    book2.style.padding_top = 10
+    book2.style.padding_left = 10
+    book2.style.flex = 0
+
+    space = toga.Button('Space Oddity', on_press=kiddo_handler)
+    space.style.height = 60
+    space.style.width = 100
+    space.style.padding_top = 10
+    space.style.padding_left = 10
+    space.style.flex = 0
+
+    maze = toga.Button('Maze Runner', on_press=paint_handler)
+    maze.style.height = 60
+    maze.style.width = 100
+    maze.style.padding_top = 10
+    maze.style.padding_left = 10
+    maze.style.flex = 0
+
+    #add buttons to containers
+    problem_box.add(book2, space)
+    problem_box2.add(maze)
+    #combine label with game button containers
+    problem_Main.add(problem_label, problem_box, problem_box2)
+
     #container for game groups
     games = toga.Box(style=Pack(direction=COLUMN))
-    games.add(english_Main, focus_Main, memory_Main, number_Main)
+    games.add(english_Main, focus_Main, memory_Main, number_Main, problem_Main)
 
     #scroll container for games
     games_Scroll = toga.ScrollContainer(horizontal=False, content = games)
