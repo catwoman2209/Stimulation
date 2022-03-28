@@ -187,14 +187,14 @@ def build(app):
     book2.style.padding_left = 10
     book2.style.flex = 0
 
-    space = toga.Button('Space Oddity', on_press=kiddo_handler)
+    space = toga.Button('Space Oddity', on_press=space_handler)
     space.style.height = 60
     space.style.width = 100
     space.style.padding_top = 10
     space.style.padding_left = 10
     space.style.flex = 0
 
-    maze = toga.Button('Maze Runner', on_press=paint_handler)
+    maze = toga.Button('Maze Runner', on_press=maze_handler)
     maze.style.height = 60
     maze.style.width = 100
     maze.style.padding_top = 10
