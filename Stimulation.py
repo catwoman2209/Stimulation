@@ -32,6 +32,7 @@ def build(app):
     english_box = toga.Box()
     english_box2 = toga.Box()
     english_Main = toga.Box(style=Pack(direction=COLUMN))
+    english_Main.style.padding_top=10 
     
     english_label = toga.Label("English Games")
 
@@ -66,6 +67,7 @@ def build(app):
     #container for game section "Focus"
     focus_box = toga.Box()
     focus_Main = toga.Box(style=Pack(direction=COLUMN))
+    focus_Main.style.padding_top=10 
 
     focus_label = toga.Label("Focus Games")
 
@@ -93,6 +95,7 @@ def build(app):
     memory_box = toga.Box()
     memory_box2 = toga.Box()
     memory_Main = toga.Box(style=Pack(direction=COLUMN))
+    memory_Main.style.padding_top=10 
     
     memory_label = toga.Label("Memory Games")
 
@@ -127,6 +130,7 @@ def build(app):
     #container for game section "Number"
     number_box = toga.Box()
     number_Main = toga.Box(style=Pack(direction=COLUMN))
+    number_Main.style.padding_top=10 
 
     number_label = toga.Label("Number Games")
 
@@ -148,23 +152,16 @@ def build(app):
     #add buttons to containers
     number_box.add(change, blind)
     #combine label with game button containers
-    number_Main.add(number_label, number_box) 
+    number_Main.add(number_label, number_box)
 
-    #split container for 2 game groups
-    split1 = toga.SplitContainer(direction=toga.SplitContainer.VERTICAL)
-    split1.content = [english_Main, focus_Main]
+    #container for game groups
+    games = toga.Box(style=Pack(direction=COLUMN))
+    games.add(english_Main, focus_Main, memory_Main, number_Main)
 
-    #split container for 2 game groups
-    split2 = toga.SplitContainer(direction=toga.SplitContainer.VERTICAL)
-    split2.content = [memory_Main, number_Main]
-
-    #split container for other split containers
-    split3 = toga.SplitContainer(direction=toga.SplitContainer.HORIZONTAL)
-    split3.content = [split1, split2]
-
-    main_screen = toga.ScrollContainer(content=split3)
-    
-    return split3
+    #scroll container for games
+    games_Scroll = toga.ScrollContainer(horizontal=False, content = games)
+     
+    return games_Scroll
 
 def main():
     return toga.App(
