@@ -1,229 +1,127 @@
-#Stimulation.py
+import pygame
+import pygame_gui as pygui
+from pygame_gui.core import ObjectID
 
-import toga
-from toga.style import Pack
-from toga.style.pack import COLUMN
+pygame.init()
 
+pygame.display.set_caption('Stimulation')
+window = pygame.display.set_mode((800, 600))
 
-# main game button actions
-def racer_handler(widget):
-    print("Type Racer game initiated.")
-    exec(open("Racer.py").read())
+background = pygame.Surface((800, 600))
+background.fill(pygame.Color("#B0C4DE"))
 
-def book_handler(widget):
-    print("Bookworm game initiated.")
-    exec(open("Book.py").read())
+toolbar = pygame.Surface((800, 50))
+toolbar.fill(pygame.Color("#178BA8"))
 
-def editor_handler(widget):
-    print("Editor game initiated.")
-    exec(open("Editor.py").read())
+manager = pygui.UIManager((800, 600), "/Users/ctaylor/pyqt_proj/menu_theme.json")
 
-def kiddo_handler(widget):
-    print("Find the Kiddo game initiated.")
-    exec(open("Kiddo.py").read())
+#menu buttons for the games
+blind_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((90, 100), (200, 100)),
+                                            text='Blind Date',
+                                            manager=manager,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
 
-def paint_handler(widget):
-    print("Paint Picking game initiated.")
-    exec(open("Paint.py").read())
+bookworm_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((300, 100), (200, 100)),
+                                            text='Bookworm',
+                                            manager=manager,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
 
-def change_handler(widget):
-    print("Quick Change game initiated.")
-    exec(open("Change.py").read())
+editor_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((510, 100), (200, 100)),
+                                            text='Editor',
+                                            manager=manager,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
 
-def blind_handler(widget):
-    print("Blind Date game initiated.")
-    exec(open("Blind.py").read())
+kiddo_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((90, 210), (200, 100)),
+                                            text='Find the Kiddo',
+                                            manager=manager,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
 
-def space_handler(widget):
-    print("Space Oddity game initiated.")
-    exec(open("Space.py").read())
+maze_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((300, 210), (200, 100)),
+                                            text='Maze Runner',
+                                            manager=manager,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
 
-def maze_handler(widget):
-    print("Maze Runner game initiated.")
-    exec(open("Maze.py").read())
+paint_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((510, 210), (200, 100)),
+                                            text='Paint Picker',
+                                            manager=manager,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
 
-def build(app):
+change_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((90, 320), (200, 100)),
+                                            text='Quick Change',
+                                            manager=manager,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
 
-    #container for the game section "English"
-    english_box = toga.Box()
-    english_box2 = toga.Box()
-    english_Main = toga.Box(style=Pack(direction=COLUMN))
-    english_Main.style.padding_top=10 
-    
-    english_label = toga.Label("English Games")
+space_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((300, 320), (200, 100)),
+                                            text='Space Oddity',
+                                            manager=manager,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
 
-    #buttons for games
-    racer = toga.Button('Type Racer', on_press=racer_handler)
-    racer.style.height = 60
-    racer.style.width = 100
-    racer.style.padding_top = 10
-    racer.style.padding_left = 10
-    racer.style.flex = 0
+racer_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((510, 320), (200, 100)),
+                                            text='Type Racer',
+                                            manager=manager,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
 
-    editor = toga.Button('Editor', on_press=editor_handler)
-    editor.style.height = 60
-    editor.style.width = 100
-    editor.style.padding_top = 10
-    editor.style.padding_left = 10
-    editor.style.flex = 0
+clock = pygame.time.Clock()
+is_running = True
 
-    book = toga.Button('Bookworm', on_press=book_handler)
-    book.style.height = 60
-    book.style.width = 100
-    book.style.padding_top = 10
-    book.style.padding_left = 10
-    book.style.flex = 0
+while is_running:
+    time_delta = clock.tick(60)/1000.0
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            is_running = False
 
-    #add buttons to containers
-    english_box.add(racer, editor)
-    english_box2.add(book)
-    #combine label with game button containers
-    english_Main.add(english_label, english_box, english_box2)
+        #event handllers for game menu buttons
+        if event.type == pygui.UI_BUTTON_PRESSED:
+            if event.ui_element == blind_menu_button:
+                print('Blind Date game launched')
+                exec(open("Blind.py").read())
 
-    #container for game section "Focus"
-    focus_box = toga.Box()
-    focus_Main = toga.Box(style=Pack(direction=COLUMN))
-    focus_Main.style.padding_top=10 
+        if event.type == pygui.UI_BUTTON_PRESSED:
+            if event.ui_element == bookworm_menu_button:
+                print('Bookworm game launched')
+                exec(open("Book.py").read())
 
-    focus_label = toga.Label("Focus Games")
+        if event.type == pygui.UI_BUTTON_PRESSED:
+            if event.ui_element == editor_menu_button:
+                print('Editor game launched')
+                exec(open("Editor.py").read())
 
-    #buttons for games
-    kiddo = toga.Button('Find the Kiddo', on_press=kiddo_handler)
-    kiddo.style.height = 60
-    kiddo.style.width = 100
-    kiddo.style.padding_top = 10 
-    kiddo.style.padding_left = 10
-    kiddo.style.flex = 0
+        if event.type == pygui.UI_BUTTON_PRESSED:
+            if event.ui_element == kiddo_menu_button:
+                print('Find the Kiddo game launched')
+                exec(open("Kiddo.py").read())
 
-    paint = toga.Button('Paint Picking', on_press=paint_handler)
-    paint.style.height = 60
-    paint.style.width = 100
-    paint.style.padding_top = 10
-    paint.style.padding_left = 10
-    paint.style.flex = 0
+        if event.type == pygui.UI_BUTTON_PRESSED:
+            if event.ui_element == maze_menu_button:
+                print('Maze Runner game launched')
+                exec(open("Maze.py").read())
 
-    #add buttons to containers
-    focus_box.add(kiddo, paint)
-    #combine label with game button containers
-    focus_Main.add(focus_label, focus_box) 
+        if event.type == pygui.UI_BUTTON_PRESSED:
+            if event.ui_element == paint_menu_button:
+                print('Paint Picker game launched')
+                exec(open("Paint.py").read())
 
-    #container for the game section "Memory"
-    memory_box = toga.Box()
-    memory_box2 = toga.Box()
-    memory_Main = toga.Box(style=Pack(direction=COLUMN))
-    memory_Main.style.padding_top=10 
-    
-    memory_label = toga.Label("Memory Games")
+        if event.type == pygui.UI_BUTTON_PRESSED:
+            if event.ui_element == change_menu_button:
+                print('Quick Change game launched')
+                exec(open("Change.py").read())
 
-    #buttons for games
-    blind2 = toga.Button('Blind Date', on_press=blind_handler)
-    blind2.style.height = 60
-    blind2.style.width = 100
-    blind2.style.padding_top = 10
-    blind2.style.padding_left = 10
-    blind2.style.flex = 0
+        if event.type == pygui.UI_BUTTON_PRESSED:
+            if event.ui_element == space_menu_button:
+                print('Space Oddity game launched')
+                exec(open("Space.py").read())
 
-    kiddo2 = toga.Button('Find the Kiddo', on_press=kiddo_handler)
-    kiddo2.style.height = 60
-    kiddo2.style.width = 100
-    kiddo2.style.padding_top = 10
-    kiddo2.style.padding_left = 10
-    kiddo2.style.flex = 0
+        if event.type == pygui.UI_BUTTON_PRESSED:
+            if event.ui_element == racer_menu_button:
+                print('Type Racer game launched')
+                exec(open("Racer.py").read())
 
-    paint2 = toga.Button('Paint Picking', on_press=paint_handler)
-    paint2.style.height = 60
-    paint2.style.width = 100
-    paint2.style.padding_top = 10
-    paint2.style.padding_left = 10
-    paint2.style.flex = 0
+        manager.process_events(event)
 
-    #add buttons to containers
-    memory_box.add(blind2, kiddo2)
-    memory_box2.add(paint2)
-    #combine label with game button containers
-    memory_Main.add(memory_label, memory_box, memory_box2)
+    manager.update(time_delta)
 
-    #container for game section "Number"
-    number_box = toga.Box()
-    number_Main = toga.Box(style=Pack(direction=COLUMN))
-    number_Main.style.padding_top=10 
+    window.blit(background, (0, 0))
+    window.blit(toolbar, (0, 0))
+    manager.draw_ui(window)
 
-    number_label = toga.Label("Number Games")
-
-    #buttons for games
-    change = toga.Button('Quick Change', on_press=change_handler)
-    change.style.height = 60
-    change.style.width = 100
-    change.style.padding_top = 10
-    change.style.padding_left = 10
-    change.style.flex = 0
-
-    blind = toga.Button('Blind Date', on_press=blind_handler)
-    blind.style.height = 60
-    blind.style.width = 100
-    blind.style.padding_top = 10
-    blind.style.padding_left = 10
-    blind.style.flex = 0
-
-    #add buttons to containers
-    number_box.add(change, blind)
-    #combine label with game button containers
-    number_Main.add(number_label, number_box)
-
-    #container for the game section "Problem Solving"
-    problem_box = toga.Box()
-    problem_box2 = toga.Box()
-    problem_Main = toga.Box(style=Pack(direction=COLUMN))
-    problem_Main.style.padding_top=10 
-    problem_Main.style.padding_bottom=10 
-    
-    problem_label = toga.Label("Problem Solving Games")
-
-    #buttons for games
-    book2 = toga.Button('Bookworm', on_press=book_handler)
-    book2.style.height = 60
-    book2.style.width = 100
-    book2.style.padding_top = 10
-    book2.style.padding_left = 10
-    book2.style.flex = 0
-
-    space = toga.Button('Space Oddity', on_press=space_handler)
-    space.style.height = 60
-    space.style.width = 100
-    space.style.padding_top = 10
-    space.style.padding_left = 10
-    space.style.flex = 0
-
-    maze = toga.Button('Maze Runner', on_press=maze_handler)
-    maze.style.height = 60
-    maze.style.width = 100
-    maze.style.padding_top = 10
-    maze.style.padding_left = 10
-    maze.style.flex = 0
-
-    #add buttons to containers
-    problem_box.add(book2, space)
-    problem_box2.add(maze)
-    #combine label with game button containers
-    problem_Main.add(problem_label, problem_box, problem_box2)
-
-    #container for game groups
-    games = toga.Box(style=Pack(direction=COLUMN))
-    games.add(english_Main, focus_Main, memory_Main, number_Main, problem_Main)
-
-    #scroll container for games
-    games_Scroll = toga.ScrollContainer(horizontal=False, content = games)
-     
-    return games_Scroll
-
-def main():
-    return toga.App(
-        'Stimulation',
-        'org.capstone.Stimulation',
-        author='Black Rams',
-        description="Stimulation is the product of our Capstone project.",
-        startup=build
-    )
-
-if __name__ == '__main__':
-    main().main_loop()
+    pygame.display.update()
