@@ -121,6 +121,7 @@ while is_running:
     manager.update(time_delta)
 
     window.blit(background, (0, 0))
+    window.blit(toolbar, (0,0))
     manager.draw_ui(window)
 
     pygame.display.update()

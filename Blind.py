@@ -6,11 +6,4 @@ import Stimulation as S
 
 pygame.init()
 
-running = True
-
-while running:
-    print("Blind Date game code")
-    S.window.blit(toolbar, (0, 0))
-
-    S.manager.draw_ui(window)
-    pygame.display.update()
+print("Blind Date game code")
