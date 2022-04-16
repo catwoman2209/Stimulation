@@ -1,6 +1,8 @@
 #File for Editor game code
+import pygame
+import pygame_gui as pygui
+from pygame_gui.core import ObjectID
 
-import toga
+pygame.init()
 
-if __name__ == '__main__':
-    print("Editor game code")
+print("Editor game code")
