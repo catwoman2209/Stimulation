@@ -21,7 +21,7 @@ blind_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((90, 100),
                                             manager=manager,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
 
-bookworm_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((300, 100), (200, 100)),
+book_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((300, 100), (200, 100)),
                                             text='Bookworm',
                                             manager=manager,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
@@ -63,6 +63,7 @@ racer_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((510, 320)
 
 clock = pygame.time.Clock()
 is_running = True
+flag = 0
 
 while is_running:
     time_delta = clock.tick(60)/1000.0
@@ -75,9 +76,10 @@ while is_running:
             if event.ui_element == blind_menu_button:
                 print('Blind Date game launched')
                 exec(open("Blind.py").read())
+                
 
         if event.type == pygui.UI_BUTTON_PRESSED:
-            if event.ui_element == bookworm_menu_button:
+            if event.ui_element == book_menu_button:
                 print('Bookworm game launched')
                 exec(open("Book.py").read())
 
