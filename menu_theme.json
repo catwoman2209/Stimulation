@@ -3,8 +3,7 @@
     {
         "misc":
         {
-            "border_width": "1",
-            "shadow_width": "2"
+            "border_width": "0"
         }
     },
     "@game_menu_buttons":

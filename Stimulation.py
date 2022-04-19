@@ -4,61 +4,75 @@ from pygame_gui.core import ObjectID
 
 pygame.init()
 
-pygame.display.set_caption('Stimulation')
+pygame.display.set_caption("Stimulation")
 window = pygame.display.set_mode((800, 600))
 
-background = pygame.Surface((800, 600))
-background.fill(pygame.Color("#B0C4DE"))
-
-toolbar = pygame.Surface((800, 50))
-toolbar.fill(pygame.Color("#178BA8"))
-
 manager = pygui.UIManager((800, 600), "/Users/ctaylor/pyqt_proj/menu_theme.json")
+manager.get_theme().load_theme('panel.json')
+
+main_background = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
+                                        manager=manager,
+                                        starting_layer_height=1,
+                                        object_id=ObjectID(class_id='@main_panel'))
+
+toolbar = pygui.elements.UIPanel(relative_rect=pygame.Rect((0,0), (800, 60)),
+                                manager=manager,
+                                starting_layer_height=1,
+                                object_id=ObjectID(class_id='@toolbar'))
 
 #menu buttons for the games
 blind_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((90, 100), (200, 100)),
                                             text='Blind Date',
                                             manager=manager,
+                                            container=main_background,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
 
 book_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((300, 100), (200, 100)),
                                             text='Bookworm',
                                             manager=manager,
+                                            container=main_background,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
 
 editor_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((510, 100), (200, 100)),
                                             text='Editor',
                                             manager=manager,
+                                            container=main_background,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
 
 kiddo_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((90, 210), (200, 100)),
                                             text='Find the Kiddo',
                                             manager=manager,
+                                            container=main_background,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
 
 maze_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((300, 210), (200, 100)),
                                             text='Maze Runner',
                                             manager=manager,
+                                            container=main_background,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
 
 paint_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((510, 210), (200, 100)),
                                             text='Paint Picker',
                                             manager=manager,
+                                            container=main_background,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
 
 change_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((90, 320), (200, 100)),
                                             text='Quick Change',
                                             manager=manager,
+                                            container=main_background,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
 
 space_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((300, 320), (200, 100)),
                                             text='Space Oddity',
                                             manager=manager,
+                                            container=main_background,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
 
 racer_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((510, 320), (200, 100)),
                                             text='Type Racer',
                                             manager=manager,
+                                            container=main_background,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
 
 clock = pygame.time.Clock()
@@ -122,8 +136,6 @@ while is_running:
 
     manager.update(time_delta)
 
-    window.blit(background, (0, 0))
-    window.blit(toolbar, (0,0))
     manager.draw_ui(window)
 
     pygame.display.update()

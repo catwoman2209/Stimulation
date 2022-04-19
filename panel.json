@@ -1,0 +1,24 @@
+{   
+    "panel":
+    {
+        "misc":
+        {
+            "shape": "rectangle",
+            "border_width": "0"
+        }
+    },
+    "@main_panel":
+    {
+        "colours":
+        {
+            "dark_bg": "#E4E189"
+        }
+    },
+    "@toolbar":
+    {
+        "colours":
+        {
+            "dark_bg": "#178BA8"
+        }
+    }
+}
