@@ -123,6 +123,12 @@ back_button = pygui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (100, 50
                                             container=instruction_toolbar,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
 
+play_button = pygui.elements.UIButton(relative_rect=pygame.Rect((350, 400), (100, 50)),
+                                            text='PLAY',
+                                            manager=manager,
+                                            container=instruction_bg,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+
 
 clock = pygame.time.Clock()
 is_running = True
@@ -139,9 +145,9 @@ while is_running:
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == blind_menu_button:
                 print('Blind Date game launched')
-                exec(open("Blind.py").read())
+                stack.move_window_to_front(instruction_window)
+                flag = 1
                 
-
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == book_menu_button:
                 print('Bookworm game launched')
@@ -185,6 +191,13 @@ while is_running:
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == back_button:
                 stack.move_window_to_front(main_window)
+
+        if event.type == pygui.UI_BUTTON_PRESSED:
+            if event.ui_element == play_button:
+                if flag == 1:
+                    exec(open("Blind.py").read())
+                    stack.move_window_to_front(instruction_window)
+
 
         manager.process_events(event)
 
