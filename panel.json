@@ -20,5 +20,12 @@
         {
             "dark_bg": "#178BA8"
         }
+    },
+    "@instruction_panel":
+    {
+        "misc":
+        {
+            "border_width": "1"
+        }
     }
 }

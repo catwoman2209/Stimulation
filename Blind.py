@@ -4,44 +4,16 @@ import pygame_gui as pygui
 from pygame_gui.core import ObjectID
 import Stimulation as S
 
-pygame.init()
- 
-# S.blind_menu_button.visible = False
-# S.blind_menu_button.disable = True
-# S.blind_menu_button.update(S.time_delta)
 
-# S.book_menu_button.visible = False
-# S.book_menu_button.disable = True
-# S.book_menu_button.update(S.time_delta)
-
-# S.editor_menu_button.visible = False
-# S.editor_menu_button.disable = True
-# S.editor_menu_button.update(S.time_delta)
-
-# S.kiddo_menu_button.visible = False
-# S.kiddo_menu_button.disable = True
-# S.kiddo_menu_button.update(S.time_delta)
-
-# S.maze_menu_button.visible = False
-# S.maze_menu_button.disable = True
-# S.maze_menu_button.update(S.time_delta)
-
-# S.paint_menu_button.visible = False
-# S.paint_menu_button.disable = True
-# S.paint_menu_button.update(S.time_delta)
-
-# S.change_menu_button.visible = False
-# S.change_menu_button.disable = True
-# S.change_menu_button.update(S.time_delta)
-
-# S.space_menu_button.visible = False
-# S.space_menu_button.disable = True
-# S.space_menu_button.update(S.time_delta)
-
-# S.racer_menu_button.visible = False
-# S.racer_menu_button.disable = True
-# S.racer_menu_button.update(S.time_delta)
-
-# S.background.fill((0,0,0))
+S.main_window.change_layer(1)
+S.main_window.disable()
+S.main_window.visible = False
+S.main_window.update(S.time_delta)
+S.instruction_window.change_layer(3)
+S.instruction_window.visible = True
+S.instruction_window.update(S.time_delta)
+S.instruction_bg.visible = True
+S.instruction_bg.update(S.time_delta)
+S.manager.update(S.time_delta)
 
 print("Blind Date game code")
