@@ -17,12 +17,12 @@ x2 = x/2 - 400
 y2 = y/2 - 300
 
 #panels and windows for Stimulation
-menu_window = pygui.elements.UIWindow(rect=pygame.Rect(0, 0, x, y),
+window2 = pygui.elements.UIWindow(rect=pygame.Rect(0, 0, x, y),
                             manager=manager,
                             window_display_title='Stimulation',
                             resizable=False)
-stack = pygui.core.ui_window_stack.UIWindowStack(window_resolution=(x,y), root_container=menu_window)
-  
+
+stack = pygui.core.ui_window_stack.UIWindowStack(window_resolution=(x,y), root_container=window2) 
 
 main_window = pygui.elements.UIWindow(rect=pygame.Rect(x2, y2, 800, 600),
                             manager=manager,
@@ -33,6 +33,7 @@ instruction_window = pygui.elements.UIWindow(rect=pygame.Rect(x2, y2, 800, 600),
                                             manager=manager,
                                             window_display_title='Instruction Menu',
                                             resizable=False)
+
 stack.add_new_window(main_window)
 stack.add_new_window(instruction_window)
 stack.move_window_to_front(main_window)
@@ -182,9 +183,8 @@ while is_running:
                 exec(open("Racer.py").read())
 
         if event.type == pygui.UI_BUTTON_PRESSED:
-            if event.ui_element == racer_menu_button:
-                print('Type Racer game launched')
-                exec(open("Racer.py").read())
+            if event.ui_element == back_button:
+                stack.move_window_to_front(main_window)
 
         manager.process_events(event)
 
