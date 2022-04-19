@@ -140,6 +140,7 @@ while is_running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             is_running = False
+            quit()
 
         #event handllers for game menu buttons
         if event.type == pygui.UI_BUTTON_PRESSED:
@@ -151,42 +152,50 @@ while is_running:
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == book_menu_button:
                 print('Bookworm game launched')
-                exec(open("Book.py").read())
+                stack.move_window_to_front(instruction_window)
+                flag = 2
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == editor_menu_button:
                 print('Editor game launched')
-                exec(open("Editor.py").read())
+                stack.move_window_to_front(instruction_window)
+                flag = 3
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == kiddo_menu_button:
                 print('Find the Kiddo game launched')
-                exec(open("Kiddo.py").read())
+                stack.move_window_to_front(instruction_window)
+                flag = 4
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == maze_menu_button:
                 print('Maze Runner game launched')
-                exec(open("Maze.py").read())
+                stack.move_window_to_front(instruction_window)
+                flag = 5
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == paint_menu_button:
                 print('Paint Picker game launched')
-                exec(open("Paint.py").read())
+                stack.move_window_to_front(instruction_window)
+                flag = 6
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == change_menu_button:
                 print('Quick Change game launched')
-                exec(open("Change.py").read())
+                stack.move_window_to_front(instruction_window)
+                flag = 7
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == space_menu_button:
                 print('Space Oddity game launched')
-                exec(open("Space.py").read())
+                stack.move_window_to_front(instruction_window)
+                flag = 8
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == racer_menu_button:
                 print('Type Racer game launched')
-                exec(open("Racer.py").read())
+                stack.move_window_to_front(instruction_window)
+                flag = 9
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == back_button:
@@ -196,7 +205,31 @@ while is_running:
             if event.ui_element == play_button:
                 if flag == 1:
                     exec(open("Blind.py").read())
-                    stack.move_window_to_front(instruction_window)
+                    stack.move_window_to_front(main_window)
+                if flag == 2:
+                    exec(open("Book.py").read())
+                    stack.move_window_to_front(main_window)
+                if flag == 3:
+                    exec(open("Editor.py").read())
+                    stack.move_window_to_front(main_window)
+                if flag == 4:
+                    exec(open("Kiddo.py").read())
+                    stack.move_window_to_front(main_window)
+                if flag == 5:
+                    exec(open("Maze.py").read())
+                    stack.move_window_to_front(main_window)
+                if flag == 6:
+                    exec(open("Paint.py").read())
+                    stack.move_window_to_front(main_window)
+                if flag == 7:
+                    exec(open("Change.py").read())
+                    stack.move_window_to_front(main_window)
+                if flag == 8:
+                    exec(open("Racer.py").read())
+                    stack.move_window_to_front(main_window)
+                if flag == 9:
+                    exec(open("Space.py").read())
+                    stack.move_window_to_front(main_window)
 
 
         manager.process_events(event)
