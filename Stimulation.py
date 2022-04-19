@@ -16,6 +16,14 @@ manager.get_theme().load_theme('panel.json')
 x2 = x/2 - 400
 y2 = y/2 - 300
 
+#panels and windows for Stimulation
+menu_window = pygui.elements.UIWindow(rect=pygame.Rect(0, 0, x, y),
+                            manager=manager,
+                            window_display_title='Stimulation',
+                            resizable=False)
+stack = pygui.core.ui_window_stack.UIWindowStack(window_resolution=(x,y), root_container=menu_window)
+  
+
 main_window = pygui.elements.UIWindow(rect=pygame.Rect(x2, y2, 800, 600),
                             manager=manager,
                             window_display_title='Main Menu',
@@ -24,8 +32,10 @@ main_window = pygui.elements.UIWindow(rect=pygame.Rect(x2, y2, 800, 600),
 instruction_window = pygui.elements.UIWindow(rect=pygame.Rect(x2, y2, 800, 600),
                                             manager=manager,
                                             window_display_title='Instruction Menu',
-                                            resizable=False,
-                                            visible = False)
+                                            resizable=False)
+stack.add_new_window(main_window)
+stack.add_new_window(instruction_window)
+stack.move_window_to_front(main_window)
 
 main_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
                                         manager=manager,
@@ -37,13 +47,19 @@ instruction_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800,
                                         manager=manager,
                                         container=instruction_window,
                                         starting_layer_height=1,
-                                        object_id=ObjectID(class_id='@instruction_panel'),
-                                        visible = False)
+                                        object_id=ObjectID(class_id='@instruction_panel'))
 
-# toolbar = pygui.elements.UIPanel(relative_rect=pygame.Rect((0,0), (800, 60)),
-#                                 manager=manager,
-#                                 starting_layer_height=1,
-#                                 object_id=ObjectID(class_id='@toolbar'))
+main_toolbar = pygui.elements.UIPanel(relative_rect=pygame.Rect((0,0), (800, 60)),
+                                manager=manager,
+                                starting_layer_height=1,
+                                container=main_window,
+                                object_id=ObjectID(class_id='@toolbar'))
+
+instruction_toolbar = pygui.elements.UIPanel(relative_rect=pygame.Rect((0,0), (800, 60)),
+                                manager=manager,
+                                starting_layer_height=1,
+                                container=instruction_window,
+                                object_id=ObjectID(class_id='@toolbar'))
 
 #menu buttons for the games
 blind_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((90, 100), (200, 100)),
@@ -103,8 +119,9 @@ racer_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((510, 320)
 back_button = pygui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (100, 50)),
                                             text='Back',
                                             manager=manager,
-                                            # container=toolbar,
+                                            container=instruction_toolbar,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
+
 
 clock = pygame.time.Clock()
 is_running = True
@@ -158,6 +175,11 @@ while is_running:
             if event.ui_element == space_menu_button:
                 print('Space Oddity game launched')
                 exec(open("Space.py").read())
+
+        if event.type == pygui.UI_BUTTON_PRESSED:
+            if event.ui_element == racer_menu_button:
+                print('Type Racer game launched')
+                exec(open("Racer.py").read())
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == racer_menu_button:
