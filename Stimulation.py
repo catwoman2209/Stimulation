@@ -179,7 +179,7 @@ while is_running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             is_running = False
-            quit()
+            pygame.quit()
 
         #event handllers for game menu buttons
         if event.type == pygui.UI_BUTTON_PRESSED:
@@ -296,7 +296,7 @@ while is_running:
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == quit_button:
-                quit()
+                pygame.quit()
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == play_button:
