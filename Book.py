@@ -1,4 +1,5 @@
 #File for Bookworm game code
+import os
 import pygame
 import pygame_gui as pygui
 from pygame_gui.core import ObjectID
@@ -11,7 +12,8 @@ pygame.init()
 pygame.display.set_caption("Stimulation")
 window = pygame.display.set_mode()
 
-manager = pygui.UIManager((S.x, S.y), "/Users/ctaylor/pyqt_proj/menu_theme.json")
+cwd = os.getcwd()
+manager = pygui.UIManager((S.x, S.y), cwd + "/menu_theme.json")
 manager.get_theme().load_theme('panel.json')
 
 game_window = pygui.elements.UIWindow(rect=pygame.Rect(x2, y2, 800, 600),
