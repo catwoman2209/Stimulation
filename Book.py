@@ -6,6 +6,7 @@ import random
 import urllib.request
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 pygame.init()
 
 pygame.display.set_caption("Stimulation")
@@ -81,6 +82,14 @@ def get_jumble():
     letter_button4.visible = False
     letter_button5.visible = False
 =======
+=======
+###################### NOTES ########################
+
+# Stimulation will reach an infinite loop if the jumbled word has an apostrophe
+
+###################### END OF NOTES ########################
+
+>>>>>>> Stashed changes
 jumble_list=[]
 def get_jumble(x):
 >>>>>>> Stashed changes
@@ -97,7 +106,7 @@ def get_jumble(x):
     word = random.choice(list)
     while (len(word)>5):
         if (len(word)<=2):
-            print("Loading...")
+            word = random.choice(list)
         else:
             word = random.choice(list)
 
