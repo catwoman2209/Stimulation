@@ -16,6 +16,26 @@ manager.get_theme().load_theme('panel.json')
 x2 = x/2 - 400
 y2 = y/2 - 300
 
+def instruction_text(x):
+    if x == 1:
+        return "Blind Date"
+    if x == 2:
+        return "Bookworm"
+    if x == 3:
+        return "Editor"
+    if x == 4:
+        return "Find the Kiddo"
+    if x == 5:
+        return "Maze Runner"
+    if x == 6:
+        return "Paint Picker"
+    if x == 7:
+        return "Quick Change"
+    if x == 8:
+        return "Type Racer"
+    if x == 9:
+        return "Space Oddity"
+
 #panels and windows for Stimulation
 window2 = pygui.elements.UIWindow(rect=pygame.Rect(0, 0, x, y),
                             manager=manager,
@@ -148,54 +168,99 @@ while is_running:
                 print('Blind Date game launched')
                 stack.move_window_to_front(instruction_window)
                 flag = 1
+                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(1),
+                                            relative_rect=pygame.Rect((0, 50), (800, 350)),
+                                            manager=manager,
+                                            container=instruction_bg)
+                manager.update(time_delta)
                 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == book_menu_button:
                 print('Bookworm game launched')
                 stack.move_window_to_front(instruction_window)
                 flag = 2
+                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(2),
+                                            relative_rect=pygame.Rect((0, 50), (800, 350)),
+                                            manager=manager,
+                                            container=instruction_bg)
+                manager.update(time_delta)
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == editor_menu_button:
                 print('Editor game launched')
                 stack.move_window_to_front(instruction_window)
                 flag = 3
+                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(3),
+                                            relative_rect=pygame.Rect((0, 50), (800, 350)),
+                                            manager=manager,
+                                            container=instruction_bg)
+                manager.update(time_delta)
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == kiddo_menu_button:
                 print('Find the Kiddo game launched')
                 stack.move_window_to_front(instruction_window)
                 flag = 4
+                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(4),
+                                            relative_rect=pygame.Rect((0, 50), (800, 350)),
+                                            manager=manager,
+                                            container=instruction_bg)
+                manager.update(time_delta)
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == maze_menu_button:
                 print('Maze Runner game launched')
                 stack.move_window_to_front(instruction_window)
                 flag = 5
+                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(5),
+                                            relative_rect=pygame.Rect((0, 50), (800, 350)),
+                                            manager=manager,
+                                            container=instruction_bg)
+                manager.update(time_delta)
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == paint_menu_button:
                 print('Paint Picker game launched')
                 stack.move_window_to_front(instruction_window)
                 flag = 6
+                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(6),
+                                            relative_rect=pygame.Rect((0, 50), (800, 350)),
+                                            manager=manager,
+                                            container=instruction_bg)
+                manager.update(time_delta)
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == change_menu_button:
                 print('Quick Change game launched')
                 stack.move_window_to_front(instruction_window)
                 flag = 7
+                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(7),
+                                            relative_rect=pygame.Rect((0, 50), (800, 350)),
+                                            manager=manager,
+                                            container=instruction_bg)
+                manager.update(time_delta)
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == space_menu_button:
                 print('Space Oddity game launched')
                 stack.move_window_to_front(instruction_window)
                 flag = 8
+                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(8),
+                                            relative_rect=pygame.Rect((0, 50), (800, 350)),
+                                            manager=manager,
+                                            container=instruction_bg)
+                manager.update(time_delta)
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == racer_menu_button:
                 print('Type Racer game launched')
                 stack.move_window_to_front(instruction_window)
                 flag = 9
+                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(9),
+                                            relative_rect=pygame.Rect((0, 50), (800, 350)),
+                                            manager=manager,
+                                            container=instruction_bg)
+                manager.update(time_delta)
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == back_button:
@@ -206,6 +271,7 @@ while is_running:
                 if flag == 1:
                     exec(open("Blind.py").read())
                     stack.move_window_to_front(main_window)
+
                 if flag == 2:
                     exec(open("Book.py").read())
                     stack.move_window_to_front(main_window)
@@ -230,7 +296,6 @@ while is_running:
                 if flag == 9:
                     exec(open("Space.py").read())
                     stack.move_window_to_front(main_window)
-
 
         manager.process_events(event)
 
