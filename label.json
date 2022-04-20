@@ -1,0 +1,16 @@
+ {
+     "label":
+     {
+         "colours":
+         {
+             "normal_text": "#000000"
+         }
+     },
+     "@bookworm_label":
+     {
+         "colours":
+         {
+            "dark_bg": "#E4E189"
+         }
+     }
+ }

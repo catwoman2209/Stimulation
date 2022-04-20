@@ -1,6 +1,7 @@
 import pygame
 import pygame_gui as pygui
 from pygame_gui.core import ObjectID
+import Book
 
 pygame.init()
 
@@ -12,9 +13,79 @@ y = window.get_height()
 
 manager = pygui.UIManager((x, y), "/Users/ctaylor/pyqt_proj/menu_theme.json")
 manager.get_theme().load_theme('panel.json')
+manager.get_theme().load_theme('label.json')
 
 x2 = x/2 - 400
 y2 = y/2 - 300
+
+################ CONSTANT ELEMENTS/WINDOWS #######################
+
+#panels and windows for Stimulation
+window2 = pygui.elements.UIWindow(rect=pygame.Rect(0, 0, x, y),
+                            manager=manager,
+                            window_display_title='Stimulation',
+                            resizable=False,
+                            visible=False)
+
+stack = pygui.core.ui_window_stack.UIWindowStack(window_resolution=(x,y), root_container=window2) 
+
+main_window = pygui.elements.UIWindow(rect=pygame.Rect(x2, y2, 800, 600),
+                            manager=manager,
+                            window_display_title='Main Menu',
+                            resizable=False)
+
+instruction_window = pygui.elements.UIWindow(rect=pygame.Rect(x2, y2, 800, 600),
+                                            manager=manager,
+                                            window_display_title='Instruction Menu',
+                                            resizable=False)
+
+game_window = pygui.elements.UIWindow(rect=pygame.Rect(x2, y2, 800, 600),
+                            manager=manager,
+                            window_display_title='Bookworm',
+                            resizable=False)
+
+#add windows to stack
+stack.add_new_window(main_window)
+stack.add_new_window(instruction_window)
+stack.add_new_window(game_window)
+stack.move_window_to_front(main_window)
+
+#constant background panels and toolbars
+main_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
+                                        manager=manager,
+                                        container=main_window,
+                                        starting_layer_height=1,
+                                        object_id=ObjectID(class_id='@main_panel'))
+
+instruction_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
+                                        manager=manager,
+                                        container=instruction_window,
+                                        starting_layer_height=1,
+                                        object_id=ObjectID(class_id='@instruction_panel'))
+
+game_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
+                                        manager=manager,
+                                        container=game_window,
+                                        starting_layer_height=1,
+                                        object_id=ObjectID(class_id='@game_panel'))
+
+main_toolbar = pygui.elements.UIPanel(relative_rect=pygame.Rect((0,0), (800, 60)),
+                                manager=manager,
+                                starting_layer_height=1,
+                                container=main_window,
+                                object_id=ObjectID(class_id='@toolbar'))
+
+instruction_toolbar = pygui.elements.UIPanel(relative_rect=pygame.Rect((0,0), (800, 60)),
+                                manager=manager,
+                                starting_layer_height=1,
+                                container=instruction_window,
+                                object_id=ObjectID(class_id='@toolbar'))
+
+game_toolbar = pygui.elements.UIPanel(relative_rect=pygame.Rect((0,0), (800, 60)),
+                                manager=manager,
+                                starting_layer_height=1,
+                                container=game_window,
+                                object_id=ObjectID(class_id='@toolbar'))
 
 #function for updating instruction_textbox
 def instruction_text(x):
@@ -46,56 +117,8 @@ def instruction_text(x):
     if x == 9:
         return "<b>Space Oddity</b><br><br>Choose the odd alien out in this space-themed problem solving game!<br><br><br>This game may help those with ADHD to improve symptoms with continued use over time."
 
-#panels and windows for Stimulation
-window2 = pygui.elements.UIWindow(rect=pygame.Rect(0, 0, x, y),
-                            manager=manager,
-                            window_display_title='Stimulation',
-                            resizable=False,
-                            visible=False)
+################ MAIN MENU ELEMENTS #######################
 
-stack = pygui.core.ui_window_stack.UIWindowStack(window_resolution=(x,y), root_container=window2) 
-
-main_window = pygui.elements.UIWindow(rect=pygame.Rect(x2, y2, 800, 600),
-                            manager=manager,
-                            window_display_title='Main Menu',
-                            resizable=False)
-
-instruction_window = pygui.elements.UIWindow(rect=pygame.Rect(x2, y2, 800, 600),
-                                            manager=manager,
-                                            window_display_title='Instruction Menu',
-                                            resizable=False)
-
-#add windows to stack
-stack.add_new_window(main_window)
-stack.add_new_window(instruction_window)
-stack.move_window_to_front(main_window)
-
-#adding elements to windows
-main_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
-                                        manager=manager,
-                                        container=main_window,
-                                        starting_layer_height=1,
-                                        object_id=ObjectID(class_id='@main_panel'))
-
-instruction_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
-                                        manager=manager,
-                                        container=instruction_window,
-                                        starting_layer_height=1,
-                                        object_id=ObjectID(class_id='@instruction_panel'))
-
-main_toolbar = pygui.elements.UIPanel(relative_rect=pygame.Rect((0,0), (800, 60)),
-                                manager=manager,
-                                starting_layer_height=1,
-                                container=main_window,
-                                object_id=ObjectID(class_id='@toolbar'))
-
-instruction_toolbar = pygui.elements.UIPanel(relative_rect=pygame.Rect((0,0), (800, 60)),
-                                manager=manager,
-                                starting_layer_height=1,
-                                container=instruction_window,
-                                object_id=ObjectID(class_id='@toolbar'))
-
-#menu buttons for the games
 blind_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((90, 100), (200, 100)),
                                             text='Blind Date',
                                             manager=manager,
@@ -166,11 +189,121 @@ quit_button = pygui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (100, 50
                                             text='QUIT',
                                             manager=manager,
                                             container=main_toolbar,
+                                            tool_tip_text="Quit Stimulation",
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
+
+################ BOOKWORM GAME ELEMENTS #######################
+
+#Bookworm buttons
+back_game_button = pygui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (100, 50)),
+                                            text='Quit Game',
+                                            manager=manager,
+                                            container=game_toolbar,
+                                            tool_tip_text="Back to instruction screen",
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+
+letter_button1 = pygui.elements.UIButton(relative_rect=pygame.Rect((100, 75), (50, 50)),
+                                            text="",
+                                            manager=manager,
+                                            container=game_bg,
+                                            visible=False,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+
+letter_button2 = pygui.elements.UIButton(relative_rect=pygame.Rect((175, 75), (50, 50)),
+                                            text="",
+                                            manager=manager,
+                                            container=game_bg,
+                                            visible=False,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+
+letter_button3 = pygui.elements.UIButton(relative_rect=pygame.Rect((250, 75), (50, 50)),
+                                            text="",
+                                            manager=manager,
+                                            container=game_bg,
+                                            visible=False,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+
+letter_button4 = pygui.elements.UIButton(relative_rect=pygame.Rect((325, 75), (50, 50)),
+                                        text="",
+                                        manager=manager,
+                                        container=game_bg,
+                                        visible=False,
+                                        object_id=ObjectID(class_id='@game_menu_buttons'))
+
+letter_button5 = pygui.elements.UIButton(relative_rect=pygame.Rect((400, 75), (50, 50)),
+                                        text="",
+                                        manager=manager,
+                                        container=game_bg,
+                                        visible=False,
+                                        object_id=ObjectID(class_id='@game_menu_buttons'))
+
+#Bookworm text entry lines
+bookworm_text_entry = pygui.elements.UITextEntryLine(relative_rect=pygame.Rect((100, 200), (400, 50)),
+                                        manager=manager,
+                                        container=game_bg)
+bookworm_text_entry.set_allowed_characters('letters')
+
+#Bookworm labels
+bookworm_label_feedback1 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (100, 50)),
+                                                text="Correct!",
+                                                manager=manager,
+                                                container=game_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+
+bookworm_label_feedback2 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (250, 50)),
+                                                text="Incorrect! Please try again!",
+                                                manager=manager,
+                                                container=game_bg, 
+                                                visible = False,
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+
+#Bookworm functions
+def set_Bookworm():
+    bookworm_text_entry.set_text("")
+    bookworm_text_entry.visible = True
+
+    letter_button1.visible = False
+    letter_button2.visible = False
+    letter_button3.visible = False
+    letter_button4.visible = False
+    letter_button5.visible = False
+
+    letter_button1.set_text(Book.jumble_list[0])
+    letter_button2.set_text(Book.jumble_list[1])
+    letter_button3.set_text(Book.jumble_list[2])
+    letter_button1.visible = True
+    letter_button2.visible = True
+    letter_button3.visible = True
+
+    if (len(Book.jumble_list) > 3):
+
+        letter_button4.set_text(Book.jumble_list[3]) 
+        letter_button4.visible = True
+
+    if (len(Book.jumble_list) > 4):
+
+        letter_button5.set_text(Book.jumble_list[4]) 
+        letter_button5.visible = True
+
+def end_Bookworm():
+    bookworm_text_entry.visible = False
+    bookworm_label_feedback1.visible = False
+    bookworm_label_feedback2.visible = False
+
+    letter_button1.visible = False
+    letter_button2.visible = False
+    letter_button3.visible = False
+    letter_button4.visible = False
+    letter_button5.visible = False
+    stack.move_window_to_front(instruction_window)
+
 
 clock = pygame.time.Clock()
 is_running = True
 flag = 0
+accuracy = 0
+iteration = 0
 
 while is_running:
 
@@ -299,18 +432,32 @@ while is_running:
                 quit()
 
         if event.type == pygui.UI_BUTTON_PRESSED:
+            if event.ui_element == back_game_button:
+                if game_window.window_display_title == "Bookworm":
+                   accuracy = 0
+                   iteration = 0
+                   end_Bookworm()
+
+        if event.type == pygui.UI_BUTTON_PRESSED:
+            if event.ui_element == quit_button:
+                pygame.quit()
+
+        if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == play_button:
-                instruction_textbox.set_active_effect(None)
-                main_window.hide()
+                instruction_textbox.clear_all_active_effects()
+                instruction_textbox.full_redraw()
 
                 if flag == 1: 
                     exec(open("Blind.py").read())
                     stack.move_window_to_front(main_window)
 
                 if flag == 2:
-                    exec(open("Book.py").read())
-                    main_window.show()
-                    stack.move_window_to_front(main_window)
+                    Book.jumble_list=[]
+                    ans = Book.main()
+                    print(ans)
+                    set_Bookworm()
+                    game_window.set_display_title("Bookworm")
+                    stack.move_window_to_front(game_window)
 
                 if flag == 3:
                     exec(open("Editor.py").read())
@@ -339,6 +486,25 @@ while is_running:
                 if flag == 9:
                     exec(open("Space.py").read())
                     stack.move_window_to_front(main_window)
+
+        if event.type == pygui.UI_TEXT_ENTRY_FINISHED:
+            if event.ui_element == bookworm_text_entry:
+                if bookworm_text_entry.get_text() == ans:
+                    bookworm_label_feedback1.visible = True
+                    print("Correct!")
+                    accuracy += 1
+                    Book.jumble_list=[]
+                    if accuracy < 10:
+                        ans = Book.main()
+                        set_Bookworm()
+                        print(ans)
+                    else:
+                        end_Bookworm()
+                else:
+                    bookworm_text_entry.set_text("")
+                    bookworm_label_feedback2.visible = True
+
+                    print("Incorrect!")
 
         manager.process_events(event)
 
