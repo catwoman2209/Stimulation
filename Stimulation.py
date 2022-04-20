@@ -17,24 +17,33 @@ x2 = x/2 - 400
 y2 = y/2 - 300
 
 def instruction_text(x):
+
     if x == 1:
-        return "Blind Date"
+        return "<b>Blind Date</b><br><br>You went on a blind date that went great! Memorize their number to call them later!<br><br><br>This game may help those with Alzheimer’s to improve symptoms with continued use over time."
+
     if x == 2:
-        return "Bookworm"
+        return "<b>Bookworm</b><br><br>Are you a bookworm? Use the letters to find the word matching the definition<br><br><br>This game may help those with dyslexia to improve symptoms with continued use over time."
+    
     if x == 3:
-        return "Editor"
+        return "<b>Editor</b><br><br>This author needs your help! Unscramble the author's errors as fast as you can!<br><br><br>This game may help those with dyslexia to improve symptoms with continued use over time."
+    
     if x == 4:
-        return "Find the Kiddo"
+        return "<b>Find the Kiddo</b><br><br>Listen to the sound of the toddler's giggles as they run through the house,<br>and follow their path!<br><br><br>This game may help those with ADHD to improve symptoms with continued use over time."
+    
     if x == 5:
-        return "Maze Runner"
+        return "<b>Maze Runner</b><br><br>Find the way out as quickly as you can!<br><br><br>This game may help those with ADHD to improve symptoms with continued use over time."
+    
     if x == 6:
-        return "Paint Picker"
+        return "<b>Paint Picker</b><br><br>Your partner needs help painting! Memorize the color you <em>see</em>,<br>not the color you read!<br><br><br>This game may help those with ADHD or Alzheimer’s to improve symptoms with continued use over time."
+    
     if x == 7:
-        return "Quick Change"
+        return "<b>Quick Change</b><br><br>Customers want their change in this fast paced subtraction cafe!<br><br><br>This game may help those with ADHD to improve symptoms with continued use over time."
+    
     if x == 8:
-        return "Type Racer"
+        return "<b>Type Racer</b><br><br>Test your typing skills in this race against time!<br><br><br>This game may help those with dyslexia to improve symptoms with continued use over time."
+    
     if x == 9:
-        return "Space Oddity"
+        return "<b>Space Oddity</b><br><br>Choose the odd alien out in this space-themed problem solving game!<br><br><br>This game may help those with ADHD to improve symptoms with continued use over time."
 
 #panels and windows for Stimulation
 window2 = pygui.elements.UIWindow(rect=pygame.Rect(0, 0, x, y),
@@ -149,6 +158,12 @@ play_button = pygui.elements.UIButton(relative_rect=pygame.Rect((350, 400), (100
                                             container=instruction_bg,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
 
+quit_button = pygui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (100, 50)),
+                                            text='QUIT',
+                                            manager=manager,
+                                            container=main_toolbar,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+
 
 clock = pygame.time.Clock()
 is_running = True
@@ -172,6 +187,7 @@ while is_running:
                                             relative_rect=pygame.Rect((0, 50), (800, 350)),
                                             manager=manager,
                                             container=instruction_bg)
+                instruction_textbox.set_active_effect(pygui.TEXT_EFFECT_TYPING_APPEAR)
                 manager.update(time_delta)
                 
         if event.type == pygui.UI_BUTTON_PRESSED:
@@ -183,6 +199,7 @@ while is_running:
                                             relative_rect=pygame.Rect((0, 50), (800, 350)),
                                             manager=manager,
                                             container=instruction_bg)
+                instruction_textbox.set_active_effect(pygui.TEXT_EFFECT_TYPING_APPEAR)
                 manager.update(time_delta)
 
         if event.type == pygui.UI_BUTTON_PRESSED:
@@ -194,6 +211,7 @@ while is_running:
                                             relative_rect=pygame.Rect((0, 50), (800, 350)),
                                             manager=manager,
                                             container=instruction_bg)
+                instruction_textbox.set_active_effect(pygui.TEXT_EFFECT_TYPING_APPEAR)
                 manager.update(time_delta)
 
         if event.type == pygui.UI_BUTTON_PRESSED:
@@ -205,6 +223,7 @@ while is_running:
                                             relative_rect=pygame.Rect((0, 50), (800, 350)),
                                             manager=manager,
                                             container=instruction_bg)
+                instruction_textbox.set_active_effect(pygui.TEXT_EFFECT_TYPING_APPEAR)
                 manager.update(time_delta)
 
         if event.type == pygui.UI_BUTTON_PRESSED:
@@ -216,6 +235,7 @@ while is_running:
                                             relative_rect=pygame.Rect((0, 50), (800, 350)),
                                             manager=manager,
                                             container=instruction_bg)
+                instruction_textbox.set_active_effect(pygui.TEXT_EFFECT_TYPING_APPEAR)
                 manager.update(time_delta)
 
         if event.type == pygui.UI_BUTTON_PRESSED:
@@ -227,6 +247,7 @@ while is_running:
                                             relative_rect=pygame.Rect((0, 50), (800, 350)),
                                             manager=manager,
                                             container=instruction_bg)
+                instruction_textbox.set_active_effect(pygui.TEXT_EFFECT_TYPING_APPEAR)
                 manager.update(time_delta)
 
         if event.type == pygui.UI_BUTTON_PRESSED:
@@ -238,6 +259,7 @@ while is_running:
                                             relative_rect=pygame.Rect((0, 50), (800, 350)),
                                             manager=manager,
                                             container=instruction_bg)
+                instruction_textbox.set_active_effect(pygui.TEXT_EFFECT_TYPING_APPEAR)
                 manager.update(time_delta)
 
         if event.type == pygui.UI_BUTTON_PRESSED:
@@ -249,6 +271,7 @@ while is_running:
                                             relative_rect=pygame.Rect((0, 50), (800, 350)),
                                             manager=manager,
                                             container=instruction_bg)
+                instruction_textbox.set_active_effect(pygui.TEXT_EFFECT_TYPING_APPEAR)
                 manager.update(time_delta)
 
         if event.type == pygui.UI_BUTTON_PRESSED:
@@ -260,11 +283,16 @@ while is_running:
                                             relative_rect=pygame.Rect((0, 50), (800, 350)),
                                             manager=manager,
                                             container=instruction_bg)
+                instruction_textbox.set_active_effect(pygui.TEXT_EFFECT_TYPING_APPEAR)
                 manager.update(time_delta)
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == back_button:
                 stack.move_window_to_front(main_window)
+
+        if event.type == pygui.UI_BUTTON_PRESSED:
+            if event.ui_element == quit_button:
+                quit()
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == play_button:
