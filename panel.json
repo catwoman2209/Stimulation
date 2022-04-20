@@ -31,5 +31,16 @@
         {
             "border_width": "1"
         }
+    },
+    "@game_panel":
+    {
+        "colours":
+        {
+            "dark_bg": "#E4E189"
+        },
+        "misc":
+        {
+            "border_width": "0"
+        }
     }
 }
