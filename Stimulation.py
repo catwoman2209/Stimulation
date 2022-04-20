@@ -12,7 +12,7 @@ x = window.get_width()
 y = window.get_height()
 
 cwd = os.getcwd()
-manager = pygui.UIManager((x, y), cwd + "menu_theme.json")
+manager = pygui.UIManager((x, y), cwd + "/menu_theme.json")
 manager.get_theme().load_theme('panel.json')
 
 x2 = x/2 - 400
