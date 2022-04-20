@@ -197,7 +197,7 @@ quit_button = pygui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (100, 50
 ################ BOOKWORM GAME ELEMENTS #######################
 
 #Bookworm buttons
-back_game_button = pygui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (100, 50)),
+back_game_button = pygui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (150, 50)),
                                             text='Quit Game',
                                             manager=manager,
                                             container=game_toolbar,
@@ -260,6 +260,13 @@ bookworm_label_feedback2 = pygui.elements.UILabel(relative_rect=pygame.Rect((100
                                                 visible = False,
                                                 object_id=ObjectID(class_id="@bookworm_label"))
 
+bookworm_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((350, 10), (100, 30)),
+                                                text="",
+                                                manager=manager,
+                                                container=instruction_bg, 
+                                                visible = True,
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+
 #Bookworm functions
 def set_Bookworm():
     bookworm_text_entry.set_text("")
@@ -289,9 +296,15 @@ def set_Bookworm():
         letter_button5.visible = True
 
 def end_Bookworm():
+    score = (accuracy/iteration)*100
+
+    string = "Accuracy: "+ str(score)
+
     bookworm_text_entry.visible = False
     bookworm_label_feedback1.visible = False
     bookworm_label_feedback2.visible = False
+    bookworm_label_score.set_text(string)
+    bookworm_label_score.visible = True
 
     letter_button1.visible = False
     letter_button2.visible = False
@@ -299,7 +312,6 @@ def end_Bookworm():
     letter_button4.visible = False
     letter_button5.visible = False
     stack.move_window_to_front(instruction_window)
-
 
 clock = pygame.time.Clock()
 is_running = True
@@ -427,6 +439,7 @@ while is_running:
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == back_button:
+                bookworm_label_score.visible = False
                 stack.move_window_to_front(main_window)
 
         if event.type == pygui.UI_BUTTON_PRESSED:
@@ -493,10 +506,12 @@ while is_running:
             if event.ui_element == bookworm_text_entry:
                 if bookworm_text_entry.get_text() == ans:
                     bookworm_label_feedback1.visible = True
+                    bookworm_label_feedback2.visible = False
                     print("Correct!")
                     accuracy += 1
+                    iteration += 1
                     Book.jumble_list=[]
-                    if accuracy < 10:
+                    if accuracy < 3:
                         ans = Book.main()
                         set_Bookworm()
                         print(ans)
@@ -505,7 +520,8 @@ while is_running:
                 else:
                     bookworm_text_entry.set_text("")
                     bookworm_label_feedback2.visible = True
-
+                    bookworm_label_feedback1.visible = False
+                    iteration += 1
                     print("Incorrect!")
 
         manager.process_events(event)

@@ -21,7 +21,7 @@ def get_jumble(x):
     word = random.choice(list)
     while (len(word)>5):
         if (len(word)<=2):
-            print("Loading...")
+            word = random.choice(list)
         else:
             word = random.choice(list)
 
