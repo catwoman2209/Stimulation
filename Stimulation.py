@@ -1,3 +1,4 @@
+import os
 import pygame
 import pygame_gui as pygui
 from pygame_gui.core import ObjectID
@@ -11,7 +12,8 @@ window = pygame.display.set_mode()
 x = window.get_width()
 y = window.get_height()
 
-manager = pygui.UIManager((x, y), "/Users/ctaylor/pyqt_proj/menu_theme.json")
+cwd = os.getcwd()
+manager = pygui.UIManager((x, y), cwd + "/menu_theme.json")
 manager.get_theme().load_theme('panel.json')
 manager.get_theme().load_theme('label.json')
 
@@ -324,7 +326,7 @@ while is_running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             is_running = False
-            quit()
+            pygame.quit()
 
         #event handllers for game menu buttons
         if event.type == pygui.UI_BUTTON_PRESSED:
@@ -332,7 +334,7 @@ while is_running:
                 print('Blind Date game launched')
                 stack.move_window_to_front(instruction_window)
                 flag = 1
-                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(1),
+                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(flag),
                                             relative_rect=pygame.Rect((0, 50), (800, 350)),
                                             manager=manager,
                                             container=instruction_bg)
@@ -344,7 +346,7 @@ while is_running:
                 print('Bookworm game launched')
                 stack.move_window_to_front(instruction_window)
                 flag = 2
-                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(2),
+                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(flag),
                                             relative_rect=pygame.Rect((0, 50), (800, 350)),
                                             manager=manager,
                                             container=instruction_bg)
@@ -356,7 +358,7 @@ while is_running:
                 print('Editor game launched')
                 stack.move_window_to_front(instruction_window)
                 flag = 3
-                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(3),
+                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(flag),
                                             relative_rect=pygame.Rect((0, 50), (800, 350)),
                                             manager=manager,
                                             container=instruction_bg)
@@ -368,7 +370,7 @@ while is_running:
                 print('Find the Kiddo game launched')
                 stack.move_window_to_front(instruction_window)
                 flag = 4
-                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(4),
+                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(flag),
                                             relative_rect=pygame.Rect((0, 50), (800, 350)),
                                             manager=manager,
                                             container=instruction_bg)
@@ -380,7 +382,7 @@ while is_running:
                 print('Maze Runner game launched')
                 stack.move_window_to_front(instruction_window)
                 flag = 5
-                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(5),
+                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(flag),
                                             relative_rect=pygame.Rect((0, 50), (800, 350)),
                                             manager=manager,
                                             container=instruction_bg)
@@ -392,7 +394,7 @@ while is_running:
                 print('Paint Picker game launched')
                 stack.move_window_to_front(instruction_window)
                 flag = 6
-                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(6),
+                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(flag),
                                             relative_rect=pygame.Rect((0, 50), (800, 350)),
                                             manager=manager,
                                             container=instruction_bg)
@@ -404,7 +406,7 @@ while is_running:
                 print('Quick Change game launched')
                 stack.move_window_to_front(instruction_window)
                 flag = 7
-                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(7),
+                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(flag),
                                             relative_rect=pygame.Rect((0, 50), (800, 350)),
                                             manager=manager,
                                             container=instruction_bg)
@@ -415,8 +417,8 @@ while is_running:
             if event.ui_element == space_menu_button:
                 print('Space Oddity game launched')
                 stack.move_window_to_front(instruction_window)
-                flag = 8
-                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(8),
+                flag = 9
+                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(flag),
                                             relative_rect=pygame.Rect((0, 50), (800, 350)),
                                             manager=manager,
                                             container=instruction_bg)
@@ -427,8 +429,8 @@ while is_running:
             if event.ui_element == racer_menu_button:
                 print('Type Racer game launched')
                 stack.move_window_to_front(instruction_window)
-                flag = 9
-                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(9),
+                flag = 8
+                instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(flag),
                                             relative_rect=pygame.Rect((0, 50), (800, 350)),
                                             manager=manager,
                                             container=instruction_bg)
@@ -442,7 +444,7 @@ while is_running:
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == quit_button:
-                quit()
+                pygame.quit()
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == back_game_button:
