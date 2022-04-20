@@ -511,7 +511,7 @@ while is_running:
                     accuracy += 1
                     iteration += 1
                     Book.jumble_list=[]
-                    if accuracy < 3:
+                    if accuracy < 10:
                         ans = Book.main()
                         set_Bookworm()
                         print(ans)
