@@ -3,10 +3,10 @@ import os
 import pygame
 import pygame_gui as pygui
 from pygame_gui.core import ObjectID
-import Stimulation as S
 import random
 import urllib.request
 
+<<<<<<< Updated upstream
 pygame.init()
 
 pygame.display.set_caption("Stimulation")
@@ -82,6 +82,10 @@ def get_jumble():
     letter_button3.visible = False
     letter_button4.visible = False
     letter_button5.visible = False
+=======
+jumble_list=[]
+def get_jumble(x):
+>>>>>>> Stashed changes
 
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)'}
     word_url = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
@@ -106,68 +110,18 @@ def get_jumble():
         jumble += word[position]
         word = word[:position] + word[(position + 1):]
 
-    jumble_list=[]
-
     count = 0
     for i in jumble:
-        count += 1
-        jumble_list.append(i)
+        count+=1
+        x.append(i)
 
     print("The jumble is: ")
-    print(jumble_list)
-
-
-    letter_button1.set_text(jumble_list[0])
-    letter_button2.set_text(jumble_list[1])
-    letter_button3.set_text(jumble_list[2])
-    letter_button1.visible = True
-    letter_button2.visible = True
-    letter_button3.visible = True
-
-    if count > 3:
-
-        letter_button4.set_text(jumble_list[3]) 
-        letter_button4.visible = True
-
-    if count > 4:
-
-        letter_button5.set_text(jumble_list[4]) 
-        letter_button5.visible = True
+    print(x)
 
     return correct
 
-clock = pygame.time.Clock()
-is_running = True
-flag = 0
-ans = get_jumble()
-print(ans)
-while is_running:
-    time_delta = clock.tick(60)/1000.0
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            is_running = False
-            quit()
-
-        #event handllers for game menu buttons
-        if event.type == pygui.UI_TEXT_ENTRY_FINISHED:
-            if text_entry.get_text() == ans:
-                print("Correct!")
-                flag += 1
-                ans = get_jumble()
-                print(ans)
-
-            else:
-                text_entry.set_text("")
-                print("Incorrect!")
-
-        manager.process_events(event)
-
-    manager.update(time_delta)
-
-    manager.draw_ui(window)
-
-    pygame.display.update()
+def main():
+    return get_jumble(jumble_list)
 
 # guess = input("Your guess: ")
 # while guess != correct and guess != "":
