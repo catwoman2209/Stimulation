@@ -52,7 +52,8 @@ def instruction_text(x):
 window2 = pygui.elements.UIWindow(rect=pygame.Rect(0, 0, x, y),
                             manager=manager,
                             window_display_title='Stimulation',
-                            resizable=False)
+                            resizable=False,
+                            visible=False)
 
 stack = pygui.core.ui_window_stack.UIWindowStack(window_resolution=(x,y), root_container=window2) 
 
@@ -71,6 +72,7 @@ stack.add_new_window(main_window)
 stack.add_new_window(instruction_window)
 stack.move_window_to_front(main_window)
 
+#adding elements to windows
 main_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
                                         manager=manager,
                                         container=main_window,
@@ -168,12 +170,12 @@ quit_button = pygui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (100, 50
                                             container=main_toolbar,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
 
-
 clock = pygame.time.Clock()
 is_running = True
 flag = 0
 
 while is_running:
+
     time_delta = clock.tick(60)/1000.0
 
     for event in pygame.event.get():
@@ -300,12 +302,16 @@ while is_running:
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == play_button:
-                if flag == 1:
+                instruction_textbox.set_active_effect(None)
+                main_window.hide()
+
+                if flag == 1: 
                     exec(open("Blind.py").read())
                     stack.move_window_to_front(main_window)
 
                 if flag == 2:
                     exec(open("Book.py").read())
+                    main_window.show()
                     stack.move_window_to_front(main_window)
 
                 if flag == 3:
