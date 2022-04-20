@@ -16,6 +16,7 @@ manager.get_theme().load_theme('panel.json')
 x2 = x/2 - 400
 y2 = y/2 - 300
 
+#function for updating instruction_textbox
 def instruction_text(x):
 
     if x == 1:
@@ -63,6 +64,7 @@ instruction_window = pygui.elements.UIWindow(rect=pygame.Rect(x2, y2, 800, 600),
                                             window_display_title='Instruction Menu',
                                             resizable=False)
 
+#add windows to stack
 stack.add_new_window(main_window)
 stack.add_new_window(instruction_window)
 stack.move_window_to_front(main_window)
@@ -303,24 +305,31 @@ while is_running:
                 if flag == 2:
                     exec(open("Book.py").read())
                     stack.move_window_to_front(main_window)
+
                 if flag == 3:
                     exec(open("Editor.py").read())
                     stack.move_window_to_front(main_window)
+
                 if flag == 4:
                     exec(open("Kiddo.py").read())
                     stack.move_window_to_front(main_window)
+
                 if flag == 5:
                     exec(open("Maze.py").read())
                     stack.move_window_to_front(main_window)
+
                 if flag == 6:
                     exec(open("Paint.py").read())
                     stack.move_window_to_front(main_window)
+
                 if flag == 7:
                     exec(open("Change.py").read())
                     stack.move_window_to_front(main_window)
+
                 if flag == 8:
                     exec(open("Racer.py").read())
                     stack.move_window_to_front(main_window)
+                    
                 if flag == 9:
                     exec(open("Space.py").read())
                     stack.move_window_to_front(main_window)
