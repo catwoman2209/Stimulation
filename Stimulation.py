@@ -1,3 +1,4 @@
+import os
 import pygame
 import pygame_gui as pygui
 from pygame_gui.core import ObjectID
@@ -10,7 +11,8 @@ window = pygame.display.set_mode()
 x = window.get_width()
 y = window.get_height()
 
-manager = pygui.UIManager((x, y), "/Users/ctaylor/pyqt_proj/menu_theme.json")
+cwd = os.getcwd()
+manager = pygui.UIManager((x, y), cwd + "menu_theme.json")
 manager.get_theme().load_theme('panel.json')
 
 x2 = x/2 - 400
