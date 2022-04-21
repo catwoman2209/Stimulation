@@ -7,6 +7,7 @@ import os
 import pygame
 import pygame_gui as pygui
 from pygame_gui.core import ObjectID
+import random
 import Book
 
 pygame.init()
@@ -207,7 +208,7 @@ quit_button = pygui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (100, 50
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
 
 ################ BOOKWORM GAME ELEMENTS #######################
-# author=christiana_taylor
+#@authors=christiana_taylor
 
 #Bookworm buttons
 letter_button1 = pygui.elements.UIButton(relative_rect=pygame.Rect((100, 75), (50, 50)),
@@ -323,6 +324,7 @@ def end_Bookworm():
     stack.move_window_to_front(instruction_window)
 
 ################ BLIND DATE GAME ELEMENTS #######################
+#@authors=christiana_taylor
 
 #Blind Date panel
 blind_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
@@ -367,7 +369,8 @@ blind_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((325, 10), 
                                                 visible = False)
 
 #Blind Date functions
-
+def get_number():
+    return random.randint(10000, 99999)
 
 clock = pygame.time.Clock()
 is_running = True
@@ -521,8 +524,9 @@ while is_running:
                     game_window.set_display_title("Blind Date")
                     game_bg.visible = False
                     blind_bg.visible = True
-                    exec(open("Blind.py").read())
-                    stack.move_window_to_front(main_window)
+                    ans = get_number()
+                    blind_label_number.set_text(str(ans))
+                    stack.move_window_to_front(game_window)
 
                 if flag == 2:
                     Book.jumble_list=[]
