@@ -125,6 +125,9 @@ def instruction_text(x):
     if x == 9:
         return "<b>Space Oddity</b><br><br>Choose the odd alien out in this space-themed problem solving game!<br><br><br>This game may help those with ADHD to improve symptoms with continued use over time."
 
+def wait():
+    pygame.time.wait(5000)
+
 ################ MAIN MENU ELEMENTS #######################
 
 blind_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((90, 100), (200, 100)),
@@ -249,6 +252,7 @@ letter_button5 = pygui.elements.UIButton(relative_rect=pygame.Rect((400, 75), (5
 #Bookworm text entry lines
 bookworm_text_entry = pygui.elements.UITextEntryLine(relative_rect=pygame.Rect((100, 200), (400, 50)),
                                         manager=manager,
+                                        visible=False,
                                         container=game_bg)
 bookworm_text_entry.set_allowed_characters('letters')
 
@@ -278,6 +282,7 @@ bookworm_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((325, 10
 def set_Bookworm():
     bookworm_text_entry.set_text("")
     bookworm_text_entry.visible = True
+    bookworm_text_entry.enable()
 
     letter_button1.visible = False
     letter_button2.visible = False
@@ -311,6 +316,7 @@ def end_Bookworm():
     string = "Accuracy: "+ str(score)
 
     bookworm_text_entry.visible = False
+    bookworm_text_entry.disable()
     bookworm_label_feedback1.visible = False
     bookworm_label_feedback2.visible = False
     bookworm_label_score.set_text(string)
@@ -372,9 +378,41 @@ blind_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((325, 10), 
 def get_number():
     return random.randint(10000, 99999)
 
+def set_Blind():
+    blind_label_number.visible = True
+    blind_text_entry.visible = False
+    manager.update(time_delta)
+    pygame.display.update()
+    wait()
+    blind_label_number.visible = False
+    blind_text_entry.visible = True    
+
+def end_Blind():
+    try:
+      score = (accuracy/iteration)*100
+    except:
+      score = 0
+
+    string = "Accuracy: "+ str(score)
+
+    blind_text_entry.visible = False
+    blind_label_number.visible = False
+    blind_label_feedback1.visible = False
+    blind_label_feedback2.visible = False
+    blind_label_score.set_text(string)
+    blind_label_score.visible = True
+
+    blind_bg.visible = False
+    game_bg.visible = True
+
+    manager.update(time_delta)
+
+    stack.move_window_to_front(instruction_window)
+
 clock = pygame.time.Clock()
 is_running = True
 flag = 0
+flag2 = 0
 accuracy = 0
 iteration = 0
 
@@ -411,7 +449,6 @@ while is_running:
                 instruction_textbox.set_active_effect(pygui.TEXT_EFFECT_TYPING_APPEAR)
                 manager.update(time_delta)
 
-        if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == editor_menu_button:
                 print('Editor game launched')
                 stack.move_window_to_front(instruction_window)
@@ -423,7 +460,6 @@ while is_running:
                 instruction_textbox.set_active_effect(pygui.TEXT_EFFECT_TYPING_APPEAR)
                 manager.update(time_delta)
 
-        if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == kiddo_menu_button:
                 print('Find the Kiddo game launched')
                 stack.move_window_to_front(instruction_window)
@@ -435,7 +471,6 @@ while is_running:
                 instruction_textbox.set_active_effect(pygui.TEXT_EFFECT_TYPING_APPEAR)
                 manager.update(time_delta)
 
-        if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == maze_menu_button:
                 print('Maze Runner game launched')
                 stack.move_window_to_front(instruction_window)
@@ -447,7 +482,6 @@ while is_running:
                 instruction_textbox.set_active_effect(pygui.TEXT_EFFECT_TYPING_APPEAR)
                 manager.update(time_delta)
 
-        if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == paint_menu_button:
                 print('Paint Picker game launched')
                 stack.move_window_to_front(instruction_window)
@@ -459,7 +493,6 @@ while is_running:
                 instruction_textbox.set_active_effect(pygui.TEXT_EFFECT_TYPING_APPEAR)
                 manager.update(time_delta)
 
-        if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == change_menu_button:
                 print('Quick Change game launched')
                 stack.move_window_to_front(instruction_window)
@@ -471,7 +504,6 @@ while is_running:
                 instruction_textbox.set_active_effect(pygui.TEXT_EFFECT_TYPING_APPEAR)
                 manager.update(time_delta)
 
-        if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == space_menu_button:
                 print('Space Oddity game launched')
                 stack.move_window_to_front(instruction_window)
@@ -483,7 +515,6 @@ while is_running:
                 instruction_textbox.set_active_effect(pygui.TEXT_EFFECT_TYPING_APPEAR)
                 manager.update(time_delta)
 
-        if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == racer_menu_button:
                 print('Type Racer game launched')
                 stack.move_window_to_front(instruction_window)
@@ -495,27 +526,28 @@ while is_running:
                 instruction_textbox.set_active_effect(pygui.TEXT_EFFECT_TYPING_APPEAR)
                 manager.update(time_delta)
 
-        if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == back_button:
                 bookworm_label_score.visible = False
                 stack.move_window_to_front(main_window)
 
-        if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == quit_button:
                 pygame.quit()
 
-        if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == back_game_button:
+
+                if game_window.window_display_title == "Blind Date":
+                   end_Blind()
+                   accuracy = 0
+                   iteration = 0
+
                 if game_window.window_display_title == "Bookworm":
                    end_Bookworm()
                    accuracy = 0
                    iteration = 0
 
-        if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == quit_button:
                 pygame.quit()
 
-        if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == play_button:
                 instruction_textbox.clear_all_active_effects()
                 instruction_textbox.full_redraw()
@@ -524,16 +556,19 @@ while is_running:
                     game_window.set_display_title("Blind Date")
                     game_bg.visible = False
                     blind_bg.visible = True
+                    blind_label_number.visible = True
                     ans = get_number()
+                    print(ans)
                     blind_label_number.set_text(str(ans))
                     stack.move_window_to_front(game_window)
+                    flag2 = 1
 
                 if flag == 2:
+                    game_window.set_display_title("Bookworm")
                     Book.jumble_list=[]
                     ans = Book.main()
                     print(ans)
                     set_Bookworm()
-                    game_window.set_display_title("Bookworm")
                     stack.move_window_to_front(game_window)
 
                 if flag == 3:
@@ -565,7 +600,38 @@ while is_running:
                     stack.move_window_to_front(main_window)
 
         if event.type == pygui.UI_TEXT_ENTRY_FINISHED:
+            if event.ui_element == blind_text_entry:
+                print(blind_text_entry.get_text())
+                blind_text_entry.visible = False
+                if blind_text_entry.get_text() == str(ans):
+                    blind_label_feedback1.visible = True
+                    blind_label_feedback2.visible = False
+                    print("Correct!")
+                    accuracy += 1
+                    iteration += 1
+                    blind_text_entry.set_text("")
+                    blind_text_entry.redraw()
+                    blind_text_entry.update(time_delta)
+                    if accuracy < 2:
+                        blind_label_number.visible = True
+                        ans = get_number()
+                        print(ans)
+                        blind_label_number.set_text(str(ans))
+                        flag2 = 1 
+
+                    else:
+                        end_Blind()
+                else:
+                    blind_label_number.visible = True
+                    blind_text_entry.set_text("")
+                    blind_label_feedback2.visible = True
+                    blind_label_feedback1.visible = False
+                    iteration += 1
+                    print("Incorrect!")
+                    flag2 = 1
+
             if event.ui_element == bookworm_text_entry:
+                print(bookworm_text_entry.get_text())
                 if bookworm_text_entry.get_text() == ans:
                     bookworm_label_feedback1.visible = True
                     bookworm_label_feedback2.visible = False
@@ -586,6 +652,7 @@ while is_running:
                     iteration += 1
                     print("Incorrect!")
 
+
         manager.process_events(event)
 
     manager.update(time_delta)
@@ -593,3 +660,8 @@ while is_running:
     manager.draw_ui(window)
 
     pygame.display.update()
+        
+    if game_window.window_display_title == "Blind Date":
+        if flag2 == 1:
+            set_Blind()
+            flag2 = 0
