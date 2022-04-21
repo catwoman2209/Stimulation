@@ -481,7 +481,7 @@ editor_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((325, 10),
 clock = pygame.time.Clock()
 is_running = True
 flag = 0
-flag2 = 0
+blind_flag = 0
 accuracy = 0
 iteration = 0
 
@@ -631,7 +631,7 @@ while is_running:
                     print(ans)
                     blind_label_number.set_text(str(ans))
                     stack.move_window_to_front(game_window)
-                    flag2 = 1
+                    blind_flag = 1
 
                 if flag == 2:
                     game_window.set_display_title("Bookworm")
@@ -687,7 +687,7 @@ while is_running:
                         ans = get_number()
                         print(ans)
                         blind_label_number.set_text(str(ans))
-                        flag2 = 1 
+                        blind_flag = 1 
 
                     else:
                         end_Blind()
@@ -698,7 +698,7 @@ while is_running:
                     blind_label_feedback1.visible = False
                     iteration += 1
                     print("Incorrect!")
-                    flag2 = 1
+                    blind_flag = 1
 
             if event.ui_element == bookworm_text_entry:
                 print(bookworm_text_entry.get_text())
@@ -731,6 +731,6 @@ while is_running:
     pygame.display.update()
         
     if game_window.window_display_title == "Blind Date":
-        if flag2 == 1:
+        if blind_flag == 1:
             set_Blind()
-            flag2 = 0
+            blind_flag = 0
