@@ -8,5 +8,6 @@ sentence=[['There', 'is', 'some', 'good', 'in', 'this', 'world,', 'and', "it's",
         ['It', 'is', 'only', 'with', 'the', 'heart', 'that', 'one', 'can', 'see', 'rightly;', 'what', 'is', 'essential', 'is', 'invisible', 'to', 'the', 'eye.'],
         ['I', 'am', 'no', 'bird;', 'and', 'no', 'net', 'ensnares', 'me:', 'I', 'am', 'a', 'free', 'human', 'being', 'with', 'an', 'independent', 'will,' 'which', 'I', 'now', 'exert', 'to', 'leave', 'you.']]
 a = []
-a = (random.randint(0,(len(sentence)-1)))
+
+a = (random.choice(sentence))
 print(a)
