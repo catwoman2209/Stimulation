@@ -346,7 +346,6 @@ blind_text_entry = pygui.elements.UITextEntryLine(relative_rect=pygame.Rect((100
                                         container=blind_bg)
 blind_text_entry.set_allowed_characters('numbers')
 
-
 #Blind Date labels
 blind_label_number = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 50), (100, 50)),
                                                 text="",
