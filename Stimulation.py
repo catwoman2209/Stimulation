@@ -448,6 +448,13 @@ editor_label_sentence = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 5
                                                 visible=False, 
                                                 object_id=ObjectID(class_id="@editor_label_word"))
 
+editor_label_sentence_j = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 100), (400, 50)),
+                                                text="",
+                                                manager=manager,
+                                                container=editor_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@editor_label_word"))
+
 editor_label_feedback1 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (100, 50)),
                                                 text="Correct!",
                                                 manager=manager,
