@@ -6,6 +6,13 @@
             "normal_text": "#000000"
          }
      },
+     "@main_label":
+     {
+         "colours":
+         {
+            "dark_bg": "#178BA8"
+         }
+     },
      "@bookworm_label":
      {
          "colours":
@@ -13,12 +20,20 @@
             "dark_bg": "#E4E189"
          }
      },
-     "@blind_label":
+     "@blind_label_number":
      {
          "colours":
          {
-            "dark_bg": "#6666CC",
+            "dark_bg": "#557CCB",
             "normal_text": "#FFFFFF"
          }
-     }
+     },
+     "@blind_label":
+     {
+        "colours":
+        {
+            "dark_bg": "#557CCB",
+            "normal_text": "#FFFFFF"
+        }
+    }
  }

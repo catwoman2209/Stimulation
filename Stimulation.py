@@ -83,11 +83,25 @@ main_toolbar = pygui.elements.UIPanel(relative_rect=pygame.Rect((0,0), (800, 60)
                                 container=main_window,
                                 object_id=ObjectID(class_id='@toolbar'))
 
+stimulation_main_label = pygui.elements.UILabel(relative_rect=pygame.Rect((300, 0), (200, 50)),
+                                                text="STIMULATION",
+                                                manager=manager,
+                                                container=main_toolbar,
+                                                visible=True, 
+                                                object_id=ObjectID(class_id="@main_label"))
+
 instruction_toolbar = pygui.elements.UIPanel(relative_rect=pygame.Rect((0,0), (800, 60)),
                                 manager=manager,
                                 starting_layer_height=1,
                                 container=instruction_window,
                                 object_id=ObjectID(class_id='@toolbar'))
+
+stimulation__inst_label = pygui.elements.UILabel(relative_rect=pygame.Rect((300, 0), (200, 50)),
+                                                text="STIMULATION",
+                                                manager=manager,
+                                                container=instruction_toolbar,
+                                                visible=True, 
+                                                object_id=ObjectID(class_id="@main_label"))
 
 game_toolbar = pygui.elements.UIPanel(relative_rect=pygame.Rect((0,0), (800, 60)),
                                 manager=manager,
@@ -309,11 +323,11 @@ def set_Bookworm():
 
 def end_Bookworm():
     try:
-      score = (accuracy/iteration)*100
+      score = round((accuracy/iteration)*100)
     except:
       score = 0
 
-    string = "Accuracy: "+ str(score)
+    string = "Accuracy: "+ str(score)+" "+str(accuracy)+"/"+str(iteration)
 
     bookworm_text_entry.visible = False
     bookworm_text_entry.disable()
@@ -352,7 +366,7 @@ blind_label_number = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 50),
                                                 manager=manager,
                                                 container=blind_bg,
                                                 visible=False, 
-                                                object_id=ObjectID(class_id="@blind_label"))
+                                                object_id=ObjectID(class_id="@blind_label_number"))
 
 blind_label_feedback1 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (100, 50)),
                                                 text="Correct!",
@@ -389,11 +403,11 @@ def set_Blind():
 
 def end_Blind():
     try:
-      score = (accuracy/iteration)*100
+      score = round((accuracy/iteration)*100)
     except:
       score = 0
 
-    string = "Accuracy: "+ str(score)
+    string = "Accuracy: "+ str(score)+" "+str(accuracy)+"/"+str(iteration)
 
     blind_text_entry.visible = False
     blind_label_number.visible = False
