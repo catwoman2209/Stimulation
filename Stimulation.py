@@ -270,7 +270,7 @@ bookworm_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((325, 10
                                                 text="",
                                                 manager=manager,
                                                 container=instruction_bg, 
-                                                visible = True,
+                                                visible = False,
                                                 object_id=ObjectID(class_id="@bookworm_label"))
 
 #Bookworm functions
@@ -301,17 +301,6 @@ def set_Bookworm():
         letter_button5.set_text(Book.jumble_list[4]) 
         letter_button5.visible = True
 
-################ BLIND DATE GAME ELEMENTS #######################
-
-blind_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
-                                        manager=manager,
-                                        container=game_window,
-                                        starting_layer_height=1,
-                                        visible=False,
-                                        object_id=ObjectID(class_id='@blind_panel'))
-
-
-
 def end_Bookworm():
     try:
       score = (accuracy/iteration)*100
@@ -332,6 +321,53 @@ def end_Bookworm():
     letter_button4.visible = False
     letter_button5.visible = False
     stack.move_window_to_front(instruction_window)
+
+################ BLIND DATE GAME ELEMENTS #######################
+
+#Blind Date panel
+blind_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
+                                        manager=manager,
+                                        container=game_window,
+                                        starting_layer_height=1,
+                                        visible=False,
+                                        object_id=ObjectID(class_id='@blind_panel'))
+
+#Blind Date text entry lines
+blind_text_entry = pygui.elements.UITextEntryLine(relative_rect=pygame.Rect((100, 200), (400, 50)),
+                                        manager=manager,
+                                        container=blind_bg)
+bookworm_text_entry.set_allowed_characters('numbers')
+
+#Blind Date labels
+blind_label_number = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 50), (100, 50)),
+                                                text="",
+                                                manager=manager,
+                                                container=blind_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@blind_label"))
+
+blind_label_feedback1 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (100, 50)),
+                                                text="Correct!",
+                                                manager=manager,
+                                                container=blind_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@blind_label"))
+
+blind_label_feedback2 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (250, 50)),
+                                                text="Incorrect! Please try again!",
+                                                manager=manager,
+                                                container=blind_bg, 
+                                                visible = False,
+                                                object_id=ObjectID(class_id="@blind_label"))
+
+blind_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((325, 10), (150, 30)),
+                                                text="",
+                                                manager=manager,
+                                                container=instruction_bg, 
+                                                visible = False)
+
+#Blind Date functions
+
 
 clock = pygame.time.Clock()
 is_running = True
