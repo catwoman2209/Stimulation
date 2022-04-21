@@ -1,10 +1,7 @@
 #File for Bookworm game code
-import os
-import pygame
-import pygame_gui as pygui
-from pygame_gui.core import ObjectID
-import random
-import urllib.request
+#
+#TTU Capstone Project Spring 2022
+#@authors = christiana_taylor
 
 ########################### NOTES ##############################
 
@@ -15,6 +12,13 @@ import urllib.request
 # -results in an infinite loop as apostrophes cannot be entered
 
 ########################### END OF NOTES #######################
+
+import os
+import pygame
+import pygame_gui as pygui
+from pygame_gui.core import ObjectID
+import random
+import urllib.request
 
 
 jumble_list=[]
@@ -29,6 +33,7 @@ def get_jumble(x):
 
     list = [word for word in WORDS if word[0].islower()]
 
+    #ensures word is between 3 and 5 letters long
     word = random.choice(list)
     while (len(word)>5):
         if (len(word)<=2):
@@ -36,6 +41,7 @@ def get_jumble(x):
         else:
             word = random.choice(list)
 
+    #jumble word array
     correct = word
     jumble = ""
     while word:
@@ -51,6 +57,7 @@ def get_jumble(x):
     print("The jumble is: ")
     print(x)
 
+    #returns correct answer
     return correct
 
 def main():

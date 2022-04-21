@@ -42,5 +42,17 @@
         {
             "border_width": "0"
         }
+    },
+    "@blind_panel":
+    {
+        "colours":
+        {
+            "dark_bg": "#6666CC",
+            "normal_border": "#4B4B94"
+        },
+        "misc":
+        {
+            "border_width": "1"
+        }
     }
 }

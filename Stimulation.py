@@ -1,3 +1,8 @@
+#Main file for execution
+#
+#TTU Capstone Project Spring 2022
+#@authors = christiana_taylor
+
 import os
 import pygame
 import pygame_gui as pygui
@@ -181,6 +186,13 @@ back_button = pygui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (100, 50
                                             container=instruction_toolbar,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
 
+back_game_button = pygui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (150, 50)),
+                                            text='Quit Game',
+                                            manager=manager,
+                                            container=game_toolbar,
+                                            tool_tip_text="Back to instruction screen",
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+
 play_button = pygui.elements.UIButton(relative_rect=pygame.Rect((350, 400), (100, 50)),
                                             text='PLAY',
                                             manager=manager,
@@ -195,15 +207,9 @@ quit_button = pygui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (100, 50
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
 
 ################ BOOKWORM GAME ELEMENTS #######################
+# author=christiana_taylor
 
 #Bookworm buttons
-back_game_button = pygui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (150, 50)),
-                                            text='Quit Game',
-                                            manager=manager,
-                                            container=game_toolbar,
-                                            tool_tip_text="Back to instruction screen",
-                                            object_id=ObjectID(class_id='@game_menu_buttons'))
-
 letter_button1 = pygui.elements.UIButton(relative_rect=pygame.Rect((100, 75), (50, 50)),
                                             text="",
                                             manager=manager,
@@ -294,6 +300,17 @@ def set_Bookworm():
 
         letter_button5.set_text(Book.jumble_list[4]) 
         letter_button5.visible = True
+
+################ BLIND DATE GAME ELEMENTS #######################
+
+blind_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
+                                        manager=manager,
+                                        container=game_window,
+                                        starting_layer_height=1,
+                                        visible=False,
+                                        object_id=ObjectID(class_id='@blind_panel'))
+
+
 
 def end_Bookworm():
     score = (accuracy/iteration)*100
@@ -461,7 +478,10 @@ while is_running:
                 instruction_textbox.clear_all_active_effects()
                 instruction_textbox.full_redraw()
 
-                if flag == 1: 
+                if flag == 1:
+                    game_window.set_display_title("Blind Date")
+                    game_bg.visible = False
+                    blind_bg.visible = True
                     exec(open("Blind.py").read())
                     stack.move_window_to_front(main_window)
 

@@ -12,5 +12,13 @@
          {
             "dark_bg": "#E4E189"
          }
+     },
+     "@blind_label":
+     {
+         "colours":
+         {
+            "dark_bg": "#557CCB",
+            "normal_text": "#FFFFFF"
+         }
      }
  }
