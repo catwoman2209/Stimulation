@@ -296,7 +296,10 @@ def set_Bookworm():
         letter_button5.visible = True
 
 def end_Bookworm():
-    score = (accuracy/iteration)*100
+    try:
+      score = (accuracy/iteration)*100
+    except:
+      score = 0
 
     string = "Accuracy: "+ str(score)
 
