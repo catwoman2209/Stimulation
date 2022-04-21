@@ -260,7 +260,7 @@ bookworm_label_feedback2 = pygui.elements.UILabel(relative_rect=pygame.Rect((100
                                                 visible = False,
                                                 object_id=ObjectID(class_id="@bookworm_label"))
 
-bookworm_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((350, 10), (100, 30)),
+bookworm_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((325, 10), (150, 30)),
                                                 text="",
                                                 manager=manager,
                                                 container=instruction_bg, 
