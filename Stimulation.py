@@ -344,7 +344,8 @@ blind_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550))
 blind_text_entry = pygui.elements.UITextEntryLine(relative_rect=pygame.Rect((100, 200), (400, 50)),
                                         manager=manager,
                                         container=blind_bg)
-bookworm_text_entry.set_allowed_characters('numbers')
+blind_text_entry.set_allowed_characters('numbers')
+
 
 #Blind Date labels
 blind_label_number = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 50), (100, 50)),
