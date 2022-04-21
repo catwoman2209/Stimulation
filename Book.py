@@ -36,10 +36,10 @@ def get_jumble(x):
     #ensures word is between 3 and 5 letters long
     word = random.choice(list)
     while (len(word)>5):
-        if (len(word)<=2):
-            word = random.choice(list)
-        else:
-            word = random.choice(list)
+        word = random.choice(list)
+
+    while (len(word)<3):
+        word = random.choice(list)
 
     #jumble word array
     correct = word

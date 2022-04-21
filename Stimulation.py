@@ -120,7 +120,7 @@ def instruction_text(x):
         return "<b>Bookworm</b><br><br>Are you a bookworm? Use the letters to find the word matching the definition<br><br><br>This game may help those with dyslexia to improve symptoms with continued use over time."
     
     if x == 3:
-        return "<b>Editor</b><br><br>This author needs your help! Unscramble the author's errors as fast as you can!<br><br><br>This game may help those with dyslexia to improve symptoms with continued use over time."
+        return "<b>Editor</b><br><br>This author needs your help! Find and unscramble the author's errors as fast as you can!<br>Note: Do not include punctuation of any kind.<br><br><br>This game may help those with dyslexia to improve symptoms with continued use over time."
     
     if x == 4:
         return "<b>Find the Kiddo</b><br><br>Listen to the sound of the toddler's giggles as they run through the house,<br>and follow their path!<br><br><br>This game may help those with ADHD to improve symptoms with continued use over time."
@@ -731,7 +731,7 @@ while is_running:
                     blind_text_entry.set_text("")
                     blind_text_entry.redraw()
                     blind_text_entry.update(time_delta)
-                    if accuracy < 2:
+                    if accuracy < 10:
                         blind_label_number.visible = True
                         ans = get_number()
                         print(ans)
@@ -778,7 +778,7 @@ while is_running:
                     print("Correct!")
                     accuracy += 1
                     iteration += 1
-                    if accuracy < 3:
+                    if accuracy < 10:
                         answer = Editor.main()
                         set_Editor()
                         editor_textbox_sentence.append_html_text(answer[0])
