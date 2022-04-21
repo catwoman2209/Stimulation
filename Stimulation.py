@@ -313,7 +313,10 @@ blind_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550))
 
 
 def end_Bookworm():
-    score = (accuracy/iteration)*100
+    try:
+      score = (accuracy/iteration)*100
+    except:
+      score = 0
 
     string = "Accuracy: "+ str(score)
 
