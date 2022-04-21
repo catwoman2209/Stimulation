@@ -35,5 +35,21 @@
             "dark_bg": "#557CCB",
             "normal_text": "#FFFFFF"
         }
-    }
+    },
+    "@editor_label_word":
+    {
+        "colours":
+        {
+           "dark_bg": "#FFFFFF",
+           "normal_text": "#000000"
+        }
+    },
+    "@editor_label":
+    {
+       "colours":
+       {
+           "dark_bg": "#000000",
+           "normal_text": "#FFFFFF"
+       }
+   }
  }

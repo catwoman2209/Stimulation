@@ -423,6 +423,54 @@ def end_Blind():
 
     stack.move_window_to_front(instruction_window)
 
+################ EDITOR GAME ELEMENTS #######################
+#@authors=christiana_taylor
+
+#Editor panel
+editor_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
+                                        manager=manager,
+                                        container=game_window,
+                                        starting_layer_height=1,
+                                        visible=False,
+                                        object_id=ObjectID(class_id='@editor_panel'))
+
+#Editor text entry lines
+editor_text_entry = pygui.elements.UITextEntryLine(relative_rect=pygame.Rect((100, 200), (400, 50)),
+                                        manager=manager,
+                                        container=editor_bg)
+editor_text_entry.set_allowed_characters('letters')
+
+#Editor labels
+editor_label_sentence = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 50), (400, 50)),
+                                                text="",
+                                                manager=manager,
+                                                container=editor_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@editor_label_word"))
+
+editor_label_feedback1 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (100, 50)),
+                                                text="Correct!",
+                                                manager=manager,
+                                                container=editor_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@editor_label"))
+
+editor_label_feedback2 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (250, 50)),
+                                                text="Incorrect! Please try again!",
+                                                manager=manager,
+                                                container=editor_bg, 
+                                                visible = False,
+                                                object_id=ObjectID(class_id="@editor_label"))
+
+editor_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((325, 10), (150, 30)),
+                                                text="",
+                                                manager=manager,
+                                                container=instruction_bg, 
+                                                visible = False)
+
+########################################################
+#start of main code
+
 clock = pygame.time.Clock()
 is_running = True
 flag = 0
@@ -562,6 +610,7 @@ while is_running:
             if event.ui_element == quit_button:
                 pygame.quit()
 
+            #event handler for play button based on game clicked
             if event.ui_element == play_button:
                 instruction_textbox.clear_all_active_effects()
                 instruction_textbox.full_redraw()
@@ -665,7 +714,6 @@ while is_running:
                     bookworm_label_feedback1.visible = False
                     iteration += 1
                     print("Incorrect!")
-
 
         manager.process_events(event)
 
