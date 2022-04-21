@@ -341,7 +341,6 @@ while is_running:
                 instruction_textbox.set_active_effect(pygui.TEXT_EFFECT_TYPING_APPEAR)
                 manager.update(time_delta)
                 
-        if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == book_menu_button:
                 print('Bookworm game launched')
                 stack.move_window_to_front(instruction_window)
@@ -449,9 +448,9 @@ while is_running:
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == back_game_button:
                 if game_window.window_display_title == "Bookworm":
+                   end_Bookworm()
                    accuracy = 0
                    iteration = 0
-                   end_Bookworm()
 
         if event.type == pygui.UI_BUTTON_PRESSED:
             if event.ui_element == quit_button:

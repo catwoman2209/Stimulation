@@ -6,7 +6,7 @@ from pygame_gui.core import ObjectID
 import random
 import urllib.request
 
-################ NOTES ##############################
+########################### NOTES ##############################
 
 # Bugs:
 # generated word will be out of index range when copying onto buttons
@@ -14,7 +14,7 @@ import urllib.request
 # generated word contains an apostrophe
 # -results in an infinite loop as apostrophes cannot be entered
 
-################ END OF NOTES #######################
+########################### END OF NOTES #######################
 
 
 jumble_list=[]
