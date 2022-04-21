@@ -52,4 +52,10 @@ sentence_array = list(map(lambda word_string: word_string.replace(original, jumb
 print(sentence_array)
 print("The jumble is: ")
 print(jumble_string)
+ 
+while (input("Type jumbled word (without symbols):")) != correct:
+    print("Incorrect")
+else: 
+    print("Correct")
+
     
