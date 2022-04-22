@@ -6,15 +6,15 @@
 import os
 import pygame
 import pygame_gui as pygui
+from typeracer import Game
 from pygame_gui.core import ObjectID
 import random
 import Book
-import Editor
 
 pygame.init()
 
 pygame.display.set_caption("Stimulation")
-window = pygame.display.set_mode()
+window = pygame.display.set_mode((1920,1080))
 
 x = window.get_width()
 y = window.get_height()
@@ -23,7 +23,6 @@ cwd = os.getcwd()
 manager = pygui.UIManager((x, y), cwd + "/menu_theme.json")
 manager.get_theme().load_theme('panel.json')
 manager.get_theme().load_theme('label.json')
-manager.get_theme().load_theme('text_box.json')
 
 x2 = x/2 - 400
 y2 = y/2 - 300
@@ -121,7 +120,7 @@ def instruction_text(x):
         return "<b>Bookworm</b><br><br>Are you a bookworm? Use the letters to find the word matching the definition<br><br><br>This game may help those with dyslexia to improve symptoms with continued use over time."
     
     if x == 3:
-        return "<b>Editor</b><br><br>This author needs your help! Find and unscramble the author's errors as fast as you can!<br>Note: Do not include punctuation of any kind.<br><br><br>This game may help those with dyslexia to improve symptoms with continued use over time."
+        return "<b>Editor</b><br><br>This author needs your help! Unscramble the author's errors as fast as you can!<br><br><br>This game may help those with dyslexia to improve symptoms with continued use over time."
     
     if x == 4:
         return "<b>Find the Kiddo</b><br><br>Listen to the sound of the toddler's giggles as they run through the house,<br>and follow their path!<br><br><br>This game may help those with ADHD to improve symptoms with continued use over time."
@@ -287,7 +286,7 @@ bookworm_label_feedback2 = pygui.elements.UILabel(relative_rect=pygame.Rect((100
                                                 visible = False,
                                                 object_id=ObjectID(class_id="@bookworm_label"))
 
-bookworm_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((300, 10), (200, 30)),
+bookworm_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((325, 10), (150, 30)),
                                                 text="",
                                                 manager=manager,
                                                 container=instruction_bg, 
@@ -384,7 +383,7 @@ blind_label_feedback2 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 3
                                                 visible = False,
                                                 object_id=ObjectID(class_id="@blind_label"))
 
-blind_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((300, 10), (200, 30)),
+blind_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((325, 10), (150, 30)),
                                                 text="",
                                                 manager=manager,
                                                 container=instruction_bg, 
@@ -417,10 +416,12 @@ def end_Blind():
     blind_label_feedback2.visible = False
     blind_label_score.set_text(string)
     blind_label_score.visible = True
+
     blind_bg.visible = False
     game_bg.visible = True
 
     manager.update(time_delta)
+
     stack.move_window_to_front(instruction_window)
 
 ################ EDITOR GAME ELEMENTS #######################
@@ -437,24 +438,23 @@ editor_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)
 #Editor text entry lines
 editor_text_entry = pygui.elements.UITextEntryLine(relative_rect=pygame.Rect((100, 200), (400, 50)),
                                         manager=manager,
-                                        visible=False,
                                         container=editor_bg)
 editor_text_entry.set_allowed_characters('letters')
 
-#Editor elements
-editor_textbox_sentence = pygui.elements.UITextBox(html_text="",
-                                        relative_rect=pygame.Rect((50, 25), (700, 75)),
-                                        manager=manager,
-                                        visible=False,
-                                        container=editor_bg,
-                                        object_id=ObjectID(class_id='@editor_textbox'))
+#Editor labels
+editor_label_sentence = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 50), (400, 50)),
+                                                text="",
+                                                manager=manager,
+                                                container=editor_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@editor_label_word"))
 
-editor_textbox_sentence_j = pygui.elements.UITextBox(html_text="",
-                                        relative_rect=pygame.Rect((50, 100), (700, 75)),
-                                        manager=manager,
-                                        visible=False,
-                                        container=editor_bg,
-                                        object_id=ObjectID(class_id='@editor_textbox'))
+editor_label_sentence_j = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 100), (400, 50)),
+                                                text="",
+                                                manager=manager,
+                                                container=editor_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@editor_label_word"))
 
 editor_label_feedback1 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (100, 50)),
                                                 text="Correct!",
@@ -470,127 +470,11 @@ editor_label_feedback2 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 
                                                 visible = False,
                                                 object_id=ObjectID(class_id="@editor_label"))
 
-editor_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((300, 10), (200, 30)),
+editor_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((325, 10), (150, 30)),
                                                 text="",
                                                 manager=manager,
                                                 container=instruction_bg, 
                                                 visible = False)
-
-#Editor game functions
-def set_Editor():
-    editor_textbox_sentence.clear_text_surface()
-    editor_textbox_sentence_j.clear_text_surface()
-    editor_textbox_sentence.full_redraw()
-    editor_textbox_sentence_j.full_redraw()
-    editor_textbox_sentence.visible = True
-    editor_textbox_sentence_j.visible = True
-    editor_text_entry.set_text("")
-    editor_text_entry.visible = True
-    manager.update(time_delta)
-    pygame.display.update()
-
-def end_Editor():
-    try:
-      score = round((accuracy/iteration)*100)
-    except:
-      score = 0
-
-    string = "Accuracy: "+ str(score)+" "+str(accuracy)+"/"+str(iteration)
-
-    editor_textbox_sentence.clear_text_surface()
-    editor_textbox_sentence_j.clear_text_surface()
-    editor_textbox_sentence.visible = False
-    editor_textbox_sentence_j.visible = False
-    editor_text_entry.visible = False
-    editor_label_feedback1.visible = False
-    editor_label_feedback2.visible = False
-    editor_label_score.set_text(string)
-    editor_label_score.visible = True
-    editor_bg.visible = False
-    game_bg.visible = True
-
-    manager.update(time_delta)
-    pygame.display.update()
-    stack.move_window_to_front(instruction_window)
-################ FIND THE KIDDO GAME ELEMENTS #######################
-#@authors=
-
-################ MAZE RUNNER GAME ELEMENTS #######################
-#@authors=
-
-################ PAINT PICKER GAME ELEMENTS #######################
-#@authors=christiana_taylor
-
-#Paint Picker panels
-paint_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
-                                        manager=manager,
-                                        container=game_window,
-                                        starting_layer_height=1,
-                                        visible=False,
-                                        object_id=ObjectID(class_id="@game_panel"))
-
-paint_panel = pygui.elements.UIPanel(relative_rect=pygame.Rect((50, 50), (50, 50)),
-                                        manager=manager,
-                                        container=paint_bg,
-                                        starting_layer_height=1,
-                                        visible=False)
-
-paint_textbox = pygui.elements.UITextBox(html_text="",
-                                        relative_rect=pygame.Rect((0, 0), (50, 50)),
-                                        manager=manager,
-                                        container=paint_panel,
-                                        visible=False)
-
-#Paint Picker text entry lines
-paint_text_entry = pygui.elements.UITextEntryLine(relative_rect=pygame.Rect((100, 200), (400, 50)),
-                                        manager=manager,
-                                        visible=False,
-                                        container=game_bg)
-paint_text_entry.set_allowed_characters('letters')
-
-#Paint Picker labels
-
-#Paint Picker functions
-def get_paint_color():
-    colors=["black", "white", "red", "blue", "yellow", "gray", "green", "purple"]
-
-    choice = random.randint(0, 7)
-
-# def set_Blind():
-#     blind_label_number.visible = True
-#     blind_text_entry.visible = False
-#     manager.update(time_delta)
-#     pygame.display.update()
-#     wait()
-#     blind_label_number.visible = False
-#     blind_text_entry.visible = True    
-
-# def end_Blind():
-#     try:
-#       score = round((accuracy/iteration)*100)
-#     except:
-#       score = 0
-
-#     string = "Accuracy: "+ str(score)+" "+str(accuracy)+"/"+str(iteration)
-
-#     blind_text_entry.visible = False
-#     blind_label_number.visible = False
-#     blind_label_feedback1.visible = False
-#     blind_label_feedback2.visible = False
-#     blind_label_score.set_text(string)
-#     blind_label_score.visible = True
-#     blind_bg.visible = False
-#     game_bg.visible = True
-
-#     manager.update(time_delta)
-#     stack.move_window_to_front(instruction_window)
-
-################ QUICK CHANGE GAME ELEMENTS #######################
-#@authors=
-
-################ SPACE ODDITY GAME ELEMENTS #######################
-#@authors=
-
 
 ########################################################
 #start of main code
@@ -613,9 +497,6 @@ while is_running:
 
         #event handllers for game menu buttons
         if event.type == pygui.UI_BUTTON_PRESSED:
-            blind_label_score.visible = False
-            bookworm_label_score.visible = False
-            editor_label_score.visible = False
             if event.ui_element == blind_menu_button:
                 print('Blind Date game launched')
                 stack.move_window_to_front(instruction_window)
@@ -734,11 +615,6 @@ while is_running:
                    accuracy = 0
                    iteration = 0
 
-                if game_window.window_display_title == "Editor":
-                   end_Editor()
-                   accuracy = 0
-                   iteration = 0
-
             if event.ui_element == quit_button:
                 pygame.quit()
 
@@ -767,15 +643,8 @@ while is_running:
                     stack.move_window_to_front(game_window)
 
                 if flag == 3:
-                    game_window.set_display_title("Editor")
-                    answer = Editor.main()
-                    set_Editor()
-                    editor_textbox_sentence.append_html_text(answer[0])
-                    print(answer[0])
-                    editor_textbox_sentence_j.append_html_text(answer[1])
-                    print(answer[1])
-                    ans = answer[2]
-                    stack.move_window_to_front(game_window)
+                    exec(open("Editor.py").read())
+                    stack.move_window_to_front(main_window)
 
                 if flag == 4:
                     exec(open("Kiddo.py").read())
@@ -794,9 +663,8 @@ while is_running:
                     stack.move_window_to_front(main_window)
 
                 if flag == 8:
-                    exec(open("Racer.py").read())
-                    stack.move_window_to_front(main_window)
-                    
+                    while True:
+                        Game().start_screen()
                 if flag == 9:
                     exec(open("Space.py").read())
                     stack.move_window_to_front(main_window)
@@ -814,12 +682,13 @@ while is_running:
                     blind_text_entry.set_text("")
                     blind_text_entry.redraw()
                     blind_text_entry.update(time_delta)
-                    if accuracy < 10:
+                    if accuracy < 2:
                         blind_label_number.visible = True
                         ans = get_number()
                         print(ans)
                         blind_label_number.set_text(str(ans))
                         blind_flag = 1 
+
                     else:
                         end_Blind()
                 else:
@@ -850,31 +719,6 @@ while is_running:
                     bookworm_text_entry.set_text("")
                     bookworm_label_feedback2.visible = True
                     bookworm_label_feedback1.visible = False
-                    iteration += 1
-                    print("Incorrect!")
-
-            if event.ui_element == editor_text_entry:
-                print(editor_text_entry.get_text())
-                if editor_text_entry.get_text() == ans:
-                    editor_label_feedback1.visible = True
-                    editor_label_feedback2.visible = False
-                    print("Correct!")
-                    accuracy += 1
-                    iteration += 1
-                    if accuracy < 10:
-                        answer = Editor.main()
-                        set_Editor()
-                        editor_textbox_sentence.append_html_text(answer[0])
-                        print(answer[0])
-                        editor_textbox_sentence_j.append_html_text(answer[1])
-                        print(answer[1])
-                        ans = answer[2]
-                    else:
-                        end_Editor()
-                else:
-                    editor_text_entry.set_text("")
-                    editor_label_feedback2.visible = True
-                    editor_label_feedback1.visible = False
                     iteration += 1
                     print("Incorrect!")
 
