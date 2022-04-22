@@ -13,5 +13,16 @@
             "border_width": "0",
             "shadow_width": "0"
         }
+    },
+    "@paint_textbox":
+    {
+        "colours":
+        {
+            "dark_bg": "#000000"
+        },
+        "misc":
+        {
+            "border_width": "0"
+        }
     }
 }

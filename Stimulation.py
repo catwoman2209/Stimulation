@@ -476,6 +476,120 @@ editor_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((325, 10),
                                                 container=instruction_bg, 
                                                 visible = False)
 
+#Editor game functions
+def set_Editor():
+    editor_textbox_sentence.clear_text_surface()
+    editor_textbox_sentence_j.clear_text_surface()
+    editor_textbox_sentence.full_redraw()
+    editor_textbox_sentence_j.full_redraw()
+    editor_textbox_sentence.visible = True
+    editor_textbox_sentence_j.visible = True
+    editor_text_entry.set_text("")
+    editor_text_entry.visible = True
+    manager.update(time_delta)
+    pygame.display.update()
+
+def end_Editor():
+    try:
+      score = round((accuracy/iteration)*100)
+    except:
+      score = 0
+
+    string = "Accuracy: "+ str(score)+" "+str(accuracy)+"/"+str(iteration)
+
+    editor_textbox_sentence.clear_text_surface()
+    editor_textbox_sentence_j.clear_text_surface()
+    editor_textbox_sentence.visible = False
+    editor_textbox_sentence_j.visible = False
+    editor_text_entry.visible = False
+    editor_label_feedback1.visible = False
+    editor_label_feedback2.visible = False
+    editor_label_score.set_text(string)
+    editor_label_score.visible = True
+    editor_bg.visible = False
+    game_bg.visible = True
+
+    manager.update(time_delta)
+    pygame.display.update()
+    stack.move_window_to_front(instruction_window)
+################ FIND THE KIDDO GAME ELEMENTS #######################
+#@authors=
+
+################ MAZE RUNNER GAME ELEMENTS #######################
+#@authors=
+
+################ PAINT PICKER GAME ELEMENTS #######################
+#@authors=christiana_taylor
+
+#Paint Picker panels
+paint_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
+                                        manager=manager,
+                                        container=game_window,
+                                        starting_layer_height=1,
+                                        visible=False,
+                                        object_id=ObjectID(class_id="@game_panel"))
+
+paint_panel = pygui.elements.UIPanel(relative_rect=pygame.Rect((50, 50), (50, 50)),
+                                        manager=manager,
+                                        container=paint_bg,
+                                        starting_layer_height=1,
+                                        visible=False)
+
+paint_textbox = pygui.elements.UITextBox(html_text="",
+                                        relative_rect=pygame.Rect((0, 0), (50, 50)),
+                                        manager=manager,
+                                        container=paint_panel,
+                                        visible=False)
+
+#Paint Picker text entry lines
+paint_text_entry = pygui.elements.UITextEntryLine(relative_rect=pygame.Rect((100, 200), (400, 50)),
+                                        manager=manager,
+                                        container=game_bg)
+paint_text_entry.set_allowed_characters('letters')
+
+#Paint Picker labels
+
+#Paint Picker functions
+def get_paint_color():
+    colors=["black", "white", "red", "blue", "yellow", "gray", "green", "purple"]
+
+    choice = random.randint(0, 7)
+
+# def set_Blind():
+#     blind_label_number.visible = True
+#     blind_text_entry.visible = False
+#     manager.update(time_delta)
+#     pygame.display.update()
+#     wait()
+#     blind_label_number.visible = False
+#     blind_text_entry.visible = True    
+
+# def end_Blind():
+#     try:
+#       score = round((accuracy/iteration)*100)
+#     except:
+#       score = 0
+
+#     string = "Accuracy: "+ str(score)+" "+str(accuracy)+"/"+str(iteration)
+
+#     blind_text_entry.visible = False
+#     blind_label_number.visible = False
+#     blind_label_feedback1.visible = False
+#     blind_label_feedback2.visible = False
+#     blind_label_score.set_text(string)
+#     blind_label_score.visible = True
+#     blind_bg.visible = False
+#     game_bg.visible = True
+
+#     manager.update(time_delta)
+#     stack.move_window_to_front(instruction_window)
+
+################ QUICK CHANGE GAME ELEMENTS #######################
+#@authors=
+
+################ SPACE ODDITY GAME ELEMENTS #######################
+#@authors=
+
 ########################################################
 #start of main code
 
