@@ -521,12 +521,67 @@ def end_Editor():
 #@authors=christiana_taylor
 
 #Paint Picker panels
+paint_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
+                                        manager=manager,
+                                        container=game_window,
+                                        starting_layer_height=1,
+                                        visible=False,
+                                        object_id=ObjectID(class_id="@game_panel"))
 
-#Paint Picker buttons
+paint_panel = pygui.elements.UIPanel(relative_rect=pygame.Rect((50, 50), (50, 50)),
+                                        manager=manager,
+                                        container=paint_bg,
+                                        starting_layer_height=1,
+                                        visible=False)
+
+paint_textbox = pygui.elements.UITextBox(html_text="",
+                                        relative_rect=pygame.Rect((0, 0), (50, 50)),
+                                        manager=manager,
+                                        container=paint_panel,
+                                        visible=False)
+
+#Paint Picker text entry lines
+paint_text_entry = pygui.elements.UITextEntryLine(relative_rect=pygame.Rect((100, 200), (400, 50)),
+                                        manager=manager,
+                                        container=game_bg)
+paint_text_entry.set_allowed_characters('letters')
 
 #Paint Picker labels
 
 #Paint Picker functions
+def get_paint_color():
+    colors=["black", "white", "red", "blue", "yellow", "gray", "green", "purple"]
+
+    choice = random.randint(0, 7)
+
+# def set_Blind():
+#     blind_label_number.visible = True
+#     blind_text_entry.visible = False
+#     manager.update(time_delta)
+#     pygame.display.update()
+#     wait()
+#     blind_label_number.visible = False
+#     blind_text_entry.visible = True    
+
+# def end_Blind():
+#     try:
+#       score = round((accuracy/iteration)*100)
+#     except:
+#       score = 0
+
+#     string = "Accuracy: "+ str(score)+" "+str(accuracy)+"/"+str(iteration)
+
+#     blind_text_entry.visible = False
+#     blind_label_number.visible = False
+#     blind_label_feedback1.visible = False
+#     blind_label_feedback2.visible = False
+#     blind_label_score.set_text(string)
+#     blind_label_score.visible = True
+#     blind_bg.visible = False
+#     game_bg.visible = True
+
+#     manager.update(time_delta)
+#     stack.move_window_to_front(instruction_window)
 
 ################ QUICK CHANGE GAME ELEMENTS #######################
 #@authors=
