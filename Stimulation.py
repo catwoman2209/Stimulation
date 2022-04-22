@@ -11,6 +11,7 @@ from typeracer import Game
 import random
 import Book
 import Editor
+import Maze
 
 pygame.init()
 
@@ -54,8 +55,13 @@ game_window = pygui.elements.UIWindow(rect=pygame.Rect(x2, y2, 800, 600),
                             manager=manager,
                             window_display_title='Bookworm',
                             resizable=False)
+maze_window = pygui.elements.UIWindow(rect=pygame.Rect(x2, y2, 800, 600),
+                            manager=manager,
+                            window_display_title='Maze Runner',
+                            resizable=False)
 
 #add windows to stack
+stack.add_new_window(maze_window)
 stack.add_new_window(main_window)
 stack.add_new_window(instruction_window)
 stack.add_new_window(game_window)
@@ -77,6 +83,11 @@ instruction_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800,
 game_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
                                         manager=manager,
                                         container=game_window,
+                                        starting_layer_height=1,
+                                        object_id=ObjectID(class_id='@game_panel'))
+maze_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
+                                        manager=manager,
+                                        container=maze_window,
                                         starting_layer_height=1,
                                         object_id=ObjectID(class_id='@game_panel'))
 
@@ -110,6 +121,12 @@ game_toolbar = pygui.elements.UIPanel(relative_rect=pygame.Rect((0,0), (800, 60)
                                 manager=manager,
                                 starting_layer_height=1,
                                 container=game_window,
+                                object_id=ObjectID(class_id='@toolbar'))
+
+maze_toolbar = pygui.elements.UIPanel(relative_rect=pygame.Rect((0,0), (800, 60)),
+                                manager=manager,
+                                starting_layer_height=1,
+                                container=maze_window,
                                 object_id=ObjectID(class_id='@toolbar'))
 
 #function for updating instruction_textbox
@@ -292,7 +309,7 @@ bookworm_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((300, 10
                                                 text="",
                                                 manager=manager,
                                                 container=instruction_bg, 
-                                                visible = False,
+                                                visible = True,
                                                 object_id=ObjectID(class_id="@bookworm_label"))
 
 #Bookworm functions
@@ -344,6 +361,148 @@ def end_Bookworm():
     letter_button3.visible = False
     letter_button4.visible = False
     letter_button5.visible = False
+    stack.move_window_to_front(instruction_window)
+
+################ MAZE RUNNER GAME ELEMENTS #######################
+
+maze_game_slider = pygui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((200,200), (400, 100)),
+                                    manager=manager, start_value = 16, value_range = [4,32],
+                                    container=maze_bg, click_increment = 1,
+                                    object_id=ObjectID(class_id='@toolbar'))
+maze_label_slider_title = pygui.elements.UILabel(relative_rect=pygame.Rect((200, 150), (100, 50)),
+                                                text="16x16 Maze",
+                                                manager=manager,
+                                                container=maze_bg,
+                                                visible=True, 
+                                                object_id=ObjectID(class_id="@maze_label"))
+maze_back_game_button = pygui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (150, 50)),
+                                            text='Back',
+                                            manager=manager,
+                                            container=maze_toolbar,
+                                            tool_tip_text="Back to instruction screen",
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+maze_play_button = pygui.elements.UIButton(relative_rect=pygame.Rect((350, 400), (100, 50)),
+                                            text='Play',
+                                            manager=manager,
+                                            container=maze_bg,
+                                            tool_tip_text="Play Game",
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+
+#Maze Runner Functions
+maze = []
+visited_squares = []
+maze_stack = []
+w = 20
+def build_maze(size):
+    maze_y = 0
+    for i in range(1,size+1):
+        maze_x = 20
+        maze_y += 20
+        for j in range(1, size+1):
+            #top of cell
+            pygame.draw.line(window, (255,255,255), [maze_x, maze_y], [maze_x + w, maze_y])
+            #right of cell
+            pygame.draw.line(window, (255,255,255), [maze_x + w, maze_y], [maze_x + w, maze_y + w])
+            #bottom of cell
+            pygame.draw.line(window, (255,255,255), [maze_x + w, maze_y + w], [maze_x, maze_y + w])
+            #left of cell
+            pygame.draw.line(window, (255,255,255), [maze_x, maze_y + w], [maze_x, maze_y])
+            maze.append((maze_x,maze_y))
+            maze_x += 20
+
+#Backtracking algorithm as per wikipedia 
+def go_up(maze_x, maze_y):
+    pygame.draw.rect(window, (0,0,0), (maze_x + 1, maze_y - w + 1, 19, 39), 0)
+    pygame.display.update()
+def go_down(maze_x, maze_y):
+    pygame.draw.rect(window, (0,0,0), (maze_x +  1, maze_y + 1, 19, 39), 0)
+    pygame.display.update()
+def go_left(maze_x, maze_y):
+    pygame.draw.rect(window, (0,0,0), (maze_x - w +1, maze_y +1, 39, 19), 0)
+    pygame.display.update()
+def go_right(maze_x, maze_y):
+    pygame.draw.rect(window, (0,0,0), (maze_x +1, maze_y +1, 39, 19), 0)
+    pygame.display.update()
+
+def create_maze(maze_x, maze_y):
+    maze_stack.append((maze_x, maze_y))
+    visited_squares.append((maze_x, maze_y))
+    while len(maze_stack) > 0:
+        possible_moves = [] #0 - up, 1 - right, 2 - down, 3 - left
+        if (maze_x, maze_y - w) not in visited_squares and (maze_x , maze_y - w) in maze:
+            possible_moves.append(0)
+        if (maze_x + w, maze_y) not in visited_squares and (maze_x + w, maze_y) in maze:
+            possible_moves.append(1)
+        if (maze_x , maze_y + w) not in visited_squares and (maze_x , maze_y + w) in maze:
+            possible_moves.append(2)
+        if (maze_x - w, maze_y) not in visited_squares and (maze_x - w, maze_y) in maze:
+            possible_moves.append(3)
+        if len(possible_moves) > 0:
+            move = random.choice(possible_moves)
+            if move == 0:
+                go_up(maze_x, maze_y)
+                maze_y -= w
+                visited_squares.append((maze_x, maze_y))
+                maze_stack.append((maze_x, maze_y))
+            elif move == 1:
+                go_right(maze_x, maze_y)
+                maze_x += w
+                visited_squares.append((maze_x, maze_y))
+                maze_stack.append((maze_x, maze_y))
+            elif move == 2:
+                go_down(maze_x, maze_y)
+                maze_y += w
+                visited_squares.append((maze_x, maze_y))
+                maze_stack.append((maze_x, maze_y))
+            elif move == 3:
+                go_left(maze_x, maze_y)
+                maze_x -= w
+                visited_squares.append((maze_x, maze_y))
+                maze_stack.append((maze_x, maze_y))
+        else:
+            maze_x, maze_y = maze_stack.pop()
+        pygame.draw.rect(window, (193, 225, 193), (21,21, 19, 19), 0)
+    
+
+MAZE_SIZE = maze_game_slider.get_current_value()
+in_maze = False
+player = Maze.Player(MAZE_SIZE*20+4, MAZE_SIZE*20+4, window)
+def init_maze_runner():
+    main_window.visible = False
+    instruction_window.visible = False
+    game_window.visible = False
+    maze_window.visible = False
+    main_window.rebuild()
+    instruction_window.rebuild()
+    game_window.rebuild()
+    maze_window.rebuild()
+    window.fill((0,0,0))
+    MAZE_SIZE = maze_game_slider.get_current_value()
+    build_maze(MAZE_SIZE)
+    create_maze(20,40)
+    #player = Maze.Player(MAZE_SIZE*20+4, MAZE_SIZE*20+4, window)
+    player.x = MAZE_SIZE*20+8
+    player.y = MAZE_SIZE*20+8
+    #player.draw()
+    
+def deinit_maze_runner():
+    in_maze = False
+    player.erase()
+    while len(maze) > 0:
+        maze.pop()
+    while len(visited_squares) > 0:
+        visited_squares.pop()
+    while len(maze_stack) > 0:
+        maze_stack.pop()
+    window.fill((0,0,0))
+    main_window.visible = True
+    instruction_window.visible = True
+    game_window.visible = True
+    maze_window.visible = True
+    main_window.rebuild()
+    instruction_window.rebuild()
+    game_window.rebuild()
+    maze_window.rebuild()
     stack.move_window_to_front(instruction_window)
 
 ################ BLIND DATE GAME ELEMENTS #######################
@@ -523,6 +682,7 @@ def end_Editor():
 #@authors=christiana_taylor
 
 #Paint Picker panels
+
 paint_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
                                         manager=manager,
                                         container=game_window,
@@ -602,15 +762,110 @@ flag = 0
 blind_flag = 0
 accuracy = 0
 iteration = 0
+breadcrumb_count = 0
 
 while is_running:
 
     time_delta = clock.tick(60)/1000.0
 
+    ### START MAZE STUFF
+    finished_maze = False
+    if in_maze == True:
+        player.draw()
+        green_up = window.get_at((player.x, player.y-1)) == (193, 225, 193)
+        green_right = window.get_at((player.x+1, player.y)) == (193, 225, 193)
+        green_down = window.get_at((player.x, player.y+1)) == (193, 225, 193)
+        green_left = window.get_at((player.x-1, player.y)) == (193, 225, 193)
+        finished_maze = (green_up and (green_right or green_left)) or (green_down and (green_right or green_left))
+        if finished_maze:
+            player.erase()
+            in_maze = False
+            bookworm_label_score.set_text("You beat the maze!")
+            deinit_maze_runner()
+        
+        key = pygame.key.get_pressed()
+        
+        can_go_up = True
+        for i in range(0, 5):
+            if window.get_at((player.x+i, player.y - 1)) == (255,255,255):
+                can_go_up = False
+                break
+        can_go_right = True
+        for i in range(0, 5):
+            if window.get_at((player.x+5, player.y + i)) == (255,255,255):
+                can_go_right = False
+                break
+        can_go_down = True
+        for i in range(0, 5):
+            if window.get_at((player.x+i, player.y + 5)) == (255,255,255):
+                can_go_down = False
+                break
+        can_go_left = True
+        for i in range(0, 5):
+            if window.get_at((player.x-1, player.y + i)) == (255,255,255):
+                can_go_left = False
+                break
+        if (key[pygame.K_UP] or key[pygame.K_w]):      
+            if can_go_up:
+                breadcrumb_count += 1
+                if breadcrumb_count == 20:
+                    player.leave_breadcrumb(player.x, player.y+5)
+                    breadcrumb_count = 0
+                player.erase()
+                player.y -= 1
+                player.draw()
+        if key[pygame.K_RIGHT] or key[pygame.K_d]:
+            if can_go_right:
+                breadcrumb_count += 1
+                if breadcrumb_count == 20:
+                    player.leave_breadcrumb(player.x-1, player.y)
+                    breadcrumb_count = 0
+                player.erase()
+                player.x += 1
+                player.draw()
+        if key[pygame.K_DOWN] or key[pygame.K_s]:
+            if can_go_down:
+                breadcrumb_count += 1
+                if breadcrumb_count == 20:
+                    player.leave_breadcrumb(player.x, player.y-1)
+                    breadcrumb_count = 0
+                player.erase()
+                player.y += 1
+                player.draw()
+        if key[pygame.K_LEFT] or key[pygame.K_a]:
+            if can_go_left:
+                breadcrumb_count += 1
+                if breadcrumb_count == 20:
+                    player.leave_breadcrumb(player.x + 5, player.y)
+                    breadcrumb_count = 0
+                player.erase()
+                player.x -= 1
+                player.draw()
+        if key[pygame.K_ESCAPE]:
+            finished_maze = True
+            in_maze = False
+            bookworm_label_score.set_text("")
+            player.erase()
+            window.fill((0,0,0))
+            deinit_maze_runner()
+    if in_maze == False and finished_maze == True:
+        finished_maze = False
+        player.erase()
+        window.fill((0,0,0))
+    ### END MAZE STUFF
+    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             is_running = False
             pygame.quit()
+
+        #maze slider
+        if event.type == pygui.UI_HORIZONTAL_SLIDER_MOVED:
+            if event.ui_element == maze_game_slider:
+                s = "{}x{} Maze".format(event.value, event.value)
+                maze_label_slider_title.text = s
+                maze_label_slider_title.rebuild()
+                manager.update(time_delta)
 
         #event handllers for game menu buttons
         if event.type == pygui.UI_BUTTON_PRESSED:
@@ -717,6 +972,7 @@ while is_running:
                 manager.update(time_delta)
 
             if event.ui_element == back_button:
+                #bookworm_label_score.set_text("")
                 bookworm_label_score.visible = False
                 stack.move_window_to_front(main_window)
 
@@ -739,6 +995,17 @@ while is_running:
                    end_Editor()
                    accuracy = 0
                    iteration = 0
+
+            if event.ui_element == maze_back_game_button:
+                in_maze = False
+                accuracy = 0
+                iteration = 0
+                #bookworm_label_score.set_text("")
+                bookworm_label_score.visible = False
+                deinit_maze_runner()
+            if event.ui_element == maze_play_button:
+                in_maze = True
+                init_maze_runner()
 
             if event.ui_element == quit_button:
                 pygame.quit()
@@ -783,8 +1050,7 @@ while is_running:
                     stack.move_window_to_front(main_window)
 
                 if flag == 5:
-                    exec(open("Maze.py").read())
-                    stack.move_window_to_front(main_window)
+                    stack.move_window_to_front(maze_window)
 
                 if flag == 6:
                     exec(open("Paint.py").read())
@@ -886,7 +1152,7 @@ while is_running:
     manager.draw_ui(window)
 
     pygame.display.update()
-        
+    
     if game_window.window_display_title == "Blind Date":
         if blind_flag == 1:
             set_Blind()
