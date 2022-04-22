@@ -15,7 +15,7 @@ import Editor
 pygame.init()
 
 pygame.display.set_caption("Stimulation")
-window = pygame.display.set_mode((1920,1080)
+window = pygame.display.set_mode()
 
 x = window.get_width()
 y = window.get_height()
@@ -795,8 +795,8 @@ while is_running:
                     stack.move_window_to_front(main_window)
 
                 if flag == 8:
-                    exec(open("Racer.py").read())
-                    stack.move_window_to_front(main_window)
+                    while True:
+                        Game().start_screen()
                     
                 if flag == 9:
                     exec(open("Space.py").read())

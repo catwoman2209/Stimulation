@@ -8,7 +8,7 @@ import random
 
 
 
-screen = pygame.display.set_mode((1920,1080))
+screen = pygame.display.set_mode()
 globalx = screen.get_width()
 globaly = screen.get_height()
 
