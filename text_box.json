@@ -1,0 +1,17 @@
+{
+    "text_box":
+    {},
+    "@editor_textbox":
+    {
+        "colours":
+        {
+            "dark_bg": "#E4E189",
+            "normal_text": "#000000"
+        },
+        "misc":
+        {
+            "border_width": "0",
+            "shadow_width": "0"
+        }
+    }
+}

@@ -23,6 +23,7 @@ cwd = os.getcwd()
 manager = pygui.UIManager((x, y), cwd + "/menu_theme.json")
 manager.get_theme().load_theme('panel.json')
 manager.get_theme().load_theme('label.json')
+manager.get_theme().load_theme('text_box.json')
 
 x2 = x/2 - 400
 y2 = y/2 - 300
@@ -286,7 +287,7 @@ bookworm_label_feedback2 = pygui.elements.UILabel(relative_rect=pygame.Rect((100
                                                 visible = False,
                                                 object_id=ObjectID(class_id="@bookworm_label"))
 
-bookworm_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((325, 10), (150, 30)),
+bookworm_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((300, 10), (200, 30)),
                                                 text="",
                                                 manager=manager,
                                                 container=instruction_bg, 
@@ -383,7 +384,7 @@ blind_label_feedback2 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 3
                                                 visible = False,
                                                 object_id=ObjectID(class_id="@blind_label"))
 
-blind_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((325, 10), (150, 30)),
+blind_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((300, 10), (200, 30)),
                                                 text="",
                                                 manager=manager,
                                                 container=instruction_bg, 
@@ -444,13 +445,15 @@ editor_textbox_sentence = pygui.elements.UITextBox(html_text="",
                                         relative_rect=pygame.Rect((50, 25), (700, 75)),
                                         manager=manager,
                                         visible=False,
-                                        container=editor_bg)
+                                        container=editor_bg,
+                                        object_id=ObjectID(class_id='@editor_textbox'))
 
 editor_textbox_sentence_j = pygui.elements.UITextBox(html_text="",
                                         relative_rect=pygame.Rect((50, 100), (700, 75)),
                                         manager=manager,
                                         visible=False,
-                                        container=editor_bg)
+                                        container=editor_bg,
+                                        object_id=ObjectID(class_id='@editor_textbox'))
 
 editor_label_feedback1 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (100, 50)),
                                                 text="Correct!",
@@ -466,7 +469,7 @@ editor_label_feedback2 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 
                                                 visible = False,
                                                 object_id=ObjectID(class_id="@editor_label"))
 
-editor_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((325, 10), (150, 30)),
+editor_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((300, 10), (200, 30)),
                                                 text="",
                                                 manager=manager,
                                                 container=instruction_bg, 
