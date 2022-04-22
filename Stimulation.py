@@ -7,6 +7,7 @@ import os
 import pygame
 import pygame_gui as pygui
 from pygame_gui.core import ObjectID
+from typeracer import Game
 import random
 import Book
 import Editor
@@ -14,7 +15,7 @@ import Editor
 pygame.init()
 
 pygame.display.set_caption("Stimulation")
-window = pygame.display.set_mode()
+window = pygame.display.set_mode((1920,1080)
 
 x = window.get_width()
 y = window.get_height()
