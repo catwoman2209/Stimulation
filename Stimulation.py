@@ -437,6 +437,7 @@ editor_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)
 #Editor text entry lines
 editor_text_entry = pygui.elements.UITextEntryLine(relative_rect=pygame.Rect((100, 200), (400, 50)),
                                         manager=manager,
+                                        visible=False,
                                         container=editor_bg)
 editor_text_entry.set_allowed_characters('letters')
 
@@ -543,6 +544,7 @@ paint_textbox = pygui.elements.UITextBox(html_text="",
 #Paint Picker text entry lines
 paint_text_entry = pygui.elements.UITextEntryLine(relative_rect=pygame.Rect((100, 200), (400, 50)),
                                         manager=manager,
+                                        visible=False,
                                         container=game_bg)
 paint_text_entry.set_allowed_characters('letters')
 
