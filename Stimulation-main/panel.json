@@ -1,0 +1,58 @@
+{   
+    "panel":
+    {
+        "misc":
+        {
+            "shape": "rectangle",
+            "border_width": "0"
+        }
+    },
+    "@main_panel":
+    {
+        "colours":
+        {
+            "dark_bg": "#E4E189"
+        }
+    },
+    "@toolbar":
+    {
+        "colours":
+        {
+            "dark_bg": "#178BA8"
+        }
+    },
+    "@instruction_panel":
+    {
+        "colours":
+        {
+            "dark_bg": "#E4E189"
+        },
+        "misc":
+        {
+            "border_width": "1"
+        }
+    },
+    "@game_panel":
+    {
+        "colours":
+        {
+            "dark_bg": "#E4E189"
+        },
+        "misc":
+        {
+            "border_width": "0"
+        }
+    },
+    "@blind_panel":
+    {
+        "colours":
+        {
+            "dark_bg": "#6666CC",
+            "normal_border": "#4B4B94"
+        },
+        "misc":
+        {
+            "border_width": "1"
+        }
+    }
+}

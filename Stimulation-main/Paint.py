@@ -2,4 +2,8 @@
 import pygame
 import pygame_gui as pygui
 from pygame_gui.core import ObjectID
-import random
+import Stimulation as S
+
+pygame.init()
+
+print("Paint Picking game code")
