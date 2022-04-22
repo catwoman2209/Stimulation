@@ -6,6 +6,8 @@
 ########################### NOTES ##############################
 
 # Bugs:
+# generated word will be out of index range when copying onto buttons
+# -will result in closure of application
 # generated word contains an apostrophe
 # -results in an infinite loop as apostrophes cannot be entered
 
@@ -34,10 +36,10 @@ def get_jumble(x):
     #ensures word is between 3 and 5 letters long
     word = random.choice(list)
     while (len(word)>5):
-        word = random.choice(list)
-
-    while (len(word)<3):
-        word = random.choice(list)
+        if (len(word)<=2):
+            word = random.choice(list)
+        else:
+            word = random.choice(list)
 
     #jumble word array
     correct = word
