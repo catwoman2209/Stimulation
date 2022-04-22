@@ -511,6 +511,29 @@ def end_Editor():
     manager.update(time_delta)
     pygame.display.update()
     stack.move_window_to_front(instruction_window)
+################ FIND THE KIDDO GAME ELEMENTS #######################
+#@authors=
+
+################ MAZE RUNNER GAME ELEMENTS #######################
+#@authors=
+
+################ PAINT PICKER GAME ELEMENTS #######################
+#@authors=christiana_taylor
+
+#Paint Picker panels
+
+#Paint Picker buttons
+
+#Paint Picker labels
+
+#Paint Picker functions
+
+################ QUICK CHANGE GAME ELEMENTS #######################
+#@authors=
+
+################ SPACE ODDITY GAME ELEMENTS #######################
+#@authors=
+
 
 ########################################################
 #start of main code

@@ -6,8 +6,6 @@
 ########################### NOTES ##############################
 
 # Bugs:
-# generated word will be out of index range when copying onto buttons
-# -will result in closure of application
 # generated word contains an apostrophe
 # -results in an infinite loop as apostrophes cannot be entered
 

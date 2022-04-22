@@ -54,5 +54,19 @@
         {
             "border_width": "1"
         }
+    },
+    "@paint_panel":
+    {
+        "colours":
+        {
+            "dark_bg": "#000000"
+        }
+    },
+    "#paint1":
+    {
+        "colours":
+        {
+            "dark_bg": "#FFFFFF"
+        }
     }
 }
