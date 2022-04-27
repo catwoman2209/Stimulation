@@ -87,6 +87,7 @@ game_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
                                         container=game_window,
                                         starting_layer_height=1,
                                         object_id=ObjectID(class_id='@game_panel'))
+
 maze_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
                                         manager=manager,
                                         container=maze_window,
@@ -687,70 +688,133 @@ def deinit_maze_runner():
 paint_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
                                         manager=manager,
                                         container=game_window,
-                                        starting_layer_height=1,
+                                        starting_layer_height=2,
                                         visible=False,
                                         object_id=ObjectID(class_id="@game_panel"))
 
 #Paint Picker text entry lines
-paint_text_entry = pygui.elements.UITextEntryLine(relative_rect=pygame.Rect((100, 200), (400, 50)),
+paint_text_entry = pygui.elements.UITextEntryLine(relative_rect=pygame.Rect((100, 200), (200, 50)),
                                         manager=manager,
                                         visible=False,
-                                        container=game_bg)
+                                        container=paint_bg)
 paint_text_entry.set_allowed_characters('letters')
 
-#Paint picker images
+#Paint picker variables
 paint_surface = pygame.Surface((150,50))
+font = pygame.font.SysFont("", 50)
 
 #Paint Picker labels
+paint_label_feedback1 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (100, 50)),
+                                                text="Correct!",
+                                                manager=manager,
+                                                container=paint_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@editor_label"))
+
+paint_label_feedback2 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (250, 50)),
+                                                text="Incorrect! Please try again!",
+                                                manager=manager,
+                                                container=paint_bg, 
+                                                visible = False,
+                                                object_id=ObjectID(class_id="@editor_label"))
+
+paint_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((300, 10), (200, 30)),
+                                                text="",
+                                                manager=manager,
+                                                container=instruction_bg, 
+                                                visible = False)
 
 #Paint Picker functions
 def set_Paint(x):
     paint_bg.visible = True
-    font = pygame.font.SysFont("", 50)
+    paint_text_entry.visible = False
 
     if x == "black":
-        paint_surface.fill(pygame.Color(0,0,0))
+        paint_surface.fill(pygame.Color(0, 0, 0))
         color_text = ""
         color_text = Paint.get_paint_word("black")
         color_text_color = Paint.get_paint_word_color("black",color_text)
         word = font.render(color_text, False, pygame.Color(color_text_color))
         paint_surface.blit(word, (25, 5))
-
-    paint_image = pygui.elements.UIImage(relative_rect=pygame.Rect((100,100), (150, 50)),
-                                        image_surface=paint_surface,
-                                        manager=manager,
-                                        container=paint_bg,
-                                        visible=False)
+    if x == "white":
+        paint_surface.fill(pygame.Color(255, 255, 255))
+        color_text = ""
+        color_text = Paint.get_paint_word("white")
+        color_text_color = Paint.get_paint_word_color("white",color_text)
+        word = font.render(color_text, False, pygame.Color(color_text_color))
+        paint_surface.blit(word, (25, 5))
+    if x == "red":
+        paint_surface.fill(pygame.Color(255, 0, 0))
+        color_text = ""
+        color_text = Paint.get_paint_word("red")
+        color_text_color = Paint.get_paint_word_color("red",color_text)
+        word = font.render(color_text, False, pygame.Color(color_text_color))
+        paint_surface.blit(word, (25, 5))
+    if x == "blue":
+        paint_surface.fill(pygame.Color(0, 0, 255))
+        color_text = ""
+        color_text = Paint.get_paint_word("blue")
+        color_text_color = Paint.get_paint_word_color("blue",color_text)
+        word = font.render(color_text, False, pygame.Color(color_text_color))
+        paint_surface.blit(word, (25, 5))
+    if x == "yellow":
+        paint_surface.fill(pygame.Color(255, 255, 0))
+        color_text = ""
+        color_text = Paint.get_paint_word("yellow")
+        color_text_color = Paint.get_paint_word_color("yellow",color_text)
+        word = font.render(color_text, False, pygame.Color(color_text_color))
+        paint_surface.blit(word, (25, 5))
+    if x == "gray":
+        paint_surface.fill(pygame.Color(128, 128, 128))
+        color_text = ""
+        color_text = Paint.get_paint_word("gray")
+        color_text_color = Paint.get_paint_word_color("gray",color_text)
+        word = font.render(color_text, False, pygame.Color(color_text_color))
+        paint_surface.blit(word, (25, 5))
+    if x == "green":
+        paint_surface.fill(pygame.Color(0, 128, 0))
+        color_text = ""
+        color_text = Paint.get_paint_word("green")
+        color_text_color = Paint.get_paint_word_color("green",color_text)
+        word = font.render(color_text, False, pygame.Color(color_text_color))
+        paint_surface.blit(word, (25, 5))
+    if x == "purple":
+        paint_surface.fill(pygame.Color(128, 0, 128))
+        color_text = ""
+        color_text = Paint.get_paint_word("purple")
+        color_text_color = Paint.get_paint_word_color("purple",color_text)
+        word = font.render(color_text, False, pygame.Color(color_text_color))
+        paint_surface.blit(word, (25, 5))
 
     pygame.display.update()
-    paint_image.visible = True
     manager.update(time_delta)
-    return paint_image
+    return paint_surface
 
-def cont_Paint(x):
+def cont_Paint():
     wait()
-    x.visible = False
-    paint_bg.visible = False
-    game_bg.visible = True
+    paint_surface.fill(pygame.Color(228, 225, 137))
+    pygame.display.flip()
+    paint_label_feedback1.visible = False
+    paint_label_feedback2.visible = False
     paint_text_entry.visible = True
     manager.update(time_delta)
-
+    pygame.display.update()
 
 def end_Paint():
-#     try:
-#       score = round((accuracy/iteration)*100)
-#     except:
-#       score = 0
+    try:
+      score = round((accuracy/iteration)*100)
+    except:
+      score = 0
 
-#     string = "Accuracy: "+ str(score)+" "+str(accuracy)+"/"+str(iteration)
+    string = "Accuracy: "+ str(score)+" "+str(accuracy)+"/"+str(iteration)
 
     paint_text_entry.visible = False
-#     blind_label_feedback1.visible = False
-#     blind_label_feedback2.visible = False
-#     blind_label_score.set_text(string)
-#     blind_label_score.visible = True
+    paint_label_feedback1.visible = False
+    paint_label_feedback2.visible = False
+    paint_label_score.set_text(string)
+    paint_label_score.visible = True
     paint_bg.visible = False
-    game_bg.visible = True
+    game_bg.visible = False
 
     manager.update(time_delta)
     stack.move_window_to_front(instruction_window)
@@ -769,6 +833,8 @@ clock = pygame.time.Clock()
 is_running = True
 flag = 0
 flag2 = 0
+flag3 = 0
+flag4 = 0
 accuracy = 0
 iteration = 0
 breadcrumb_count = 0
@@ -864,6 +930,9 @@ while is_running:
     ### END MAZE STUFF
     
     for event in pygame.event.get():
+        if flag3 == 1:
+            flag3 = 0
+            flag4 = 1
         if event.type == pygame.QUIT:
             is_running = False
             pygame.quit()
@@ -981,8 +1050,10 @@ while is_running:
                 manager.update(time_delta)
 
             if event.ui_element == back_button:
-                #bookworm_label_score.set_text("")
+                blind_label_score.visible = False
                 bookworm_label_score.visible = False
+                editor_label_score.visible = False
+                paint_label_score.visible = False
                 stack.move_window_to_front(main_window)
 
             if event.ui_element == quit_button:
@@ -1066,7 +1137,7 @@ while is_running:
                 if flag == 6:
                     game_window.set_display_title("Paint Picker")
                     game_bg.visible = False
-                    #ans = Paint.get_paint_color()
+                    ans = Paint.get_paint_color()
                     flag2 = 1
 
                 if flag == 7:
@@ -1158,6 +1229,32 @@ while is_running:
                     iteration += 1
                     print("Incorrect!")
 
+            if event.ui_element == paint_text_entry:
+                print(paint_text_entry.get_text())
+                paint_text_entry.visible = False
+                if paint_text_entry.get_text() == ans:
+                    paint_label_feedback1.visible = True
+                    paint_label_feedback2.visible = False
+                    print("Correct!")
+                    accuracy += 1
+                    iteration += 1
+                    paint_text_entry.set_text("")
+                    paint_text_entry.redraw()
+                    paint_text_entry.update(time_delta)
+                    if accuracy < 10:
+                        ans = Paint.get_paint_color()
+                        flag2 = 1 
+                    else:
+                        end_Paint()
+                else:
+                    paint_text_entry.set_text("")
+                    paint_label_feedback2.visible = True
+                    paint_label_feedback1.visible = False
+                    iteration += 1
+                    print("Incorrect!")
+                    ans = Paint.get_paint_color()
+                    flag2 = 1
+
         manager.process_events(event)
 
     manager.update(time_delta)
@@ -1171,10 +1268,18 @@ while is_running:
             set_Blind()
             flag2 = 0    
     if game_window.window_display_title == "Paint Picker":
-        temp_Paint = set_Paint("black")
         if flag2 == 1:
             stack.move_window_to_front(game_window)
+            paint_image = pygui.elements.UIImage(relative_rect=pygame.Rect((100,100), (150, 45)),
+                                        image_surface=set_Paint(ans),
+                                        manager=manager,
+                                        container=paint_bg,
+                                        visible=False)
+            paint_image.visible = True
             flag2 = 0
-        else:
-            cont_Paint(temp_Paint)
+            flag3 = 1
+        if flag4 == 1:
+            paint_image.visible = False
+            cont_Paint()
+            flag4 = 0
         

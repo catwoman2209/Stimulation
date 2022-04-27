@@ -45,5 +45,5 @@ def get_paint_word_color(x, y):
         value = (0, 128, 0)
     if choice == "purple":
         value = (128, 0, 128)
-    print(value)
+    print(choice)
     return value
