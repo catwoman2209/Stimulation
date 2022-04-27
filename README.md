@@ -5,7 +5,9 @@ User must have the following installed: Python
 
 Use pip to install the following libraries:
 
-pip install pygame
-pip install pygame_gui
-pip install requests
+-pip install pygame
+
+-pip install pygame_gui
+
+-pip install requests
   
