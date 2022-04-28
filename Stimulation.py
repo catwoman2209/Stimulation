@@ -977,7 +977,7 @@ while is_running:
                 stack.move_window_to_front(instruction_window)
                 flag = 3
                 instruction_textbox = pygui.elements.UITextBox(html_text=instruction_text(flag),
-                                            relative_rect=pygame.Rect((25, 50), (750, 350)),
+                                            relative_rect=pygame.Rect((0, 50), (765, 350)),
                                             manager=manager,
                                             container=instruction_bg)
                 instruction_textbox.set_active_effect(pygui.TEXT_EFFECT_TYPING_APPEAR)
