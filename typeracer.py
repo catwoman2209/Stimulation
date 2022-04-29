@@ -80,7 +80,7 @@ class Game:
                     if START_BUTTON.clicked(start_menu_pos):
                         self.startgame()
                     if EXIT_BUTTON.clicked(start_menu_pos):
-                        exec(open("Stimulation.py").read())
+                        exec(open("Stimulation.py").read(), globals(), globals())
 
             pygame.display.update()
         
