@@ -14,6 +14,7 @@ import Book
 import Editor
 import Maze
 import Paint
+import Change
 
 pygame.init()
 
@@ -820,7 +821,411 @@ def end_Paint():
     stack.move_window_to_front(instruction_window)
 
 ################ QUICK CHANGE GAME ELEMENTS #######################
-#@authors=
+#@authors=perennat - Tanner Kellogg
+
+#Quick Change buttons
+qc_button_20u = pygui.elements.UIButton(relative_rect=pygame.Rect((12, 275), (50, 50)),
+                                            text="+",
+                                            manager=manager,
+                                            container=game_bg,
+                                            visible=False,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+qc_button_20d = pygui.elements.UIButton(relative_rect=pygame.Rect((12, 375), (50, 50)),
+                                            text="-",
+                                            manager=manager,
+                                            container=game_bg,
+                                            visible=False,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+
+qc_button_10u = pygui.elements.UIButton(relative_rect=pygame.Rect((112, 275), (50, 50)),
+                                            text="+",
+                                            manager=manager,
+                                            container=game_bg,
+                                            visible=False,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+qc_button_10d = pygui.elements.UIButton(relative_rect=pygame.Rect((112, 375), (50, 50)),
+                                            text="-",
+                                            manager=manager,
+                                            container=game_bg,
+                                            visible=False,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+
+qc_button_5u = pygui.elements.UIButton(relative_rect=pygame.Rect((212, 275), (50, 50)),
+                                            text="+",
+                                            manager=manager,
+                                            container=game_bg,
+                                            visible=False,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+qc_button_5d = pygui.elements.UIButton(relative_rect=pygame.Rect((212, 375), (50, 50)),
+                                            text="-",
+                                            manager=manager,
+                                            container=game_bg,
+                                            visible=False,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+
+qc_button_1u = pygui.elements.UIButton(relative_rect=pygame.Rect((312, 275), (50, 50)),
+                                            text="+",
+                                            manager=manager,
+                                            container=game_bg,
+                                            visible=False,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+qc_button_1d = pygui.elements.UIButton(relative_rect=pygame.Rect((312, 375), (50, 50)),
+                                            text="-",
+                                            manager=manager,
+                                            container=game_bg,
+                                            visible=False,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+
+qc_button_qu = pygui.elements.UIButton(relative_rect=pygame.Rect((412, 275), (50, 50)),
+                                            text="+",
+                                            manager=manager,
+                                            container=game_bg,
+                                            visible=False,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+qc_button_qd = pygui.elements.UIButton(relative_rect=pygame.Rect((412, 375), (50, 50)),
+                                            text="-",
+                                            manager=manager,
+                                            container=game_bg,
+                                            visible=False,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+
+qc_button_du = pygui.elements.UIButton(relative_rect=pygame.Rect((512, 275), (50, 50)),
+                                            text="+",
+                                            manager=manager,
+                                            container=game_bg,
+                                            visible=False,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+qc_button_dd = pygui.elements.UIButton(relative_rect=pygame.Rect((512, 375), (50, 50)),
+                                            text="-",
+                                            manager=manager,
+                                            container=game_bg,
+                                            visible=False,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+
+qc_button_nu = pygui.elements.UIButton(relative_rect=pygame.Rect((612, 275), (50, 50)),
+                                            text="+",
+                                            manager=manager,
+                                            container=game_bg,
+                                            visible=False,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+qc_button_nd = pygui.elements.UIButton(relative_rect=pygame.Rect((612, 375), (50, 50)),
+                                            text="-",
+                                            manager=manager,
+                                            container=game_bg,
+                                            visible=False,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+
+qc_button_pu = pygui.elements.UIButton(relative_rect=pygame.Rect((712, 275), (50, 50)),
+                                            text="+",
+                                            manager=manager,
+                                            container=game_bg,
+                                            visible=False,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+qc_button_pd = pygui.elements.UIButton(relative_rect=pygame.Rect((712, 375), (50, 50)),
+                                            text="-",
+                                            manager=manager,
+                                            container=game_bg,
+                                            visible=False,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+qc_button_give = pygui.elements.UIButton(relative_rect=pygame.Rect((300, 175), (125, 50)),
+                                            text="Give Change",
+                                            manager=manager,
+                                            container=game_bg,
+                                            visible=False,
+                                            object_id=ObjectID(class_id='@game_menu_buttons'))
+
+#Quick Change labels
+qc_label_20 = pygui.elements.UILabel(relative_rect=pygame.Rect((12, 325), (50, 50)),
+                                                text="0",
+                                                manager=manager,
+                                                container=game_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+qc_label_10 = pygui.elements.UILabel(relative_rect=pygame.Rect((112, 325), (50, 50)),
+                                                text="0",
+                                                manager=manager,
+                                                container=game_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+qc_label_5 = pygui.elements.UILabel(relative_rect=pygame.Rect((212, 325), (50, 50)),
+                                                text="0",
+                                                manager=manager,
+                                                container=game_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+qc_label_1 = pygui.elements.UILabel(relative_rect=pygame.Rect((312, 325), (50, 50)),
+                                                text="0",
+                                                manager=manager,
+                                                container=game_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+qc_label_q = pygui.elements.UILabel(relative_rect=pygame.Rect((412, 325), (50, 50)),
+                                                text="0",
+                                                manager=manager,
+                                                container=game_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+qc_label_d = pygui.elements.UILabel(relative_rect=pygame.Rect((512, 325), (50, 50)),
+                                                text="0",
+                                                manager=manager,
+                                                container=game_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+qc_label_n = pygui.elements.UILabel(relative_rect=pygame.Rect((612, 325), (50, 50)),
+                                                text="0",
+                                                manager=manager,
+                                                container=game_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+qc_label_p = pygui.elements.UILabel(relative_rect=pygame.Rect((712, 325), (50, 50)),
+                                                text="0",
+                                                manager=manager,
+                                                container=game_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+qc_label_receipt = pygui.elements.UILabel(relative_rect=pygame.Rect((250, 50), (200, 50)),
+                                                text="0",
+                                                manager=manager,
+                                                container=game_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+qc_label_paid = pygui.elements.UILabel(relative_rect=pygame.Rect((250, 100), (200, 50)),
+                                                text="0",
+                                                manager=manager,
+                                                container=game_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+
+
+qc_label_20_name = pygui.elements.UILabel(relative_rect=pygame.Rect((12, 425), (50, 50)),
+                                                text="$20",
+                                                manager=manager,
+                                                container=game_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+qc_label_10_name = pygui.elements.UILabel(relative_rect=pygame.Rect((112, 425), (50, 50)),
+                                                text="$10",
+                                                manager=manager,
+                                                container=game_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+qc_label_5_name = pygui.elements.UILabel(relative_rect=pygame.Rect((212, 425), (50, 50)),
+                                                text="$5",
+                                                manager=manager,
+                                                container=game_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+qc_label_1_name = pygui.elements.UILabel(relative_rect=pygame.Rect((312, 425), (50, 50)),
+                                                text="$1",
+                                                manager=manager,
+                                                container=game_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+qc_label_q_name = pygui.elements.UILabel(relative_rect=pygame.Rect((412, 425), (50, 50)),
+                                                text="$0.25",
+                                                manager=manager,
+                                                container=game_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+qc_label_d_name = pygui.elements.UILabel(relative_rect=pygame.Rect((512, 425), (50, 50)),
+                                                text="$0.10",
+                                                manager=manager,
+                                                container=game_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+qc_label_n_name = pygui.elements.UILabel(relative_rect=pygame.Rect((612, 425), (50, 50)),
+                                                text="$0.05",
+                                                manager=manager,
+                                                container=game_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+qc_label_p_name = pygui.elements.UILabel(relative_rect=pygame.Rect((712, 425), (50, 50)),
+                                                text="$0.01",
+                                                manager=manager,
+                                                container=game_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+
+qc_label_answer = pygui.elements.UILabel(relative_rect=pygame.Rect((450, 175), (250, 50)),
+                                                text="",
+                                                manager=manager,
+                                                container=game_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@bookworm_label"))
+
+
+receipt_total = 0
+payment = 0
+qc_range = 21
+qc_20 = 0
+qc_10 = 0
+qc_5 = 0
+qc_1 = 0
+qc_q = 0
+qc_d = 0
+qc_n = 0
+qc_p = 0
+#Quick Change functions
+def set_quick_change():
+    global qc_20, qc_10, qc_5, qc_1, qc_q, qc_d, qc_n, qc_p
+    qc_20 = 0
+    qc_10 = 0
+    qc_5 = 0
+    qc_1 = 0
+    qc_q = 0
+    qc_d = 0
+    qc_n = 0
+    qc_p = 0
+    qc_button_20u.visible = True
+    qc_button_20d.visible = True
+    qc_button_10u.visible = True
+    qc_button_10d.visible = True
+    qc_button_5u.visible = True
+    qc_button_5d.visible = True
+    qc_button_1u.visible = True
+    qc_button_1d.visible = True
+    qc_button_qu.visible = True
+    qc_button_qd.visible = True
+    qc_button_du.visible = True
+    qc_button_dd.visible = True
+    qc_button_nu.visible = True
+    qc_button_nd.visible = True
+    qc_button_pu.visible = True
+    qc_button_pd.visible = True
+
+    qc_button_give.visible = True
+
+    qc_label_20.visible = True
+    qc_label_10.visible = True
+    qc_label_5.visible = True
+    qc_label_1.visible = True
+    qc_label_q.visible = True
+    qc_label_d.visible = True
+    qc_label_n.visible = True
+    qc_label_p.visible = True
+
+    qc_label_20_name.visible = True
+    qc_label_10_name.visible = True
+    qc_label_5_name.visible = True
+    qc_label_1_name.visible = True
+    qc_label_q_name.visible = True
+    qc_label_d_name.visible = True
+    qc_label_n_name.visible = True
+    qc_label_p_name.visible = True
+
+    global receipt_total
+    global payment
+
+
+    receipt_total = Change.get_total()
+    qc_label_receipt.set_text("Order total: ${}".format(receipt_total))
+    qc_label_receipt.visible = True
+    payment = Change.get_payment(receipt_total, qc_range)
+    qc_label_paid.set_text("Paid: ${}".format(payment))
+    qc_label_paid.visible = True
+
+def reset_quick_change():
+    global qc_20, qc_10, qc_5, qc_1, qc_q, qc_d, qc_n, qc_p
+    qc_20 = 0
+    qc_10 = 0
+    qc_5 = 0
+    qc_1 = 0
+    qc_q = 0
+    qc_d = 0
+    qc_n = 0
+    qc_p = 0
+
+    qc_label_20.set_text(str(qc_20))
+    qc_label_10.set_text(str(qc_10))
+    qc_label_5.set_text(str(qc_5))
+    qc_label_1.set_text(str(qc_1))
+    qc_label_q.set_text(str(qc_q))
+    qc_label_d.set_text(str(qc_d))
+    qc_label_n.set_text(str(qc_n))
+    qc_label_p.set_text(str(qc_p))
+
+    global receipt_total
+    global payment
+
+    receipt_total = Change.get_total()
+    qc_label_receipt.set_text("Order total: ${}".format(receipt_total))
+    payment = Change.get_payment(receipt_total, qc_range)
+    qc_label_paid.set_text("Paid: ${}".format(payment))
+
+def qc_correct_score(change):
+    qc_answer = "Change: ${} is correct!".format(change)
+    qc_label_answer.set_text(qc_answer)
+    qc_label_answer.visible = True
+def qc_incorrect_score(change):
+    qc_answer = "Change: ${} is incorrect!".format(change)
+    qc_label_answer.set_text(qc_answer)
+    qc_label_answer.visible = True
+def qc_remove_score():
+    qc_label_answer.set_text("")
+    qc_label_answer.visible = False
+
+def end_quick_change():
+    try:
+      score = round((accuracy/iteration)*100)
+    except:
+      score = 0
+
+    string = "Accuracy: "+ str(score)+" "+str(accuracy)+"/"+str(iteration)
+
+    global receipt_total
+    global payment
+    global qc_20, qc_10, qc_5, qc_1, qc_q, qc_d, qc_n, qc_p
+    receipt_total = 0
+    payment = 0
+    qc_20 = 0
+    qc_10 = 0
+    qc_5 = 0
+    qc_1 = 0
+    qc_q = 0
+    qc_d = 0
+    qc_n = 0
+    qc_p = 0
+
+    qc_button_20u.visible = False
+    qc_button_20d.visible = False
+    qc_button_10u.visible = False
+    qc_button_10d.visible = False
+    qc_button_5u.visible = False
+    qc_button_5d.visible = False
+    qc_button_1u.visible = False
+    qc_button_1d.visible = False
+    qc_button_qu.visible = False
+    qc_button_qd.visible = False
+    qc_button_du.visible = False
+    qc_button_dd.visible = False
+    qc_button_nu.visible = False
+    qc_button_nd.visible = False
+    qc_button_pu.visible = False
+    qc_button_pd.visible = False
+
+    qc_button_give.visible = False
+
+    qc_label_20.visible = False
+    qc_label_10.visible = False
+    qc_label_5.visible = False
+    qc_label_1.visible = False
+    qc_label_q.visible = False
+    qc_label_d.visible = False
+    qc_label_n.visible = False
+    qc_label_p.visible = False
+    qc_label_receipt.visible = False
+    qc_label_paid.visible = False
+
+    qc_label_20_name.visible = False
+    qc_label_10_name.visible = False
+    qc_label_5_name.visible = False
+    qc_label_1_name.visible = False
+    qc_label_q_name.visible = False
+    qc_label_d_name.visible = False
+    qc_label_n_name.visible = False
+    qc_label_p_name.visible = False
+    
+    stack.move_window_to_front(instruction_window)
 
 ################ SPACE ODDITY GAME ELEMENTS #######################
 #@authors=
@@ -951,6 +1356,89 @@ while is_running:
             bookworm_label_score.visible = False
             editor_label_score.visible = False
             paint_label_score.visible = False
+            
+            #Quick Change stuff
+            if game_window.window_display_title == "Quick Change":
+                if event.ui_element == qc_button_20u:
+                    qc_20 += 1
+                    qc_label_20.set_text(str(qc_20))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_20d and qc_20 > 0:
+                    qc_20 -= 1
+                    qc_label_20.set_text(str(qc_20))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_10u:
+                    qc_10 += 1
+                    qc_label_10.set_text(str(qc_10))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_10d and qc_10 > 0:
+                    qc_10 -= 1
+                    qc_label_10.set_text(str(qc_10))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_5u:
+                    qc_5 += 1
+                    qc_label_5.set_text(str(qc_5))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_5d and qc_5 > 0:
+                    qc_5 -= 1
+                    qc_label_5.set_text(str(qc_5))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_1u:
+                    qc_1 += 1
+                    qc_label_1.set_text(str(qc_1))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_1d and qc_1 > 0:
+                    qc_1 -= 1
+                    qc_label_1.set_text(str(qc_1))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_qu:
+                    qc_q += 1
+                    qc_label_q.set_text(str(qc_q))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_qd and qc_q > 0:
+                    qc_q -= 1
+                    qc_label_q.set_text(str(qc_q))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_du:
+                    qc_d += 1
+                    qc_label_d.set_text(str(qc_d))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_dd and qc_d > 0:
+                    qc_d -= 1
+                    qc_label_d.set_text(str(qc_d))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_nu:
+                    qc_n += 1
+                    qc_label_n.set_text(str(qc_n))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_nd and qc_n > 0:
+                    qc_n -= 1
+                    qc_label_n.set_text(str(qc_n))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_pu:
+                    qc_p += 1
+                    qc_label_p.set_text(str(qc_p))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_pd and qc_p > 0:
+                    qc_p -= 1
+                    qc_label_p.set_text(str(qc_p))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_give:
+                    correct_change = round(payment - receipt_total, 2)
+                    given_change = round(20*qc_20 + 10*qc_10 + 5*qc_5 + 1*qc_1 + 0.25*qc_q + 0.1*qc_d + 0.05*qc_n + 0.01*qc_p, 2)
+                    if given_change == correct_change:
+                        #print("Correct!")
+                        qc_correct_score(given_change)
+                        qc_range += 5
+                        reset_quick_change()
+                        
+                    else:
+                        #print("Receipt total: {}".format(receipt_total))
+                        #print("Payment: {}".format(payment))
+                        #print("Correct change: {}".format(correct_change))
+                        #print("Given change: {}".format(given_change))
+                        qc_incorrect_score(given_change)
+            
             if event.ui_element == blind_menu_button:
                 print('Blind Date game launched')
                 stack.move_window_to_front(instruction_window)
@@ -1081,6 +1569,11 @@ while is_running:
                    end_Paint()
                    accuracy = 0
                    iteration = 0 
+                    
+                if game_window.window_display_title == "Quick Change":
+                    end_quick_change()
+                    accuracy = 0
+                    iteration = 0
 
             if event.ui_element == maze_back_game_button:
                 in_maze = False
@@ -1142,8 +1635,9 @@ while is_running:
                     flag2 = 1
 
                 if flag == 7:
-                    exec(open("Change.py").read())
-                    stack.move_window_to_front(main_window)
+                    game_window.set_display_title("Quick Change")
+                    set_quick_change()
+                    stack.move_window_to_front(game_window)
 
                 if flag == 8:
                     exec(open("Space.py").read())
