@@ -5,12 +5,7 @@ User must have the following installed: Python
 
 Use pip to install the following libraries:
 
--pip install pygame
-
--pip install pygame_gui
-
--pip install requests
-
+-pip install pygame, pygame_gui, requests
 
 Ensure folder labeled "images", with 4 images within, is in the same execution folder as the python codes.
 Ensure all 3 json files are in the same execution folder as the python codes. 
