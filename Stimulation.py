@@ -950,7 +950,7 @@ while is_running:
             blind_label_score.visible = False
             bookworm_label_score.visible = False
             editor_label_score.visible = False
-            paint_label_score = False
+            paint_label_score.visible = False
             if event.ui_element == blind_menu_button:
                 print('Blind Date game launched')
                 stack.move_window_to_front(instruction_window)
