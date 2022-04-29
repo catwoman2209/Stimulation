@@ -1,4 +1,8 @@
 #File for Quick Change game code
+#
+#TTU Capstone Project Spring 2022
+#@authors = perennat - Tanner Kellogg
+
 import random
 
 

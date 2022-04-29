@@ -1,7 +1,9 @@
 #Main file for execution
 #
 #TTU Capstone Project Spring 2022
-#@authors = christiana_taylor
+#@authors = catwoman2209 - Christiana Taylor (main)
+#           perennat - Tanner Kellogg
+#           SeanCris - Sean Criswell
 
 import os
 import pygame
@@ -48,12 +50,10 @@ main_window = pygui.elements.UIWindow(rect=pygame.Rect(x2, y2, 800, 600),
                             manager=manager,
                             window_display_title='Main Menu',
                             resizable=False)
-
 instruction_window = pygui.elements.UIWindow(rect=pygame.Rect(x2, y2, 800, 600),
                                             manager=manager,
                                             window_display_title='Instruction Menu',
                                             resizable=False)
-
 game_window = pygui.elements.UIWindow(rect=pygame.Rect(x2, y2, 800, 600),
                             manager=manager,
                             window_display_title='Bookworm',
@@ -76,57 +76,48 @@ main_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
                                         container=main_window,
                                         starting_layer_height=1,
                                         object_id=ObjectID(class_id='@main_panel'))
-
 instruction_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
                                         manager=manager,
                                         container=instruction_window,
                                         starting_layer_height=1,
                                         object_id=ObjectID(class_id='@instruction_panel'))
-
 game_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
                                         manager=manager,
                                         container=game_window,
                                         starting_layer_height=1,
                                         object_id=ObjectID(class_id='@game_panel'))
-
 maze_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
                                         manager=manager,
                                         container=maze_window,
                                         starting_layer_height=1,
                                         object_id=ObjectID(class_id='@game_panel'))
-
 main_toolbar = pygui.elements.UIPanel(relative_rect=pygame.Rect((0,0), (800, 60)),
                                 manager=manager,
                                 starting_layer_height=1,
                                 container=main_window,
                                 object_id=ObjectID(class_id='@toolbar'))
-
 stimulation_main_label = pygui.elements.UILabel(relative_rect=pygame.Rect((300, 0), (200, 50)),
                                                 text="STIMULATION",
                                                 manager=manager,
                                                 container=main_toolbar,
                                                 visible=True, 
                                                 object_id=ObjectID(class_id="@main_label"))
-
 instruction_toolbar = pygui.elements.UIPanel(relative_rect=pygame.Rect((0,0), (800, 60)),
                                 manager=manager,
                                 starting_layer_height=1,
                                 container=instruction_window,
                                 object_id=ObjectID(class_id='@toolbar'))
-
 stimulation__inst_label = pygui.elements.UILabel(relative_rect=pygame.Rect((300, 0), (200, 50)),
                                                 text="STIMULATION",
                                                 manager=manager,
                                                 container=instruction_toolbar,
                                                 visible=True, 
                                                 object_id=ObjectID(class_id="@main_label"))
-
 game_toolbar = pygui.elements.UIPanel(relative_rect=pygame.Rect((0,0), (800, 60)),
                                 manager=manager,
                                 starting_layer_height=1,
                                 container=game_window,
                                 object_id=ObjectID(class_id='@toolbar'))
-
 maze_toolbar = pygui.elements.UIPanel(relative_rect=pygame.Rect((0,0), (800, 60)),
                                 manager=manager,
                                 starting_layer_height=1,
@@ -164,7 +155,6 @@ def instruction_text(x):
         text =  "<b>Type Racer</b><br><br>Test your typing skills in this race against time!<br><br><br>This game may help those with dyslexia to improve symptoms with continued use over time."
 
     return text
-
 def wait():
     pygame.time.wait(5000)
 
@@ -175,74 +165,62 @@ blind_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((90, 100),
                                             manager=manager,
                                             container=main_bg,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
-
 book_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((300, 100), (200, 100)),
                                             text='Bookworm',
                                             manager=manager,
                                             container=main_bg,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
-
 editor_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((510, 100), (200, 100)),
                                             text='Editor',
                                             manager=manager,
                                             container=main_bg,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
-
 kiddo_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((90, 210), (200, 100)),
                                             text='Find the Kiddo',
                                             manager=manager,
                                             container=main_bg,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
-
 maze_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((300, 210), (200, 100)),
                                             text='Maze Runner',
                                             manager=manager,
                                             container=main_bg,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
-
 paint_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((510, 210), (200, 100)),
                                             text='Paint Picker',
                                             manager=manager,
                                             container=main_bg,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
-
 change_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((90, 320), (200, 100)),
                                             text='Quick Change',
                                             manager=manager,
                                             container=main_bg,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
-
 space_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((300, 320), (200, 100)),
                                             text='Space Oddity',
                                             manager=manager,
                                             container=main_bg,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
-
 racer_menu_button = pygui.elements.UIButton(relative_rect=pygame.Rect((510, 320), (200, 100)),
                                             text='Type Racer',
                                             manager=manager,
                                             container=main_bg,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
-
 back_button = pygui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (100, 50)),
                                             text='Back',
                                             manager=manager,
                                             container=instruction_toolbar,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
-
 back_game_button = pygui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (150, 50)),
                                             text='Quit Game',
                                             manager=manager,
                                             container=game_toolbar,
                                             tool_tip_text="Back to instruction screen",
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
-
 play_button = pygui.elements.UIButton(relative_rect=pygame.Rect((350, 400), (100, 50)),
                                             text='PLAY',
                                             manager=manager,
                                             container=instruction_bg,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
-
 quit_button = pygui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (100, 50)),
                                             text='QUIT',
                                             manager=manager,
@@ -260,28 +238,24 @@ letter_button1 = pygui.elements.UIButton(relative_rect=pygame.Rect((100, 75), (5
                                             container=game_bg,
                                             visible=False,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
-
 letter_button2 = pygui.elements.UIButton(relative_rect=pygame.Rect((175, 75), (50, 50)),
                                             text="",
                                             manager=manager,
                                             container=game_bg,
                                             visible=False,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
-
 letter_button3 = pygui.elements.UIButton(relative_rect=pygame.Rect((250, 75), (50, 50)),
                                             text="",
                                             manager=manager,
                                             container=game_bg,
                                             visible=False,
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
-
 letter_button4 = pygui.elements.UIButton(relative_rect=pygame.Rect((325, 75), (50, 50)),
                                         text="",
                                         manager=manager,
                                         container=game_bg,
                                         visible=False,
                                         object_id=ObjectID(class_id='@game_menu_buttons'))
-
 letter_button5 = pygui.elements.UIButton(relative_rect=pygame.Rect((400, 75), (50, 50)),
                                         text="",
                                         manager=manager,
@@ -303,14 +277,12 @@ bookworm_label_feedback1 = pygui.elements.UILabel(relative_rect=pygame.Rect((100
                                                 container=game_bg,
                                                 visible=False, 
                                                 object_id=ObjectID(class_id="@bookworm_label"))
-
 bookworm_label_feedback2 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (250, 50)),
                                                 text="Incorrect! Please try again!",
                                                 manager=manager,
                                                 container=game_bg, 
                                                 visible = False,
                                                 object_id=ObjectID(class_id="@bookworm_label"))
-
 bookworm_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((300, 10), (200, 30)),
                                                 text="",
                                                 manager=manager,
@@ -346,7 +318,6 @@ def set_Bookworm():
 
         letter_button5.set_text(Book.jumble_list[4]) 
         letter_button5.visible = True
-
 def end_Bookworm():
     try:
       score = round((accuracy/iteration)*100)
@@ -393,21 +364,18 @@ blind_label_number = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 50),
                                                 container=blind_bg,
                                                 visible=False, 
                                                 object_id=ObjectID(class_id="@blind_label_number"))
-
 blind_label_feedback1 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (100, 50)),
                                                 text="Correct!",
                                                 manager=manager,
                                                 container=blind_bg,
                                                 visible=False, 
                                                 object_id=ObjectID(class_id="@blind_label"))
-
 blind_label_feedback2 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (250, 50)),
                                                 text="Incorrect! Please try again!",
                                                 manager=manager,
                                                 container=blind_bg, 
                                                 visible = False,
                                                 object_id=ObjectID(class_id="@blind_label"))
-
 blind_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((300, 10), (200, 30)),
                                                 text="",
                                                 manager=manager,
@@ -417,7 +385,6 @@ blind_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((300, 10), 
 #Blind Date functions
 def get_number():
     return random.randint(10000, 99999)
-
 def set_Blind():
     blind_label_number.visible = True
     blind_text_entry.visible = False
@@ -426,7 +393,6 @@ def set_Blind():
     wait()
     blind_label_number.visible = False
     blind_text_entry.visible = True    
-
 def end_Blind():
     try:
       score = round((accuracy/iteration)*100)
@@ -472,28 +438,24 @@ editor_textbox_sentence = pygui.elements.UITextBox(html_text="",
                                         visible=False,
                                         container=editor_bg,
                                         object_id=ObjectID(class_id='@editor_textbox'))
-
 editor_textbox_sentence_j = pygui.elements.UITextBox(html_text="",
                                         relative_rect=pygame.Rect((50, 100), (700, 75)),
                                         manager=manager,
                                         visible=False,
                                         container=editor_bg,
                                         object_id=ObjectID(class_id='@editor_textbox'))
-
 editor_label_feedback1 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (100, 50)),
                                                 text="Correct!",
                                                 manager=manager,
                                                 container=editor_bg,
                                                 visible=False, 
                                                 object_id=ObjectID(class_id="@editor_label"))
-
 editor_label_feedback2 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (250, 50)),
                                                 text="Incorrect! Please try again!",
                                                 manager=manager,
                                                 container=editor_bg, 
                                                 visible = False,
                                                 object_id=ObjectID(class_id="@editor_label"))
-
 editor_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((300, 10), (200, 30)),
                                                 text="",
                                                 manager=manager,
@@ -512,7 +474,6 @@ def set_Editor():
     editor_text_entry.visible = True
     manager.update(time_delta)
     pygame.display.update()
-
 def end_Editor():
     try:
       score = round((accuracy/iteration)*100)
@@ -536,6 +497,7 @@ def end_Editor():
     manager.update(time_delta)
     pygame.display.update()
     stack.move_window_to_front(instruction_window)
+
 ################ FIND THE KIDDO GAME ELEMENTS #######################
 #@authors=
 
@@ -640,10 +602,10 @@ def create_maze(maze_x, maze_y):
             maze_x, maze_y = maze_stack.pop()
         pygame.draw.rect(window, (193, 225, 193), (21,21, 19, 19), 0)
     
-
 MAZE_SIZE = maze_game_slider.get_current_value()
 in_maze = False
 player = Maze.Player(MAZE_SIZE*20+4, MAZE_SIZE*20+4, window)
+
 def init_maze_runner():
     main_window.visible = False
     instruction_window.visible = False
@@ -660,8 +622,7 @@ def init_maze_runner():
     #player = Maze.Player(MAZE_SIZE*20+4, MAZE_SIZE*20+4, window)
     player.x = MAZE_SIZE*20+8
     player.y = MAZE_SIZE*20+8
-    #player.draw()
-    
+    #player.draw() 
 def deinit_maze_runner():
     in_maze = False
     player.erase()
@@ -711,14 +672,12 @@ paint_label_feedback1 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 3
                                                 container=paint_bg,
                                                 visible=False, 
                                                 object_id=ObjectID(class_id="@editor_label"))
-
 paint_label_feedback2 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (250, 50)),
                                                 text="Incorrect! Please try again!",
                                                 manager=manager,
                                                 container=paint_bg, 
                                                 visible = False,
                                                 object_id=ObjectID(class_id="@editor_label"))
-
 paint_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((300, 10), (200, 30)),
                                                 text="",
                                                 manager=manager,
@@ -790,7 +749,6 @@ def set_Paint(x):
     pygame.display.update()
     manager.update(time_delta)
     return paint_surface
-
 def cont_Paint():
     wait()
     paint_surface.fill(pygame.Color(228, 225, 137))
@@ -800,7 +758,6 @@ def cont_Paint():
     paint_text_entry.visible = True
     manager.update(time_delta)
     pygame.display.update()
-
 def end_Paint():
     try:
       score = round((accuracy/iteration)*100)
@@ -1053,7 +1010,6 @@ qc_label_answer = pygui.elements.UILabel(relative_rect=pygame.Rect((450, 175), (
                                                 visible=False, 
                                                 object_id=ObjectID(class_id="@bookworm_label"))
 
-
 receipt_total = 0
 payment = 0
 qc_range = 21
@@ -1123,7 +1079,6 @@ def set_quick_change():
     payment = Change.get_payment(receipt_total, qc_range)
     qc_label_paid.set_text("Paid: ${}".format(payment))
     qc_label_paid.visible = True
-
 def reset_quick_change():
     global qc_20, qc_10, qc_5, qc_1, qc_q, qc_d, qc_n, qc_p
     qc_20 = 0
@@ -1151,7 +1106,6 @@ def reset_quick_change():
     qc_label_receipt.set_text("Order total: ${}".format(receipt_total))
     payment = Change.get_payment(receipt_total, qc_range)
     qc_label_paid.set_text("Paid: ${}".format(payment))
-
 def qc_correct_score(change):
     qc_answer = "Change: ${} is correct!".format(change)
     qc_label_answer.set_text(qc_answer)
@@ -1163,7 +1117,6 @@ def qc_incorrect_score(change):
 def qc_remove_score():
     qc_label_answer.set_text("")
     qc_label_answer.visible = False
-
 def end_quick_change():
     try:
       score = round((accuracy/iteration)*100)
@@ -1357,88 +1310,6 @@ while is_running:
             editor_label_score.visible = False
             paint_label_score.visible = False
             
-            #Quick Change stuff
-            if game_window.window_display_title == "Quick Change":
-                if event.ui_element == qc_button_20u:
-                    qc_20 += 1
-                    qc_label_20.set_text(str(qc_20))
-                    manager.update(time_delta)
-                if event.ui_element == qc_button_20d and qc_20 > 0:
-                    qc_20 -= 1
-                    qc_label_20.set_text(str(qc_20))
-                    manager.update(time_delta)
-                if event.ui_element == qc_button_10u:
-                    qc_10 += 1
-                    qc_label_10.set_text(str(qc_10))
-                    manager.update(time_delta)
-                if event.ui_element == qc_button_10d and qc_10 > 0:
-                    qc_10 -= 1
-                    qc_label_10.set_text(str(qc_10))
-                    manager.update(time_delta)
-                if event.ui_element == qc_button_5u:
-                    qc_5 += 1
-                    qc_label_5.set_text(str(qc_5))
-                    manager.update(time_delta)
-                if event.ui_element == qc_button_5d and qc_5 > 0:
-                    qc_5 -= 1
-                    qc_label_5.set_text(str(qc_5))
-                    manager.update(time_delta)
-                if event.ui_element == qc_button_1u:
-                    qc_1 += 1
-                    qc_label_1.set_text(str(qc_1))
-                    manager.update(time_delta)
-                if event.ui_element == qc_button_1d and qc_1 > 0:
-                    qc_1 -= 1
-                    qc_label_1.set_text(str(qc_1))
-                    manager.update(time_delta)
-                if event.ui_element == qc_button_qu:
-                    qc_q += 1
-                    qc_label_q.set_text(str(qc_q))
-                    manager.update(time_delta)
-                if event.ui_element == qc_button_qd and qc_q > 0:
-                    qc_q -= 1
-                    qc_label_q.set_text(str(qc_q))
-                    manager.update(time_delta)
-                if event.ui_element == qc_button_du:
-                    qc_d += 1
-                    qc_label_d.set_text(str(qc_d))
-                    manager.update(time_delta)
-                if event.ui_element == qc_button_dd and qc_d > 0:
-                    qc_d -= 1
-                    qc_label_d.set_text(str(qc_d))
-                    manager.update(time_delta)
-                if event.ui_element == qc_button_nu:
-                    qc_n += 1
-                    qc_label_n.set_text(str(qc_n))
-                    manager.update(time_delta)
-                if event.ui_element == qc_button_nd and qc_n > 0:
-                    qc_n -= 1
-                    qc_label_n.set_text(str(qc_n))
-                    manager.update(time_delta)
-                if event.ui_element == qc_button_pu:
-                    qc_p += 1
-                    qc_label_p.set_text(str(qc_p))
-                    manager.update(time_delta)
-                if event.ui_element == qc_button_pd and qc_p > 0:
-                    qc_p -= 1
-                    qc_label_p.set_text(str(qc_p))
-                    manager.update(time_delta)
-                if event.ui_element == qc_button_give:
-                    correct_change = round(payment - receipt_total, 2)
-                    given_change = round(20*qc_20 + 10*qc_10 + 5*qc_5 + 1*qc_1 + 0.25*qc_q + 0.1*qc_d + 0.05*qc_n + 0.01*qc_p, 2)
-                    if given_change == correct_change:
-                        #print("Correct!")
-                        qc_correct_score(given_change)
-                        qc_range += 5
-                        reset_quick_change()
-                        
-                    else:
-                        #print("Receipt total: {}".format(receipt_total))
-                        #print("Payment: {}".format(payment))
-                        #print("Correct change: {}".format(correct_change))
-                        #print("Given change: {}".format(given_change))
-                        qc_incorrect_score(given_change)
-            
             if event.ui_element == blind_menu_button:
                 print('Blind Date game launched')
                 stack.move_window_to_front(instruction_window)
@@ -1586,11 +1457,94 @@ while is_running:
                 in_maze = True
                 init_maze_runner()
 
+            #Quick Change stuff
+            if game_window.window_display_title == "Quick Change":
+                if event.ui_element == qc_button_20u:
+                    qc_20 += 1
+                    qc_label_20.set_text(str(qc_20))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_20d and qc_20 > 0:
+                    qc_20 -= 1
+                    qc_label_20.set_text(str(qc_20))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_10u:
+                    qc_10 += 1
+                    qc_label_10.set_text(str(qc_10))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_10d and qc_10 > 0:
+                    qc_10 -= 1
+                    qc_label_10.set_text(str(qc_10))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_5u:
+                    qc_5 += 1
+                    qc_label_5.set_text(str(qc_5))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_5d and qc_5 > 0:
+                    qc_5 -= 1
+                    qc_label_5.set_text(str(qc_5))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_1u:
+                    qc_1 += 1
+                    qc_label_1.set_text(str(qc_1))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_1d and qc_1 > 0:
+                    qc_1 -= 1
+                    qc_label_1.set_text(str(qc_1))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_qu:
+                    qc_q += 1
+                    qc_label_q.set_text(str(qc_q))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_qd and qc_q > 0:
+                    qc_q -= 1
+                    qc_label_q.set_text(str(qc_q))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_du:
+                    qc_d += 1
+                    qc_label_d.set_text(str(qc_d))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_dd and qc_d > 0:
+                    qc_d -= 1
+                    qc_label_d.set_text(str(qc_d))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_nu:
+                    qc_n += 1
+                    qc_label_n.set_text(str(qc_n))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_nd and qc_n > 0:
+                    qc_n -= 1
+                    qc_label_n.set_text(str(qc_n))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_pu:
+                    qc_p += 1
+                    qc_label_p.set_text(str(qc_p))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_pd and qc_p > 0:
+                    qc_p -= 1
+                    qc_label_p.set_text(str(qc_p))
+                    manager.update(time_delta)
+                if event.ui_element == qc_button_give:
+                    correct_change = round(payment - receipt_total, 2)
+                    given_change = round(20*qc_20 + 10*qc_10 + 5*qc_5 + 1*qc_1 + 0.25*qc_q + 0.1*qc_d + 0.05*qc_n + 0.01*qc_p, 2)
+                    if given_change == correct_change:
+                        #print("Correct!")
+                        qc_correct_score(given_change)
+                        qc_range += 5
+                        reset_quick_change()
+                        
+                    else:
+                        #print("Receipt total: {}".format(receipt_total))
+                        #print("Payment: {}".format(payment))
+                        #print("Correct change: {}".format(correct_change))
+                        #print("Given change: {}".format(given_change))
+                        qc_incorrect_score(given_change)
+            
             #event handler for play button based on game clicked
             if event.ui_element == play_button:
                 instruction_textbox.clear_all_active_effects()
                 instruction_textbox.full_redraw()
 
+                #Activates Blind Date
                 if flag == 1:
                     game_window.set_display_title("Blind Date")
                     game_bg.visible = False
@@ -1602,6 +1556,7 @@ while is_running:
                     stack.move_window_to_front(game_window)
                     flag2 = 1
 
+                #Activates Bookworm
                 if flag == 2:
                     game_window.set_display_title("Bookworm")
                     Book.jumble_list=[]
@@ -1610,6 +1565,7 @@ while is_running:
                     set_Bookworm()
                     stack.move_window_to_front(game_window)
 
+                #Activates Editor
                 if flag == 3:
                     game_window.set_display_title("Editor")
                     answer = Editor.main()
@@ -1621,33 +1577,40 @@ while is_running:
                     ans = answer[2]
                     stack.move_window_to_front(game_window)
 
+                #Activates Find the Kiddo - currently under development
                 if flag == 4:
                     exec(open("Kiddo.py").read())
                     stack.move_window_to_front(main_window)
 
+                #Activates Maze Runner
                 if flag == 5:
                     stack.move_window_to_front(maze_window)
 
+                #Activates Paint Picker
                 if flag == 6:
                     game_window.set_display_title("Paint Picker")
                     game_bg.visible = False
                     ans = Paint.get_paint_color()
                     flag2 = 1
 
+                #Activates Quick Change
                 if flag == 7:
                     game_window.set_display_title("Quick Change")
                     set_quick_change()
                     stack.move_window_to_front(game_window)
 
+                #Activates Space Oddity - currently under development
                 if flag == 8:
                     exec(open("Space.py").read())
                     stack.move_window_to_front(main_window)
-                    
+
+                #Activates Type Racer
                 if flag == 9:
                     while True:
                         Game().start_screen()
 
         if event.type == pygui.UI_TEXT_ENTRY_FINISHED:
+            #if text entry is within Blind Date game
             if event.ui_element == blind_text_entry:
                 print(blind_text_entry.get_text())
                 blind_text_entry.visible = False
@@ -1676,7 +1639,7 @@ while is_running:
                     iteration += 1
                     print("Incorrect!")
                     flag2 = 1
-
+            #if text entry is within Bookworm game
             if event.ui_element == bookworm_text_entry:
                 print(bookworm_text_entry.get_text())
                 if bookworm_text_entry.get_text() == ans:
@@ -1698,7 +1661,7 @@ while is_running:
                     bookworm_label_feedback1.visible = False
                     iteration += 1
                     print("Incorrect!")
-
+            #if text entry is within Editor game
             if event.ui_element == editor_text_entry:
                 print(editor_text_entry.get_text())
                 if editor_text_entry.get_text() == ans:
@@ -1723,7 +1686,7 @@ while is_running:
                     editor_label_feedback1.visible = False
                     iteration += 1
                     print("Incorrect!")
-
+            #if text entry is within Paint Picker game
             if event.ui_element == paint_text_entry:
                 print(paint_text_entry.get_text())
                 paint_text_entry.visible = False
@@ -1753,11 +1716,10 @@ while is_running:
         manager.process_events(event)
 
     manager.update(time_delta)
-
     manager.draw_ui(window)
-
     pygame.display.update()
-    
+
+    #for looping between wait() to ensure correct UI display
     if game_window.window_display_title == "Blind Date":
         if flag2 == 1:
             set_Blind()

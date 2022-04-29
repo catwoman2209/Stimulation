@@ -1,4 +1,8 @@
 #File for Maze Runner game code
+#
+#TTU Capstone Project Spring 2022
+#@authors = perennat - Tanner Kellogg
+
 import os
 import pygame
 

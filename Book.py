@@ -1,7 +1,7 @@
 #File for Bookworm game code
 #
 #TTU Capstone Project Spring 2022
-#@authors = christiana_taylor
+#@authors = catwoman2209 - Christiana Taylor
 
 ########################### NOTES ##############################
 

@@ -1,4 +1,8 @@
 #File for Editor game code
+#
+#TTU Capstone Project Spring 2022
+#@authors = catwoman2209 - Christiana Taylor
+
 import pygame
 import pygame_gui as pygui
 from pygame_gui.core import ObjectID

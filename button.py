@@ -1,3 +1,7 @@
+#File for Type Racer button game code
+#
+#TTU Capstone Project Spring 2022
+#@authors = SeanCris - Sean Criswell
 
 class Button():
     def __init__ (self, image, pos, text_input, font, base_color, hovering_color):

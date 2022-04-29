@@ -1,3 +1,8 @@
+#File for Type Racer game code
+#
+#TTU Capstone Project Spring 2022
+#@authors = SeanCris - Sean Criswell
+
 import pygame
 from pygame.locals import *
 import sys
