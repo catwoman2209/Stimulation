@@ -14,6 +14,7 @@ import Book
 import Editor
 import Maze
 import Paint
+import Change
 
 pygame.init()
 
