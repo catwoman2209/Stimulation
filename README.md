@@ -48,26 +48,16 @@ How to Install and Run Stimulation
 ---
 In order to run Stimulation properly, make sure you download ALL files. This includes the various python files, json files, and images folder. The pycache folder and various PDF files are not necessary for the execution of Stimulation, but offer more insight on the development of this project.
 
-Download the following libraries using 'pip install':
+Download the following libraries using `pip install`:
+  - pygame
+  - pygame_gui
+  - requests
 
-Once all files and libraries have been downloaded, the only file needed to execute is Stimulation.py. This can be ran from the terminal, once the current directory contains the files using 'python3 Stimulation.py'
-
-
-
-User must have the following installed: Python
-
-Use pip to install the following libraries:
-
--pip install pygame, pygame_gui, requests
-
-Ensure folder labeled "images", with 4 images within, is in the same execution folder as the python codes.
-Ensure all 3 json files are in the same execution folder as the python codes. 
-
-Execute the application from the Stimulation.py file through either an IDE or from the terminal. 
-
+Once all files and libraries have been downloaded, the only file needed to execute is Stimulation.py. This can be ran from the terminal, once the current directory contains the files using `python3 Stimulation.py` or through an IDE, such as Visual Studio Code.
 
 How to Use Stimulation
 ---
+
 
 Provide instructions and examples so users/contributors can use the project. This will make it easy for them in case they encounter a problem – they will always have a place to reference what is expected.
 
@@ -83,7 +73,7 @@ Bookworm
 
 Type Racer
 - generated window takes over display
-  - after exiting game user can still see Type Racer display behind the current window
+  - after exiting game user can still see Type Racer display behind the current window (on MacOS)
 
 Maze Runner
 - generated window appears in top right corner
