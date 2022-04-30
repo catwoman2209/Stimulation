@@ -46,6 +46,14 @@ Future development plans:
 
 How to Install and Run Stimulation
 ---
+In order to run Stimulation properly, make sure you download ALL files. This includes the various python files, json files, and images folder. The pycache folder and various PDF files are not necessary for the execution of Stimulation, but offer more insight on the development of this project.
+
+Download the following libraries using 'pip install':
+
+Once all files and libraries have been downloaded, the only file needed to execute is Stimulation.py. This can be ran from the terminal, once the current directory contains the files using 'python3 Stimulation.py'
+
+
+
 User must have the following installed: Python
 
 Use pip to install the following libraries:
