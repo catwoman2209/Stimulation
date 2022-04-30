@@ -1316,14 +1316,6 @@ while is_running:
             is_running = False
             pygame.quit()
 
-        #maze slider
-        if event.type == pygui.UI_HORIZONTAL_SLIDER_MOVED:
-            if event.ui_element == maze_game_slider:
-                s = "{}x{} Maze".format(event.value, event.value)
-                maze_label_slider_title.text = s
-                maze_label_slider_title.rebuild()
-                manager.update(time_delta)
-
         #event handllers for game menu buttons
         if event.type == pygui.UI_BUTTON_PRESSED:
             blind_label_score.visible = False
@@ -1467,6 +1459,76 @@ while is_running:
                     accuracy = 0
                     iteration = 0
 
+            #event handler for play button based on game clicked
+            if event.ui_element == play_button:
+                instruction_textbox.clear_all_active_effects()
+                instruction_textbox.full_redraw()
+
+                #Activates Blind Date
+                if flag == 1:
+                    game_window.set_display_title("Blind Date")
+                    game_bg.visible = False
+                    blind_bg.visible = True
+                    blind_label_number.visible = True
+                    ans = get_number()
+                    print(ans)
+                    blind_label_number.set_text(str(ans))
+                    stack.move_window_to_front(game_window)
+                    flag2 = 1
+
+                #Activates Bookworm
+                if flag == 2:
+                    game_window.set_display_title("Bookworm")
+                    Book.jumble_list=[]
+                    ans = Book.main()
+                    print(ans)
+                    set_Bookworm()
+                    stack.move_window_to_front(game_window)
+
+                #Activates Editor
+                if flag == 3:
+                    game_window.set_display_title("Editor")
+                    answer = Editor.main()
+                    set_Editor()
+                    editor_textbox_sentence.append_html_text(answer[0])
+                    print(answer[0])
+                    editor_textbox_sentence_j.append_html_text(answer[1])
+                    print(answer[1])
+                    ans = answer[2]
+                    stack.move_window_to_front(game_window)
+
+                #Activates Find the Kiddo - currently under development
+                if flag == 4:
+                    exec(open("Kiddo.py").read())
+                    stack.move_window_to_front(main_window)
+
+                #Activates Maze Runner
+                if flag == 5:
+                    stack.move_window_to_front(maze_window)
+
+                #Activates Paint Picker
+                if flag == 6:
+                    game_window.set_display_title("Paint Picker")
+                    game_bg.visible = False
+                    ans = Paint.get_paint_color()
+                    flag2 = 1
+
+                #Activates Quick Change
+                if flag == 7:
+                    game_window.set_display_title("Quick Change")
+                    set_quick_change()
+                    stack.move_window_to_front(game_window)
+
+                #Activates Space Oddity - currently under development
+                if flag == 8:
+                    exec(open("Space.py").read())
+                    stack.move_window_to_front(main_window)
+
+                #Activates Type Racer
+                if flag == 9:
+                    while True:
+                        Game().start_screen()
+
             if event.ui_element == maze_back_game_button:
                 in_maze = False
                 accuracy = 0
@@ -1562,77 +1624,15 @@ while is_running:
                         #print("Given change: {}".format(given_change))
                         iteration += 1
                         qc_incorrect_score(given_change)
-            
-            #event handler for play button based on game clicked
-            if event.ui_element == play_button:
-                instruction_textbox.clear_all_active_effects()
-                instruction_textbox.full_redraw()
-
-                #Activates Blind Date
-                if flag == 1:
-                    game_window.set_display_title("Blind Date")
-                    game_bg.visible = False
-                    blind_bg.visible = True
-                    blind_label_number.visible = True
-                    ans = get_number()
-                    print(ans)
-                    blind_label_number.set_text(str(ans))
-                    stack.move_window_to_front(game_window)
-                    flag2 = 1
-
-                #Activates Bookworm
-                if flag == 2:
-                    game_window.set_display_title("Bookworm")
-                    Book.jumble_list=[]
-                    ans = Book.main()
-                    print(ans)
-                    set_Bookworm()
-                    stack.move_window_to_front(game_window)
-
-                #Activates Editor
-                if flag == 3:
-                    game_window.set_display_title("Editor")
-                    answer = Editor.main()
-                    set_Editor()
-                    editor_textbox_sentence.append_html_text(answer[0])
-                    print(answer[0])
-                    editor_textbox_sentence_j.append_html_text(answer[1])
-                    print(answer[1])
-                    ans = answer[2]
-                    stack.move_window_to_front(game_window)
-
-                #Activates Find the Kiddo - currently under development
-                if flag == 4:
-                    exec(open("Kiddo.py").read())
-                    stack.move_window_to_front(main_window)
-
-                #Activates Maze Runner
-                if flag == 5:
-                    stack.move_window_to_front(maze_window)
-
-                #Activates Paint Picker
-                if flag == 6:
-                    game_window.set_display_title("Paint Picker")
-                    game_bg.visible = False
-                    ans = Paint.get_paint_color()
-                    flag2 = 1
-
-                #Activates Quick Change
-                if flag == 7:
-                    game_window.set_display_title("Quick Change")
-                    set_quick_change()
-                    stack.move_window_to_front(game_window)
-
-                #Activates Space Oddity - currently under development
-                if flag == 8:
-                    exec(open("Space.py").read())
-                    stack.move_window_to_front(main_window)
-
-                #Activates Type Racer
-                if flag == 9:
-                    while True:
-                        Game().start_screen()
-
+           
+        #maze slider
+        if event.type == pygui.UI_HORIZONTAL_SLIDER_MOVED:
+            if event.ui_element == maze_game_slider:
+                s = "{}x{} Maze".format(event.value, event.value)
+                maze_label_slider_title.text = s
+                maze_label_slider_title.rebuild()
+                manager.update(time_delta)
+ 
         if event.type == pygui.UI_TEXT_ENTRY_FINISHED:
             #if text entry is within Blind Date game
             if event.ui_element == blind_text_entry:
