@@ -6,7 +6,7 @@ Motivation
 ---
 Stimulation was created to be a way for adults to enjoy the same sort of brain training games that children do, without feeling like they are playing childish games. Currently, existing softwares seem to target children, creating simple games that children can easily relate to. With Stimulation, adults are the target audience, so the games were created with the experiences of adults in mind, such as memorizing a blind date's number, tracking children around the house, and picking out paint colors for the walls. 
 
-disabilities
+Another motivation for Stimulation's development was to cater to people with learning disabilities or mental disabilities. Since brain training games improve brain function over continued use, they have been proven to help those with ADHD in focusing, dementia and Alzheimer's in memory recall, and those with dyslexia to unscramble words and letters faster.
 
 Description
 ---
