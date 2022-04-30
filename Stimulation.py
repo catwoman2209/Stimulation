@@ -1183,6 +1183,32 @@ def end_quick_change():
 ################ SPACE ODDITY GAME ELEMENTS #######################
 #@authors=
 
+################ PYTESTING #######################
+#@authors=
+def test_instruction_text():
+    assert instruction_text(1) == "<b>Blind Date</b><br><br>You went on a blind date that went great! Memorize their number to call them later!<br><br><br>This game may help those with Alzheimer’s to improve symptoms with continued use over time."
+def test_get_number():
+    assert type(get_number()) == int and get_number() > 10000 and get_number() < 99999
+def test_change_get_total():
+    assert type(Change.get_total()) == float and get_number() > 0.99 and get_number() < 199.99
+def test_get_paint_color():
+    assert type(Paint.get_paint_color()) == str and Paint.get_paint_color() in ["black", "white", "red", "blue", "yellow", "gray", "green", "purple"]
+#def test_get_paint_word():
+#    assert type(Paint.get_paint_word()) == str and Paint.get_paint_word(2) in ["black", "white", "red", "blue", "yellow", "gray", "green", "purple"]
+#def test_get_paint_word_color():
+#    assert type(Paint.get_paint_word_color(2,4)) == tuple and Paint.get_paint_word_color(2,4) in [(0,0,0), (255,255,255), (0,0,255), (255,255,0), (0,128,0), (128,0,128)]
+
+
+
+def test():
+    test_instruction_text()
+    test_get_number()
+    test_get_paint_color()
+    #test_get_paint_word()
+    #test_get_paint_word_color()
+    
+    
+test()
 
 ####################### MAIN CODE #################################
 #start of main code
