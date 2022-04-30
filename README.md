@@ -2,17 +2,61 @@ Stimulation
 ===
 The main goal of Stimulation is to provide an adult friendly approach to popular brain-training games, that is free for public use.
 
+Motivation
+---
+Stimulation was created to be a way for adults to enjoy the same sort of brain training games that children do, without feeling like they are playing childish games. Currently, existing softwares seem to target children, creating simple games that children can easily relate to. With Stimulation, adults are the target audience, so the games were created with the experiences of adults in mind, such as memorizing a blind date's number, tracking children around the house, and picking out paint colors for the walls. 
+
 Description
 ---
+Stimulation consists of (currently) 9 brain training games. These are based off popular memory, focus, and problem solving games. This application is meant to be an easily accessible, adult-focused way to keep the brain stimulated and an enjoyable reprise.
 
-What your application does,
-Why you used the technologies you used,
-Some of the challenges you faced and features you hope to implement in the future.
+Brain training games have been proven to improve brain function in regards to memory recall, focus, and problem solving. Stimulation currently contain the following games:
+
+1. Blind Date
+    - Blind Date relates going on a date with number memorization. A number will be displayed in a box for 5 seconds before disappearing, and the user must commit the number to memory and input it when the text entry box appears. Game automatically ends after 10 correct answers.
+2. Bookworm
+    - Bookworm is a game in which the user unscrambles words. Letter boxes appear and the user must input the correct word. Game automatically ends after 10 correct answers. 
+3. Editor
+    - Editor relates to editing a book. Two sentences appear, and the user must identify the mistake and input the correctly spelled sentence. Game automatically ends after 10 correct answers.
+4. Find the Kiddo - currently under development
+    - Find the Kiddo is similar to Simon Says. A floorplan is displayed, and an image of a child will appear within the rooms, one at a time. The user must then click on the corresponding rooms, after prompted, following the pattern of the child. Game automatically ends after 5 correctly replicated patterns.
+5. Maze Runner
+    - Maze Runner is a maze game. The user will pick the size of the maze, then find the way "out" of the maze to the green square. Game automatically ends upon arrival at maze exit. 
+6. Paint Picker
+    - Paint Picker is similar to the optical illusion. A colored box will appear with a contradicting word name (text is also a different color) for 5 seconds before disappearing. User must focus on the color of the background and commit it to memory, and input the color of the background when prompted. Game automatically ends after 10 correct answers.
+7. Quick Change
+    - Quick Change is a subtraction problem solving game. An amount appears with a total, and another amount with amount given. User must then use the buttons to create the difference. 
+8. Space Oddity - currently under development
+    - Space Oddity is a find the difference game. An odd number of aliens will appear, multiple pairs(identical) and one odd alien out that has no pair. The user must click on the odd alien out. Game automatically ends after 5 correct inputs. 
+9. Type Racer
+    - Type Racer is similar to the online type racer game. A sentence appears, and the user must input the same sentence. Accuracy and words per minute are displayed based off user input.
+
+*A more detailed description of how to play each game and known bugs are included in segments below.*
+
+To code Stimulation, a relatively new framework was used, Pygame Gui (referred to as PyGui in this README). PyGui uses Pygame and Python code chunks to create a developer friendly user interface. PyGui was chosen as it simplified creating windows, displays, buttons, sliders, and other interactable elements within Python.
+
+Some challenges within this application include lack of documentation. As PyGui is relatively new, there are not many tutorials or 3rd party documentation on how to use the classes. Most of the coding effort was done through studying the API reference and extensive testing. Also, PyGui advertised as simple to use with Pygame, and there were some implementation issues when trying to execute pygame files within Stimulation.
+
+Future development plans:
+  - elevating the current design of the application and games to make them more engaging. 
+  - implementing levels of difficulty
+  - implementing a national leaderboard
+  - implementing profiles for users to track personal progress
+  - implementing more games to include a larger variety
 
 How to Install and Run Stimulation
 ---
+User must have the following installed: Python
 
-Provide a step-by-step description of how to get the development environment set and running.
+Use pip to install the following libraries:
+
+-pip install pygame, pygame_gui, requests
+
+Ensure folder labeled "images", with 4 images within, is in the same execution folder as the python codes.
+Ensure all 3 json files are in the same execution folder as the python codes. 
+
+Execute the application from the Stimulation.py file through either an IDE or from the terminal. 
+
 
 How to Use Stimulation
 ---
@@ -21,11 +65,29 @@ Provide instructions and examples so users/contributors can use the project. Thi
 
 You can also make use of visual aids by including materials like screenshots to show examples of the running project and also the structure and design principles used in your project.
 
+Known Bugs
+---
+Bookworm
+- generated letters contain an apostrophe
+  - user is unable to enter apostrophes, and causes an infinite loop of "Incorrect" responses
+- letter buttons currently not in use
+  - clicking buttons do not apply text to text entry
+
+Type Racer
+- generated window takes over display
+  - after exiting game user can still see Type Racer display behind the current window
+
+Maze Runner
+- generated window appears in top right corner
+
 Credits
 ---
 Christiana Taylor (main contributor) - [https://github.com/catwoman2209]
+
 Tanner Kellogg - [https://github.com/perennat]
+
 Sean Criswell - [https://github.com/SeanCris]
+
 Abigayle McVaney - [https://github.com/amcvaney]
 
 License
@@ -196,23 +258,3 @@ whether future versions of the GNU Lesser General Public License shall
 apply, that proxy's public statement of acceptance of any version is
 permanent authorization for you to choose that version for the
 Library.
-
-
-
-
-
-
-
-
-
-
-User must have the following installed: Python
-
-Use pip to install the following libraries:
-
--pip install pygame, pygame_gui, requests
-
-Ensure folder labeled "images", with 4 images within, is in the same execution folder as the python codes.
-Ensure all 3 json files are in the same execution folder as the python codes. 
-
-Execute the application from the Stimulation.py file through either an IDE or from the terminal. 

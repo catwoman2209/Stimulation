@@ -228,6 +228,79 @@ quit_button = pygui.elements.UIButton(relative_rect=pygame.Rect((0, 0), (100, 50
                                             tool_tip_text="Quit Stimulation",
                                             object_id=ObjectID(class_id='@game_menu_buttons'))
 
+################ BLIND DATE GAME ELEMENTS #######################
+#@authors=catwoman2209 - Christiana Taylor
+
+#Blind Date panel
+blind_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
+                                        manager=manager,
+                                        container=game_window,
+                                        starting_layer_height=1,
+                                        visible=False,
+                                        object_id=ObjectID(class_id='@blind_panel'))
+
+#Blind Date text entry lines
+blind_text_entry = pygui.elements.UITextEntryLine(relative_rect=pygame.Rect((100, 200), (400, 50)),
+                                        manager=manager,
+                                        container=blind_bg)
+blind_text_entry.set_allowed_characters('numbers')
+
+#Blind Date labels
+blind_label_number = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 50), (100, 50)),
+                                                text="",
+                                                manager=manager,
+                                                container=blind_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@blind_label_number"))
+blind_label_feedback1 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (100, 50)),
+                                                text="Correct!",
+                                                manager=manager,
+                                                container=blind_bg,
+                                                visible=False, 
+                                                object_id=ObjectID(class_id="@blind_label"))
+blind_label_feedback2 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (250, 50)),
+                                                text="Incorrect! Please try again!",
+                                                manager=manager,
+                                                container=blind_bg, 
+                                                visible = False,
+                                                object_id=ObjectID(class_id="@blind_label"))
+blind_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((300, 10), (200, 30)),
+                                                text="",
+                                                manager=manager,
+                                                container=instruction_bg, 
+                                                visible = False)
+
+#Blind Date functions
+def get_number():
+    return random.randint(10000, 99999)
+def set_Blind():
+    blind_label_number.visible = True
+    blind_text_entry.visible = False
+    manager.update(time_delta)
+    pygame.display.update()
+    wait()
+    blind_label_number.visible = False
+    blind_text_entry.visible = True    
+def end_Blind():
+    try:
+      score = round((accuracy/iteration)*100)
+    except:
+      score = 0
+
+    string = "Accuracy: "+ str(score)+" "+str(accuracy)+"/"+str(iteration)
+
+    blind_text_entry.visible = False
+    blind_label_number.visible = False
+    blind_label_feedback1.visible = False
+    blind_label_feedback2.visible = False
+    blind_label_score.set_text(string)
+    blind_label_score.visible = True
+    blind_bg.visible = False
+    game_bg.visible = True
+
+    manager.update(time_delta)
+    stack.move_window_to_front(instruction_window)
+
 ################ BOOKWORM GAME ELEMENTS #######################
 #@authors=catwoman2209 - Christiana Taylor
 
@@ -338,79 +411,6 @@ def end_Bookworm():
     letter_button3.visible = False
     letter_button4.visible = False
     letter_button5.visible = False
-    stack.move_window_to_front(instruction_window)
-
-################ BLIND DATE GAME ELEMENTS #######################
-#@authors=catwoman2209 - Christiana Taylor
-
-#Blind Date panel
-blind_bg = pygui.elements.UIPanel(relative_rect=pygame.Rect((0, 50), (800, 550)),
-                                        manager=manager,
-                                        container=game_window,
-                                        starting_layer_height=1,
-                                        visible=False,
-                                        object_id=ObjectID(class_id='@blind_panel'))
-
-#Blind Date text entry lines
-blind_text_entry = pygui.elements.UITextEntryLine(relative_rect=pygame.Rect((100, 200), (400, 50)),
-                                        manager=manager,
-                                        container=blind_bg)
-blind_text_entry.set_allowed_characters('numbers')
-
-#Blind Date labels
-blind_label_number = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 50), (100, 50)),
-                                                text="",
-                                                manager=manager,
-                                                container=blind_bg,
-                                                visible=False, 
-                                                object_id=ObjectID(class_id="@blind_label_number"))
-blind_label_feedback1 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (100, 50)),
-                                                text="Correct!",
-                                                manager=manager,
-                                                container=blind_bg,
-                                                visible=False, 
-                                                object_id=ObjectID(class_id="@blind_label"))
-blind_label_feedback2 = pygui.elements.UILabel(relative_rect=pygame.Rect((100, 300), (250, 50)),
-                                                text="Incorrect! Please try again!",
-                                                manager=manager,
-                                                container=blind_bg, 
-                                                visible = False,
-                                                object_id=ObjectID(class_id="@blind_label"))
-blind_label_score = pygui.elements.UILabel(relative_rect=pygame.Rect((300, 10), (200, 30)),
-                                                text="",
-                                                manager=manager,
-                                                container=instruction_bg, 
-                                                visible = False)
-
-#Blind Date functions
-def get_number():
-    return random.randint(10000, 99999)
-def set_Blind():
-    blind_label_number.visible = True
-    blind_text_entry.visible = False
-    manager.update(time_delta)
-    pygame.display.update()
-    wait()
-    blind_label_number.visible = False
-    blind_text_entry.visible = True    
-def end_Blind():
-    try:
-      score = round((accuracy/iteration)*100)
-    except:
-      score = 0
-
-    string = "Accuracy: "+ str(score)+" "+str(accuracy)+"/"+str(iteration)
-
-    blind_text_entry.visible = False
-    blind_label_number.visible = False
-    blind_label_feedback1.visible = False
-    blind_label_feedback2.visible = False
-    blind_label_score.set_text(string)
-    blind_label_score.visible = True
-    blind_bg.visible = False
-    game_bg.visible = True
-
-    manager.update(time_delta)
     stack.move_window_to_front(instruction_window)
 
 ################ EDITOR GAME ELEMENTS #######################
