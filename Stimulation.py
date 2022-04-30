@@ -617,6 +617,11 @@ def init_maze_runner():
 def deinit_maze_runner():
     in_maze = False
     player.erase()
+    global total_breadcrumbs
+    score_string = "Breadcrumbs: {}".format(total_breadcrumbs)
+    paint_label_score.set_text(score_string)
+    paint_label_score.visible = True
+    total_breadcrumbs = 0
     while len(maze) > 0:
         maze.pop()
     while len(visited_squares) > 0:
@@ -1207,6 +1212,7 @@ flag4 = 0
 accuracy = 0
 iteration = 0
 breadcrumb_count = 0
+total_breadcrumbs = 0
 
 while is_running:
 
@@ -1255,6 +1261,7 @@ while is_running:
                 if breadcrumb_count == 20:
                     player.leave_breadcrumb(player.x, player.y+5)
                     breadcrumb_count = 0
+                    total_breadcrumbs += 1
                 player.erase()
                 player.y -= 1
                 player.draw()
@@ -1264,6 +1271,7 @@ while is_running:
                 if breadcrumb_count == 20:
                     player.leave_breadcrumb(player.x-1, player.y)
                     breadcrumb_count = 0
+                    total_breadcrumbs += 1
                 player.erase()
                 player.x += 1
                 player.draw()
@@ -1273,6 +1281,7 @@ while is_running:
                 if breadcrumb_count == 20:
                     player.leave_breadcrumb(player.x, player.y-1)
                     breadcrumb_count = 0
+                    total_breadcrumbs += 1
                 player.erase()
                 player.y += 1
                 player.draw()
@@ -1282,6 +1291,7 @@ while is_running:
                 if breadcrumb_count == 20:
                     player.leave_breadcrumb(player.x + 5, player.y)
                     breadcrumb_count = 0
+                    total_breadcrumbs += 1
                 player.erase()
                 player.x -= 1
                 player.draw()
