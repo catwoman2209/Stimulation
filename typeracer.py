@@ -11,8 +11,6 @@ from button import Button
 import time
 import random
 
-
-
 screen = pygame.display.set_mode()
 globalx = screen.get_width()
 globaly = screen.get_height()
@@ -20,10 +18,8 @@ globaly = screen.get_height()
 background = pygame.image.load('images/background.jpg')
 background = pygame.transform.scale(background, (globalx, globaly))
 
-
 def get_font(size):
     return pygame.font.Font("assets/font.ttf", size)
-
 
 class Game:
 
@@ -89,9 +85,6 @@ class Game:
 
             pygame.display.update()
         
-
-
-
     def reset_button(self):
         while True:
             reset_menu_pos = pygame.mouse.get_pos()
@@ -117,8 +110,6 @@ class Game:
                             self.start_screen()
 
             pygame.display.update()
-
-
 
     def draw_text(self, screen, msg, y, fsize, color):
         font = pygame.font.Font(None, fsize)
@@ -247,7 +238,6 @@ class Game:
         screen.blit(text, text_rect)
 
         self.draw_text(screen, self.sentence, 230, 28, self.defaultTextColor)
-
 
         pygame.display.update()
 
