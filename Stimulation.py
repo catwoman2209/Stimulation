@@ -1161,6 +1161,9 @@ def end_quick_change():
     qc_label_n_name.visible = False
     qc_label_p_name.visible = False
     
+    paint_label_score.set_text(string)
+    paint_label_score.visible = True
+    
     stack.move_window_to_front(instruction_window)
 
 ################ SPACE ODDITY GAME ELEMENTS #######################
@@ -1536,6 +1539,8 @@ while is_running:
                     given_change = round(20*qc_20 + 10*qc_10 + 5*qc_5 + 1*qc_1 + 0.25*qc_q + 0.1*qc_d + 0.05*qc_n + 0.01*qc_p, 2)
                     if given_change == correct_change:
                         #print("Correct!")
+                        accuracy += 1
+                        iteration += 1
                         qc_correct_score(given_change)
                         qc_range += 5
                         reset_quick_change()
@@ -1545,6 +1550,7 @@ while is_running:
                         #print("Payment: {}".format(payment))
                         #print("Correct change: {}".format(correct_change))
                         #print("Given change: {}".format(given_change))
+                        iteration += 1
                         qc_incorrect_score(given_change)
             
             #event handler for play button based on game clicked
