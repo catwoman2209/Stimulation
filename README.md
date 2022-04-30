@@ -6,6 +6,8 @@ Motivation
 ---
 Stimulation was created to be a way for adults to enjoy the same sort of brain training games that children do, without feeling like they are playing childish games. Currently, existing softwares seem to target children, creating simple games that children can easily relate to. With Stimulation, adults are the target audience, so the games were created with the experiences of adults in mind, such as memorizing a blind date's number, tracking children around the house, and picking out paint colors for the walls. 
 
+disabilities
+
 Description
 ---
 Stimulation consists of (currently) 9 brain training games. These are based off popular memory, focus, and problem solving games. This application is meant to be an easily accessible, adult-focused way to keep the brain stimulated and an enjoyable reprise.
@@ -38,8 +40,10 @@ To code Stimulation, a relatively new framework was used, Pygame Gui (referred t
 Some challenges within this application include lack of documentation. As PyGui is relatively new, there are not many tutorials or 3rd party documentation on how to use the classes. Most of the coding effort was done through studying the API reference and extensive testing. Also, PyGui advertised as simple to use with Pygame, and there were some implementation issues when trying to execute pygame files within Stimulation.
 
 Future development plans:
-  - elevating the current design of the application and games to make them more engaging. 
+  - elevating the current design of the application and games to make them more engaging with graphics and sounds
+  - implementing a settings menu where sound can be toggled
   - implementing levels of difficulty
+  - implementing pause menus for the games
   - implementing a national leaderboard
   - implementing profiles for users to track personal progress
   - implementing more games to include a larger variety
@@ -57,11 +61,33 @@ Once all files and libraries have been downloaded, the only file needed to execu
 
 How to Use Stimulation
 ---
+Upon execution, a main menu will pop up and 9 game buttons will be displayed, along with a quit button in the top left corner. A user may pick any of the nine buttons, or select "Quit" to end the application. (Keep in mind that Space Oddity and Find the Kiddo are both still under construction.) Once a button is clicked, an instruction menu will appear that briefly describes the games and what disabilities that game may help improve. When the play button is pressed, the game will launch. The following will explain how each game works:
 
+Blind Date: Once a user presses the play button. The game screen will appear with a label and number. The screen will freeze for 5 seconds, and then disappear. A text entry box will appear and the user must input the number that appears from memory. If incorrect, the user is notified of incorrect input.  
 
-Provide instructions and examples so users/contributors can use the project. This will make it easy for them in case they encounter a problem – they will always have a place to reference what is expected.
+Bookworm:
+- 
 
-You can also make use of visual aids by including materials like screenshots to show examples of the running project and also the structure and design principles used in your project.
+Editor:
+- 
+
+Find the Kiddo:
+- 
+
+Maze Runner:
+- 
+
+Paint Picker:
+- 
+
+Quick Change:
+- 
+
+Space Oddity:
+- 
+
+Type Racer:
+- 
 
 Known Bugs
 ---
