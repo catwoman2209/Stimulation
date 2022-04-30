@@ -63,13 +63,11 @@ How to Use Stimulation
 ---
 Upon execution, a main menu will pop up and 9 game buttons will be displayed, along with a quit button in the top left corner. A user may pick any of the nine buttons, or select "Quit" to end the application. (Keep in mind that Space Oddity and Find the Kiddo are both still under construction.) Once a button is clicked, an instruction menu will appear that briefly describes the games and what disabilities that game may help improve. When the play button is pressed, the game will launch. The following will explain how each game works:
 
-Blind Date: Once a user presses the play button. The game screen will appear with a label and number. The screen will freeze for 5 seconds, and then disappear. A text entry box will appear and the user must input the number that appears from memory. If incorrect, the user is notified of incorrect input.  
+Blind Date: Once a user presses the play button, the game screen will appear with a label and number. The screen will freeze for 5 seconds, and then disappear. A text entry box will appear and the user must input the number that appears from memory. If incorrect, the user is notified of incorrect input, and the text entry disappears. The same display is then shown again for 5 seconds, and the process repeats until the user inputs the correct answer. If correct, the user is notified of correct input, and the text entry disappears. A new label and number will appear, and the game continues. Upon correct input 10 times, the game will automatically end, display returns to the instruction screen, and a score will be calculated based off accuracy (score = correct inputs/number of iterations). The user may also click "Quit Game" in the top left corner at any time to return to the instruction screen.
 
-Bookworm:
-- 
+Bookworm: Once a user presses the play button, the game screen will appear with a group of buttons that have letters. The user must use those letters to unscramble the word, and input that word into the text entry box. If incorrect, the text entry box is cleared, and the user is notified of incorrect input, and the application waits for next input. If correct, the user is notified of correct input and the text entry is cleared, and new letters are generated. Upon correct input 10 times, the game will automatically end, display returns to the instruction screen, and a score will be calculated based off accuracy (score = correct inputs/number of iterations). The user may also click "Quit Game" in the top left corner at any time to return to the instruction screen.
 
-Editor:
-- 
+Editor: Once a user presses the play button, the game screen will appear with a group of buttons that have letters. The user must use those letters to unscramble the word, and input that word into the text entry box. If incorrect, the text entry box is cleared, and the user is notified of incorrect input, and the application waits for next input. If correct, the user is notified of correct input and the text entry is cleared, and new letters are generated. Upon correct input 10 times, the game will automatically end, display returns to the instruction screen, and a score will be calculated based off accuracy (score = correct inputs/number of iterations). The user may also click "Quit Game" in the top left corner at any time to return to the instruction screen.
 
 Find the Kiddo:
 - 
@@ -96,6 +94,8 @@ Bookworm
   - user is unable to enter apostrophes, and causes an infinite loop of "Incorrect" responses
 - letter buttons currently not in use
   - clicking buttons do not apply text to text entry
+- generated letters create more than one word
+  - user must cycle through different possiblities to get correct answer
 
 Type Racer
 - generated window takes over display
