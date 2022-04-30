@@ -505,7 +505,7 @@ def end_Editor():
 #@authors=perennat - Tanner Kellogg
 
 maze_game_slider = pygui.elements.UIHorizontalSlider(relative_rect=pygame.Rect((200,200), (400, 100)),
-                                    manager=manager, start_value = 16, value_range = [4,32],
+                                    manager=manager, start_value = 16, value_range = [4,24],
                                     container=maze_bg, click_increment = 1,
                                     object_id=ObjectID(class_id='@toolbar'))
 maze_label_slider_title = pygui.elements.UILabel(relative_rect=pygame.Rect((200, 150), (100, 50)),
@@ -607,15 +607,6 @@ in_maze = False
 player = Maze.Player(MAZE_SIZE*20+4, MAZE_SIZE*20+4, window)
 
 def init_maze_runner():
-    main_window.visible = False
-    instruction_window.visible = False
-    game_window.visible = False
-    maze_window.visible = False
-    main_window.rebuild()
-    instruction_window.rebuild()
-    game_window.rebuild()
-    maze_window.rebuild()
-    window.fill((0,0,0))
     MAZE_SIZE = maze_game_slider.get_current_value()
     build_maze(MAZE_SIZE)
     create_maze(20,40)
@@ -633,14 +624,6 @@ def deinit_maze_runner():
     while len(maze_stack) > 0:
         maze_stack.pop()
     window.fill((0,0,0))
-    main_window.visible = True
-    instruction_window.visible = True
-    game_window.visible = True
-    maze_window.visible = True
-    main_window.rebuild()
-    instruction_window.rebuild()
-    game_window.rebuild()
-    maze_window.rebuild()
     stack.move_window_to_front(instruction_window)
 
 ################ PAINT PICKER GAME ELEMENTS #######################
