@@ -137,7 +137,7 @@ def instruction_text(x):
         text =  "<b>Editor</b><br><br>This author needs your help! Find and unscramble the author's errors as fast as you can!<br>Note: Do not include punctuation of any kind.<br><br><br>This game may help those with dyslexia to improve symptoms with continued use over<br>time."
     
     elif x == 4:
-        text =  "<b>Find the Kiddo</b><br><br>Listen to the sound of the toddler's giggles as they run through the house,<br>and follow their path!<br><br><br>This game may help those with ADHD to improve symptoms with continued use over time."
+        text =  "<b>Find the Kiddo</b><br><br>Listen to the sound of the toddler's giggles as they run through the house,<br>and follow their path!<br>Press ESC to exit the game at any time.<br><br><br>This game may help those with ADHD to improve symptoms with continued use over time."
     
     elif x == 5:
         text =  "<b>Maze Runner</b><br><br>Find the way out as quickly as you can!<br><br><br>This game may help those with ADHD to improve symptoms with continued use over time."
