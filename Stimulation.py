@@ -1176,19 +1176,18 @@ def test_change_get_total():
     assert type(Change.get_total()) == float and get_number() > 0.99 and get_number() < 199.99
 def test_get_paint_color():
     assert type(Paint.get_paint_color()) == str and Paint.get_paint_color() in ["black", "white", "red", "blue", "yellow", "gray", "green", "purple"]
-#def test_get_paint_word():
-#    assert type(Paint.get_paint_word()) == str and Paint.get_paint_word(2) in ["black", "white", "red", "blue", "yellow", "gray", "green", "purple"]
-#def test_get_paint_word_color():
-#    assert type(Paint.get_paint_word_color(2,4)) == tuple and Paint.get_paint_word_color(2,4) in [(0,0,0), (255,255,255), (0,0,255), (255,255,0), (0,128,0), (128,0,128)]
-
+def test_get_paint_word():
+    assert type(Paint.get_paint_word("red")) == str and Paint.get_paint_word("red") in ["black", "white", "blue", "yellow", "gray", "green", "purple"]
+def test_get_paint_word_color():
+    assert type(Paint.get_paint_word_color("red","gray")) == tuple and Paint.get_paint_word_color("red","gray") in [(0,0,0), (255,255,255), (0,0,255), (255,255,0), (0,128,0), (128,0,128)]
 
 
 def test():
     test_instruction_text()
     test_get_number()
     test_get_paint_color()
-    #test_get_paint_word()
-    #test_get_paint_word_color()
+    test_get_paint_word()
+    test_get_paint_word_color()
     
     
 test()
