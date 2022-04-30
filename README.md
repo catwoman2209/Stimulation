@@ -75,11 +75,13 @@ Upon execution, a main menu will pop up and 9 game buttons will be displayed, al
 
 **Paint Picker**: Once a user presses the play button, the game screen will appear with a display of a colored box, with a colored word. The word will be the name of a color, and the box and color of the word will be different from the word read. The screen will freeze for 5 seconds, and then disappear. A text entry box will appear and the user must input the color of the *background* that appeared from memory. If incorrect, the user is notified of incorrect input, and the text entry disappears. Another display is shown for 5 seconds, and the process repeats until the user inputs the correct answer. If correct, the user is notified of correct input, and the text entry disappears. A new display will appear, and the game continues. Upon correct input 10 times, the game will automatically end, display returns to the instruction screen, and a score will be calculated based off accuracy (score = correct inputs/number of iterations). The user may also click "Quit Game" in the top left corner at any time to return to the instruction screen. 
 
-**Quick Change**: 
+**Quick Change**: Once a user presses the play button, a screen will appear showing the total amount, and amount paid. User will then use the corresponding monetary buttons (20, 10, 5, 1, .25, .10, .5, .1) to make the correct change. User will have to keep track of amount of change themselves, and click "Give Change" to submit answer. If incorrect, the user will be notified of incorrect input and resets screen, until user inputs correct change. If correct, a new display with a different total and amount paid will  
+
+Upon correct input 10 times, the game will automatically end, display returns to the instruction screen, and a score will be calculated based off accuracy (score = correct inputs/number of iterations). The user may also click "Quit Game" in the top left corner at any time to return to the instruction screen. 
 
 **Space Oddity**: 
 
-**Type Racer**: 
+**Type Racer**:  
 
 **Games may change during development, and these descriptions will be updated as needed.*
 
@@ -93,16 +95,16 @@ Bookworm
 - generated letters create more than one word
   - user must cycle through different possiblities to get correct answer
 
-Type Racer
-- generated window takes over display
-  - after exiting game user can still see Type Racer display behind the current window (on MacOS)
-
 Maze Runner
 - generated window appears in top right corner
   - doesn't affect gameplay
 - generated maze size is too large
   - maze size is based off aspect ratio, so larger mazes may be partially blocked by the instruction/game windows
   - if maze is blocked by window, user movement can skip through maze portions as it moves through areas covered by the window 
+
+Type Racer
+- generated window takes over display
+  - after exiting game user can still see Type Racer display behind the current window (on MacOS)
 
 Credits
 ---
